@@ -1,0 +1,132 @@
+/* Общие стили */
+.acid-gradient-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Заполнить весь экран */
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 1) 3%,
+    rgba(171, 245, 56, 0.4) 50%,
+    rgba(254, 217, 25, 0.4) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.acid-image {
+  margin-left:-5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.acid-text {
+  position: absolute;
+  color: #fff;
+  font-family: 'Gilroy-ExtraBold', sans-serif;
+  z-index: 2;
+  top: 10%;
+  left: 5%;
+}
+
+.acid-text h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.acid-text p {
+  font-size: 24px;
+  font-family: 'MyriadPro-Regular', sans-serif;
+}
+
+.store-logos {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.store-logo {
+  width: 180px;
+  height: auto;
+}
+
+/* Слоган теперь под основным текстом */
+.acid-slogan {
+  position: absolute;
+  top: 8%;
+  right: 5%;
+  z-index: 2;
+  width: 400px;
+  height: auto;
+}
+.ttop-right {
+  top: 5%;
+  right: 5%;
+}
+
+/* Адаптивные стили для планшетов и мобильных устройств */
+@media (max-width: 1024px) {
+  .acid-text h1 {
+    font-size: 38px;
+  }
+
+  .acid-text p {
+    font-size: 20px;
+  }
+
+  .store-logo {
+    width: 150px;
+  }
+
+  .acid-slogan {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .acid-gradient-container {
+      height:80vh; 
+    }
+  .acid-image {
+      width: auto;
+      height: 80vh;   
+  }
+  .acid-text {
+   
+    left: 55%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+
+  .acid-text h1 {
+    font-size: 25px;
+}
+
+  .acid-text p {
+    font-size: 15px;
+  }
+
+  .store-logos {
+    gap: 5px;
+  }
+
+  .store-logo {
+    width: 120px;
+  }
+
+  .acid-slogan {
+    width: 160px;
+  }
+
+  .ttop-right {
+    top: 25%;
+    right: 5%;
+}
+}
+

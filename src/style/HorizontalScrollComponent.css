@@ -1,0 +1,105 @@
+.horizontal-scroll-container {
+  overflow: hidden; /* Скрыть стандартный скролл */
+  width: 100%; /* Ширина контейнера */
+  height: 500px; /* Высота контейнера */
+  position: relative; /* Для позиционирования внутреннего контента */
+  margin-bottom: 20px;
+}
+
+.scroll-content {
+  display: flex; /* Выстраиваем элементы в ряд */
+  height: 100%; /* Полная высота контейнера */
+  transition: transform 0.2s ease; /* Плавный переход для эффекта */
+}
+
+.item {
+  width: 900px; /* Минимальная ширина для каждого элемента */
+  height: 100%; /* Полная высота элемента */
+  background-color: #1A1A1A; /* Цвет фона элемента */
+  margin-right: 10px; /* Отступ между элементами */
+  display: flex; /* Для горизонтального выравнивания содержимого */
+  align-items: center;
+  border-radius: 10px; /* Скругление углов */
+  padding: 20px; /* Внутренний отступ */
+}
+
+/* Стили для изображений */
+.item img {
+  margin-right: 20px; /* Отступ между картинкой и текстом */
+}
+
+/* Стили для текстового контента */
+.text-content {
+  display: flex;
+  flex-direction: column; /* Вертикальное выравнивание текста */
+}
+
+.text-content h3 {
+  margin: 0;
+  font-size: 1.5rem; /* Размер заголовка */
+}
+
+.text-content h4 {
+  margin: 5px 0; /* Отступ между заголовками */
+  font-size: 1.2rem; /* Размер подзаголовка */
+}
+
+.text-content p {
+  margin: 5px 0; /* Отступ между абзацами */
+}
+.toggle-header {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.toggle-text {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.toggle-text.show {
+  max-height: 200px;
+  margin: 10px;
+}
+@media (max-width: 768px) {
+
+  .item {
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .text-content {
+    margin-right: 5px;
+  }
+
+  .swiper-pagination-bullets {
+    margin-left: 20px;
+  }
+  
+  .item img {
+    width: 200px; /* Уменьшаем размер изображения на мобильных */
+    margin-right: 15px; /* Отступ справа от изображения */
+  }
+  .text-content {
+        font-size: 10px;
+        margin-right: 5px;
+        margin-top: 120px;
+    }
+.text-content h3 { 
+  margin: 0;
+  font-size: 20px; /* Размер заголовка */
+}
+.text-content p {
+  font-size: 10px;
+}
+.text-content h4 {
+  font-size: 15px;
+}
+
+
+  
+}
