@@ -3,7 +3,7 @@ import '../style/store.css';
 import acidImage from '../img/комбаин.svg';
 import appStoreLogo from '../img/ап сторр.svg'; // Лого App Store
 import googlePlayLogo from '../img/ру сторр.svg'; // Лого Google Play
-import sloganSvg from '../img/слоган.svg';
+import sloganSvg from '../img/слоган2.svg';
 
 const Store = () => {
   return (
