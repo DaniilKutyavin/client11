@@ -130,3 +130,13 @@
 }
 }
 
+@font-face {
+  font-family: 'Impact';
+  src:url('../fonts/ofont.ru_Impact.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.st2 {
+  font-family: 'Impact', sans-serif;
+}
