@@ -1,3 +1,8 @@
+html, body {
+    width: 100%;
+    overflow-x: hidden; 
+  }
+
 .shop-container {
     position: relative; /* Чтобы блоки могли быть позиционированы относительно этого контейнера */
     width: 100%;
