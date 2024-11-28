@@ -7,22 +7,12 @@ import "swiper/css/navigation";
 import "../style/shop.css";
 import { Link, useLocation } from "react-router-dom";
 import Cart from "../componenets/Cart";
-import videoSrc from "../img/main.gif";
+import videoSrc from "../img/main1.gif";
 import PopupInfo from "../componenets/PopupInfo";
 import { getBasket } from "../http/productApi";
 import { Context } from "..";
 import baskcol from "../img/Корзина цвет.svg";
 
-import img1 from "../img/img1.jpg";
-import img2 from "../img/img2.jpg";
-import img3 from "../img/img3.jpg";
-import img4 from "../img/img4.jpg";
-import img5 from "../img/img5.jpg";
-import img6 from "../img/img6.jpg";
-import circle1 from "../img/кольцо1.svg";
-import circle2 from "../img/кольцо2.svg";
-import circle3 from "../img/кольцо3.svg";
-import circle4 from "../img/Кольцо4.svg";
 import kolos from "../img/Колос.svg"; // Ваш SVG слоган
 import Store from "../componenets/Store";
 import bask from "../img/корзина белая 1.svg";
