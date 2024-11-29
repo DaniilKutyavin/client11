@@ -7,6 +7,7 @@ const ProductForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     price: "",
+    price_two: "",
     type: "1", // Always set type to 1
     description: "",
     description_low: "",
@@ -126,6 +127,7 @@ const ProductForm = () => {
       setFormData({
         name: "",
         price: "",
+        price_two: "",
         type: "1", // Reset type to 1
         description: "",
         description_low: "",
@@ -154,6 +156,36 @@ const ProductForm = () => {
       console.error("Error creating product:", error);
     }
   };
+  const handleCategorySelect = (category) => {
+    setFormData((prevData) => {
+      const currentCategories = prevData.category ? prevData.category.split(";") : [];
+  
+      // Проверяем, есть ли категория в списке
+      if (currentCategories.includes(category)) {
+        // Удаляем категорию из списка
+        const newCategories = currentCategories.filter(item => item !== category);
+        return { ...prevData, category: newCategories.join(";") };
+      } else {
+        // Добавляем категорию в список
+        return { ...prevData, category: [...currentCategories, category].join(";") };
+      }
+    });
+  };
+  const handleСultureSelect = (culture) => {
+    setFormData((prevData) => {
+      const currentСultures = prevData.culture ? prevData.culture.split(";") : [];
+  
+      // Проверяем, есть ли категория в списке
+      if (currentСultures.includes(culture)) {
+        // Удаляем категорию из списка
+        const newCategories = currentСultures.filter(item => item !== culture);
+        return { ...prevData, culture: newCategories.join(";") };
+      } else {
+        // Добавляем категорию в список
+        return { ...prevData, culture: [...currentСultures, culture].join(";") };
+      }
+    });
+  };
 
   return (
     <div className="delivery-page">
@@ -173,6 +205,14 @@ const ProductForm = () => {
             value={formData.price}
             onChange={handleChange}
             placeholder="Цена"
+            required
+          />
+           <label htmlFor="name">Цена безнал:</label>
+          <input
+            name="price_two"
+            value={formData.price_two}
+            onChange={handleChange}
+            placeholder="Цена безнал"
             required
           />
         <label htmlFor="name">Тип:</label>
@@ -210,52 +250,48 @@ const ProductForm = () => {
             onChange={handleChange}
             placeholder="Вес"
           />
-        <label htmlFor="name">Выберите культуру:</label>
-          <select
-            name="culture"
-            value={formData.culture}
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>
-              Выберите культуру
-            </option>
-            <option value="Зерновые">Зерновые</option>
-            <option value="Кукуруза">Кукуруза</option>
-            <option value="Подсолнечник">Подсолнечник</option>
-            <option value="Сахарная свекла">Сахарная свекла</option>
-            <option value="Соя">Соя</option>
-            <option value="Рапс">Рапс</option>
-            <option value="Картофель">Картофель</option>
-            <option value="Нут">Нут</option>
-            <option value="Горох">Горох</option>
-            <option value="Томаты">Томаты</option>
-            <option value="Огурцы">Огурцы</option>
-            <option value="Лук">Лук</option>
-            <option value="Виноградники">Виноградники</option>
-            <option value="Плодовые">Плодовые</option>
-            {/* Add more options as needed */}
-          </select>
-          <label htmlFor="name">Выберите категорию:</label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>
-              Выберите категорию
-            </option>
-            <option value="Гербициды">Гербициды</option>
-            <option value="Инсектициды">Инсектициды</option>
-            <option value="Фунгициды">Фунгициды</option>
-            <option value="Протравители">Протравители</option>
-            <option value="Адьюванты">Адьюванты</option>
-            <option value="Регуляторы роста">Регуляторы роста</option>
-            <option value="Десиканты">Десиканты</option>
-            <option value="Фумиганты и родентициды">Фумиганты и родентициды</option>
-            {/* Add more options as needed */}
-          </select>
+
+          <label>Выберите культуру:</label>
+<div>
+  <button type="button" onClick={() => handleСultureSelect("Зерновые")}>Зерновые</button>
+  <button type="button" onClick={() => handleСultureSelect("Кукуруза")}>Кукуруза</button>
+  <button type="button" onClick={() => handleСultureSelect("Подсолнечник")}>Подсолнечник</button>
+  <button type="button" onClick={() => handleСultureSelect("Сахарная свекла")}>Сахарная свекла</button>
+  <button type="button" onClick={() => handleСultureSelect("Соя")}>Соя</button>
+  <button type="button" onClick={() => handleСultureSelect("Рапс")}>Рапс</button>
+  <button type="button" onClick={() => handleСultureSelect("Картофель")}>Картофель</button>
+  <button type="button" onClick={() => handleСultureSelect("Нут")}>Нут</button>
+  <button type="button" onClick={() => handleСultureSelect("Горох")}>Горох</button>
+  <button type="button" onClick={() => handleСultureSelect("Томаты")}>Томаты</button>
+  <button type="button" onClick={() => handleСultureSelect("Огурцы")}>Огурцы</button>
+  <button type="button" onClick={() => handleСultureSelect("Лук")}>Лук</button>
+  <button type="button" onClick={() => handleСultureSelect("Лук")}>Виноградники</button>
+  <button type="button" onClick={() => handleСultureSelect("Лук")}>Виноградники</button>
+</div>
+{formData.culture && (
+  <div>
+    <strong>Выбранные культура:</strong>
+    <p>{formData.culture.split(";").join(", ")}</p>
+  </div>
+)}
+         
+          <label>Выберите категорию:</label>
+<div>
+  <button type="button" onClick={() => handleCategorySelect("Гербициды")}>Гербициды</button>
+  <button type="button" onClick={() => handleCategorySelect("Инсектициды")}>Инсектициды</button>
+  <button type="button" onClick={() => handleCategorySelect("Фунгициды")}>Фунгициды</button>
+  <button type="button" onClick={() => handleCategorySelect("Протравители")}>Протравители</button>
+  <button type="button" onClick={() => handleCategorySelect("Адьюванты")}>Адьюванты</button>
+  <button type="button" onClick={() => handleCategorySelect("Регуляторы роста")}>Регуляторы роста</button>
+  <button type="button" onClick={() => handleCategorySelect("Десиканты")}>Десиканты</button>
+  <button type="button" onClick={() => handleCategorySelect("Фумиганты и родентициды")}>Фумиганты и родентициды</button>
+</div>
+{formData.category && (
+  <div>
+    <strong>Выбранные категории:</strong>
+    <p>{formData.category.split(";").join(", ")}</p>
+  </div>
+)}
           <label htmlFor="name">Выберите производителя:</label>
           <select
             name="manufacturer"
@@ -387,7 +423,6 @@ const ProductForm = () => {
             name="certificate"
             onChange={handleFileChange}
             accept=".pdf"
-            required
           />
           <p></p>
           Файл 2:
@@ -396,7 +431,6 @@ const ProductForm = () => {
             name="presentation"
             onChange={handleFileChange}
             accept=".pdf"
-            required
           />
         
 

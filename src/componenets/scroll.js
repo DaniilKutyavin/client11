@@ -82,7 +82,7 @@ const HorizontalScrollComponent = () => {
       ) : (
          <Swiper
         spaceBetween={10}
-        slidesPerView={1.3}
+        slidesPerView={1.6}
         className="swiper-container"
         speed={800} // Плавный переход между слайдами
         freeMode={true} // Режим свободного скролла

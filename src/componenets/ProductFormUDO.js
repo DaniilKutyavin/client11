@@ -7,6 +7,7 @@ const ProductForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     price: "",
+    price_two: "",
     type: "2",
     desc_header: "", // Устанавливаем тип по умолчанию на 2
     description: "",
@@ -133,6 +134,7 @@ const ProductForm = () => {
       setFormData({
         name: "",
         price: "",
+        price_two: "",
         type: "2",
         desc_header: "", // Сбрасываем тип на 2
         description: "",
@@ -158,6 +160,70 @@ const ProductForm = () => {
     }
   };
 
+  const handleСultureSelect = (culture) => {
+    setFormData((prevData) => {
+      const currentСultures = prevData.culture ? prevData.culture.split(";") : [];
+  
+      // Проверяем, есть ли категория в списке
+      if (currentСultures.includes(culture)) {
+        // Удаляем категорию из списка
+        const newCategories = currentСultures.filter(item => item !== culture);
+        return { ...prevData, culture: newCategories.join(";") };
+      } else {
+        // Добавляем категорию в список
+        return { ...prevData, culture: [...currentСultures, culture].join(";") };
+      }
+    });
+  };
+
+  const handleFertilizersSelect = (fertilizers) => {
+    setFormData((prevData) => {
+      const currentFertilizers = prevData.fertilizers ? prevData.fertilizers.split(";") : [];
+  
+      // Проверяем, есть ли категория в списке
+      if (currentFertilizers.includes(fertilizers)) {
+        // Удаляем категорию из списка
+        const newCategories = currentFertilizers.filter(item => item !== fertilizers);
+        return { ...prevData, fertilizers: newCategories.join(";") };
+      } else {
+        // Добавляем категорию в список
+        return { ...prevData, fertilizers: [...currentFertilizers, fertilizers].join(";") };
+      }
+    });
+  };
+
+  const handleWaySelect = (way) => {
+    setFormData((prevData) => {
+      const currentWay = prevData.way ? prevData.way.split(";") : [];
+  
+      // Проверяем, есть ли категория в списке
+      if (currentWay.includes(way)) {
+        // Удаляем категорию из списка
+        const newCategories = currentWay.filter(item => item !== way);
+        return { ...prevData, way: newCategories.join(";") };
+      } else {
+        // Добавляем категорию в список
+        return { ...prevData, way: [...currentWay, way].join(";") };
+      }
+    });
+  };
+
+  const handleGroundSelect = (ground) => {
+    setFormData((prevData) => {
+      const currentGround = prevData.ground ? prevData.ground.split(";") : [];
+  
+      // Проверяем, есть ли категория в списке
+      if (currentGround.includes(ground)) {
+        // Удаляем категорию из списка
+        const newCategories = currentGround.filter(item => item !== ground);
+        return { ...prevData, ground: newCategories.join(";") };
+      } else {
+        // Добавляем категорию в список
+        return { ...prevData, ground: [...currentGround, ground].join(";") };
+      }
+    });
+  };
+
   return (
     <div className="delivery-page">
       <h2>Создать удобрение</h2>
@@ -176,6 +242,14 @@ const ProductForm = () => {
             value={formData.price}
             onChange={handleChange}
             placeholder="Цена"
+            required
+          />
+         <label htmlFor="name">Цена безнал:</label>
+          <input
+            name="price_two"
+            value={formData.price_two}
+            onChange={handleChange}
+            placeholder="Цена безнал"
             required
           />
        <label htmlFor="name">Тип:</label>
@@ -214,66 +288,67 @@ const ProductForm = () => {
             onChange={handleChange}
             placeholder="Вес"
           />
-       <label htmlFor="name">Выберите культуру:</label>
-          <select
-            name="culture"
-            value={formData.culture}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Выберите культуру</option>
-            <option value="Зерновые">Зерновые</option>
-            <option value="Масличные">Масличные</option>
-            <option value="Зернобобовые">Зернобобовые</option>
-            <option value="Овощные">Овощные</option>
-            <option value="Плодовые">Плодовые</option>
-            {/* Добавьте другие культуры по необходимости */}
-          </select>
-          <label htmlFor="name">Выберите удобрение:</label>
-          <select
-            name="fertilizers"
-            value={formData.fertilizers}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Выберите удобрение</option>
-            <option value="Азотные N">Азотные N</option>
-            <option value="Фосфорные P">Фосфорные P</option>
-            <option value="Калийные K">Калийные K</option>
-            <option value="Комплексные N+P+K">Комплексные N+P+K</option>
-            <option value="Водорастворимые">Водорастворимые</option>
-            <option value="Жидкие">Жидкие</option>
-            {/* Добавьте другие удобрения по необходимости */}
-          </select>
-          <label htmlFor="name">Выберите способ внесения:</label>
-          <select
-            name="way"
-            value={formData.way}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Выберите способ внесения</option>
-            <option value="Основное внесение">Основное внесение</option>
-            <option value="Припосевное внесение">Припосевное внесение</option>
-            <option value="Листовые подкормки">Листовые подкормки</option>
-            <option value="Фертигация">Фертигация</option>
-            <option value="Капельный полив">Капельный полив</option>
-            <option value="Корневая подкормка">Корневая подкормка</option>
-            <option value="Обработка семян">Обработка семян</option>
-            {/* Добавьте другие способы по необходимости */}
-          </select>
-          <label htmlFor="name">Выберите вид грунта:</label>
-          <select
-            name="ground"
-            value={formData.ground}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Выберите вид грунта</option>
-            <option value="Открытый">Открытый</option>
-            <option value="Закрытый">Закрытый</option>
-            {/* Добавьте другие виды грунта по необходимости */}
-          </select>
+
+          <label>Выберите культуру:</label>
+<div>
+  <button type="button" onClick={() => handleСultureSelect("Зерновые")}>Зерновые</button>
+  <button type="button" onClick={() => handleСultureSelect("Масличные")}>Масличные</button>
+  <button type="button" onClick={() => handleСultureSelect("Зернобобовые")}>Зернобобовые</button>
+  <button type="button" onClick={() => handleСultureSelect("Овощные")}>Овощные</button>
+  <button type="button" onClick={() => handleСultureSelect("Плодовые")}>Плодовые</button>
+</div>
+{formData.culture && (
+  <div>
+    <strong>Выбранные культура:</strong>
+    <p>{formData.culture.split(";").join(", ")}</p>
+  </div>
+)}
+          
+          <label>Выберите удобрение:</label>
+<div>
+  <button type="button" onClick={() => handleFertilizersSelect("Азотные N")}>Азотные N</button>
+  <button type="button" onClick={() => handleFertilizersSelect("Фосфорные P")}>Фосфорные P</button>
+  <button type="button" onClick={() => handleFertilizersSelect("Калийные K")}>Калийные K</button>
+  <button type="button" onClick={() => handleFertilizersSelect("Комплексные N+P+K")}>Комплексные N+P+K</button>
+  <button type="button" onClick={() => handleFertilizersSelect("Водорастворимые")}>Водорастворимые</button>
+  <button type="button" onClick={() => handleFertilizersSelect("Жидкие")}>Жидкие</button>
+</div>
+{formData.fertilizers && (
+  <div>
+    <strong>Выбранные удобрения:</strong>
+    <p>{formData.fertilizers.split(";").join(", ")}</p>
+  </div>
+)}
+         
+
+          <label>Выберите  способ внесения:</label>
+<div>
+  <button type="button" onClick={() => handleWaySelect("Основное внесение")}>Основное внесение</button>
+  <button type="button" onClick={() => handleWaySelect("Припосевное внесение")}>Припосевное внесение</button>
+  <button type="button" onClick={() => handleWaySelect("Листовые подкормки")}>Листовые подкормки</button>
+  <button type="button" onClick={() => handleWaySelect("Фертигация")}>Фертигация</button>
+  <button type="button" onClick={() => handleWaySelect("Капельный полив")}>Капельный полив</button>
+  <button type="button" onClick={() => handleWaySelect("Корневая подкормка")}>Корневая подкормка</button>
+  <button type="button" onClick={() => handleWaySelect("Обработка семян")}>Обработка семян</button>
+</div>
+{formData.way && (
+  <div>
+    <strong>Выбранные  способы внесения:</strong>
+    <p>{formData.way.split(";").join(", ")}</p>
+  </div>
+)}
+        
+          <label>Выберите вид грунта:</label>
+<div>
+  <button type="button" onClick={() => handleGroundSelect("Открытый")}>Открытый</button>
+  <button type="button" onClick={() => handleGroundSelect("Закрытый")}>Закрытый</button>
+</div>
+{formData.ground && (
+  <div>
+    <strong>Выбранные виды грунта:</strong>
+    <p>{formData.ground.split(";").join(", ")}</p>
+  </div>
+)}
           <label htmlFor="name"> Выберите производителя:</label>
           <select
             name="manufacturer"
@@ -368,7 +443,7 @@ const ProductForm = () => {
             name="certificate"
             onChange={handleFileChange}
             accept=".pdf"
-            required
+            
           />
           <p></p>
           Файл 2:
@@ -377,7 +452,7 @@ const ProductForm = () => {
             name="presentation"
             onChange={handleFileChange}
             accept=".pdf"
-            required
+            
           />
       
 

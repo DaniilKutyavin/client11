@@ -13,7 +13,8 @@
 }
 
 .item {
-  width: 90%; /* Минимальная ширина для каждого элемента */
+  margin-top: 50px;
+  width: 60%; /* Минимальная ширина для каждого элемента */
   height: 100%; /* Полная высота элемента */
   background-color: #1A1A1A; /* Цвет фона элемента */
   margin-right: 10px; /* Отступ между элементами */
@@ -70,8 +71,8 @@
 }
 .huge-gradient-text {
   font-family: 'Gilroy-ExtraBold', sans-serif;
-  width: 550px;
-  font-size: 180px; /* Очень большой размер текста */
+  width: 100%;
+  font-size: 330px; /* Очень большой размер текста */
   font-weight: bold; /* Жирный текст */
   background: linear-gradient(90deg, rgb(70,91,34), rgb(92,83,26)); /* Градиент */
   -webkit-background-clip: text; /* Используем градиент для текста */
@@ -83,7 +84,9 @@
     width: 100%;
     font-size: 120px;
   }
+  
   .item {
+    margin-top: 0px;
     flex-direction: row;
     width: 100%;
   }
@@ -103,6 +106,7 @@
   .text-content {
         font-size: 10px;
         margin-right: 5px;
+        margin-top: 120px;
         
     }
 .text-content h3 { 

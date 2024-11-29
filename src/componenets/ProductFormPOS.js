@@ -7,6 +7,7 @@ const ProductForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     price: "",
+    price_two: "",
     type: "3",
     desc_header: "",
     description: "",
@@ -18,6 +19,7 @@ const ProductForm = () => {
     way: "",
     ground: "",
     descThree: "",
+    category: "",
     adva: [],
     stabil: [],
     productiv: [],
@@ -133,6 +135,7 @@ const ProductForm = () => {
       setFormData({
         name: "",
         price: "",
+        price_two:"",
         type: "3",
         desc_header: "",
         description: "",
@@ -156,6 +159,22 @@ const ProductForm = () => {
     }
   };
 
+  const handleCategorySelect = (category) => {
+    setFormData((prevData) => {
+      const currentCategories = prevData.category ? prevData.category.split(";") : [];
+  
+      // Проверяем, есть ли категория в списке
+      if (currentCategories.includes(category)) {
+        // Удаляем категорию из списка
+        const newCategories = currentCategories.filter(item => item !== category);
+        return { ...prevData, category: newCategories.join(";") };
+      } else {
+        // Добавляем категорию в список
+        return { ...prevData, category: [...currentCategories, category].join(";") };
+      }
+    });
+  };
+
   return (
     <div className="delivery-page">
       <h2>Создать посевной материал</h2>
@@ -168,12 +187,20 @@ const ProductForm = () => {
             placeholder="Название"
             required
           />
-        <label htmlFor="name">Цена:</label>
+        <label htmlFor="name">Цена наличные:</label>
           <input
             name="price"
             value={formData.price}
             onChange={handleChange}
             placeholder="Цена"
+            required
+          />
+          <label htmlFor="name">Цена безнал:</label>
+          <input
+            name="price_two"
+            value={formData.price_two}
+            onChange={handleChange}
+            placeholder="Цена безнал"
             required
           />
          <label htmlFor="name">Тип:</label>
@@ -212,24 +239,25 @@ const ProductForm = () => {
             onChange={handleChange}
             placeholder="Вес"
           />
-         <label htmlFor="name">Выберите категорию:</label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Выберите категорию</option>
-            <option value="Подсолнечник">Подсолнечник</option>
-            <option value="Рапс">Рапс</option>
-            <option value="Кукуруза">Кукуруза</option>
-            <option value="Пшеница">Пшеница</option>
-            <option value="Ячмень">Ячмень</option>
-            <option value="Нут">Нут</option>
-            <option value="Горох">Горох</option>
-            <option value="Горчица">Горчица</option>
-            {/* Добавьте другие культуры по необходимости */}
-          </select>
+       <label>Выберите категорию:</label>
+<div>
+  <button type="button" onClick={() => handleCategorySelect("Подсолнечник")}>Подсолнечник</button>
+  <button type="button" onClick={() => handleCategorySelect("Рапс")}>Рапс</button>
+  <button type="button" onClick={() => handleCategorySelect("Кукуруза")}>Кукуруза</button>
+  <button type="button" onClick={() => handleCategorySelect("Пшеница")}>Пшеница</button>
+  <button type="button" onClick={() => handleCategorySelect("Ячмень")}>Ячмень</button>
+  <button type="button" onClick={() => handleCategorySelect("Нут")}>Нут</button>
+  <button type="button" onClick={() => handleCategorySelect("Горох")}>Горох</button>
+  <button type="button" onClick={() => handleCategorySelect("Горчица")}>Горчица</button>
+</div>
+
+{/* Вывод выбранных категорий */}
+{formData.category && (
+  <div>
+    <strong>Выбранные категории:</strong>
+    <p>{formData.category.split(";").join(", ")}</p>
+  </div>
+)}
           
           <label htmlFor="name">Выберите производителя:</label>
           <select
@@ -322,7 +350,7 @@ const ProductForm = () => {
             name="certificate"
             onChange={handleFileChange}
             accept=".pdf"
-            required
+           
           />
           <p></p>
           Файл 2:
@@ -331,7 +359,7 @@ const ProductForm = () => {
             name="presentation"
             onChange={handleFileChange}
             accept=".pdf"
-            required
+          
           />
         
 

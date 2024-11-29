@@ -165,36 +165,58 @@ const Prod = observer(() => {
       setCurrentPage(page);
     }
   };
-
   // Filter products based on selected filters
   const filteredProducts = product.prod.filter((item) => {
     const matchesSearchQuery = item.name
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
+  
     const matchesCategory =
       selectedFilters.categories.length === 0 ||
-      selectedFilters.categories.includes(item.category);
+      selectedFilters.categories.some((filterValue) =>
+        (item.category ? item.category.split(";").map((val) => val.trim()) : []).includes(filterValue)
+      );
+  
     const matchesCategoryTwo =
       selectedFilters.categoryTwos.length === 0 ||
-      selectedFilters.categoryTwos.includes(item.category);
+      selectedFilters.categoryTwos.some((filterValue) =>
+        (item.category ? item.category.split(";").map((val) => val.trim()) : []).includes(filterValue)
+      );
+  
     const matchesCulture =
       selectedFilters.cultures.length === 0 ||
-      selectedFilters.cultures.includes(item.culture);
+      selectedFilters.cultures.some((filterValue) =>
+        (item.culture ? item.culture.split(";").map((val) => val.trim()) : []).includes(filterValue)
+      );
+  
     const matchesCultureTwo =
       selectedFilters.cultureTwos.length === 0 ||
-      selectedFilters.cultureTwos.includes(item.culture);
+      selectedFilters.cultureTwos.some((filterValue) =>
+        (item.culture ? item.culture.split(";").map((val) => val.trim()) : []).includes(filterValue)
+      );
+  
     const matchesManufacturer =
       selectedFilters.manufacturers.length === 0 ||
       selectedFilters.manufacturers.includes(item.manufacturer);
+  
     const matchesFertilizers =
       selectedFilters.fertilizerss.length === 0 ||
-      selectedFilters.fertilizerss.includes(item.fertilizers);
+      selectedFilters.fertilizerss.some((filterValue) =>
+        (item.fertilizers ? item.fertilizers.split(";").map((val) => val.trim()) : []).includes(filterValue)
+      );
+  
     const matchesWays =
       selectedFilters.ways.length === 0 ||
-      selectedFilters.ways.includes(item.way);
+      selectedFilters.ways.some((filterValue) =>
+        (item.way ? item.way.split(";").map((val) => val.trim()) : []).includes(filterValue)
+      );
+  
     const matchesGrounds =
       selectedFilters.grounds.length === 0 ||
-      selectedFilters.grounds.includes(item.ground);
+      selectedFilters.grounds.some((filterValue) =>
+        (item.ground ? item.ground.split(";").map((val) => val.trim()) : []).includes(filterValue)
+      );
+  
     return (
       matchesSearchQuery &&
       matchesCategory &&
@@ -207,7 +229,7 @@ const Prod = observer(() => {
       matchesGrounds
     );
   });
-
+  
   // Get products for the current page
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     return sortOrder === "asc" ? a.price - b.price : b.price - a.price;

@@ -138,6 +138,7 @@ const ProductPage = () => {
                   alt={product?.manufacturer}
                 />
                 <div className="sertif">
+                {product?.presentation && (
                   <p className="pdfLink">
                     <a
                       className="no-style-link"
@@ -146,6 +147,8 @@ const ProductPage = () => {
                       <spam className="dot "></spam> Презентация PDF
                     </a>
                   </p>
+                    )}
+                    {product?.certificate && (
                   <p className="pdfLink">
                     <a
                       className="no-style-link"
@@ -154,6 +157,7 @@ const ProductPage = () => {
                       <spam className="dot "></spam> Свидетельство PDF
                     </a>
                   </p>
+                   )}
                 </div>
               </div>
             </div>

@@ -64,7 +64,7 @@ const Footer = observer(() => {
               Политика обработки персональных данных
             </a>
           </p>
-          <div className="social-media">
+          <div className="social-media net">
             <span className="timefoot">{item?.time}</span>{" "}
             &emsp;&emsp;&emsp;&emsp;
             <img
