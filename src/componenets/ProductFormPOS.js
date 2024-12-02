@@ -249,6 +249,7 @@ const ProductForm = () => {
   <button type="button" onClick={() => handleCategorySelect("Нут")}>Нут</button>
   <button type="button" onClick={() => handleCategorySelect("Горох")}>Горох</button>
   <button type="button" onClick={() => handleCategorySelect("Горчица")}>Горчица</button>
+  <button type="button" onClick={() => handleCategorySelect("Соя")}>Соя</button> 
 </div>
 
 {/* Вывод выбранных категорий */}
@@ -350,7 +351,7 @@ const ProductForm = () => {
             name="certificate"
             onChange={handleFileChange}
             accept=".pdf"
-           
+            required
           />
           <p></p>
           Файл 2:
@@ -359,7 +360,7 @@ const ProductForm = () => {
             name="presentation"
             onChange={handleFileChange}
             accept=".pdf"
-          
+            required
           />
         
 

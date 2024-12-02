@@ -66,13 +66,13 @@ const Prod = () => {
   };
 
   const handleCategoryChange = (e) => {
-    const value = parseInt(e.target.value);
+    const value = e.target.value;
     setSelectedCategories((prevSelected) =>
-      prevSelected.includes(value)
-        ? prevSelected.filter((cat) => cat !== value)
-        : [...prevSelected, value]
+        prevSelected.includes(value)
+            ? prevSelected.filter((cat) => cat !== value)
+            : [...prevSelected, value]
     );
-  };
+};
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value.toLowerCase());

@@ -384,7 +384,7 @@ const ProductPage = () => {
                     />
                   </summary>
                   <ul className="advantages-list">
-                    {product.stabil.map((adv) => (
+                    {product.productiv.map((adv) => (
                       <li key={adv.id}>{adv.text}</li>
                     ))}
                   </ul>
@@ -399,7 +399,7 @@ const ProductPage = () => {
                     />
                   </summary>
                   <ul className="advantages-list">
-                    {product.productiv.map((adv) => (
+                    {product.stabil.map((adv) => (
                       <li key={adv.id}>{adv.text}</li>
                     ))}
                   </ul>

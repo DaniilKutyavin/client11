@@ -210,7 +210,20 @@ html, body {
     
 }
 
+.blur-block:hover h4 {
+    margin-left: 20px;
+    transform: scale(1.05); /* Увеличение заголовка */
+  }
   
+  .blur-block:hover p {
+    margin-left: 10px;
+    transform: scale(1.05); /* Легкое увеличение текста */
+  }
+
+  .blur-block:hover .block4-image {
+    transform: scale(1.05); /* Легкое увеличение изображения */
+  }
+
 .opis{
     font-family: 'Gilroy-ExtraBold', sans-serif;
   }

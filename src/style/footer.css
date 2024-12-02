@@ -60,6 +60,8 @@
 .links a {
   color: white;
   text-decoration: none;
+  font-family: 'Gilroy-ExtraBold', sans-serif;
+  margin-left: 10px;
 }
 
 .social-media {

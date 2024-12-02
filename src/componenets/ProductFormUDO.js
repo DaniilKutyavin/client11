@@ -296,6 +296,10 @@ const ProductForm = () => {
   <button type="button" onClick={() => handleСultureSelect("Зернобобовые")}>Зернобобовые</button>
   <button type="button" onClick={() => handleСultureSelect("Овощные")}>Овощные</button>
   <button type="button" onClick={() => handleСultureSelect("Плодовые")}>Плодовые</button>
+  <button type="button" onClick={() => handleСultureSelect("Корнеплоды/клубнеплоды")}>Корнеплоды/клубнеплоды</button>
+  <button type="button" onClick={() => handleСultureSelect("Ягодные")}>Ягодные</button>
+  <button type="button" onClick={() => handleСultureSelect("Зеленные")}>Зеленные</button>
+  <button type="button" onClick={() => handleСultureSelect("Прядильные")}>Прядильные</button>
 </div>
 {formData.culture && (
   <div>
@@ -443,7 +447,7 @@ const ProductForm = () => {
             name="certificate"
             onChange={handleFileChange}
             accept=".pdf"
-            
+            required
           />
           <p></p>
           Файл 2:
@@ -452,7 +456,7 @@ const ProductForm = () => {
             name="presentation"
             onChange={handleFileChange}
             accept=".pdf"
-            
+            required
           />
       
 

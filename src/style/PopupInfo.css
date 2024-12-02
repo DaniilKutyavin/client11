@@ -8,7 +8,7 @@
     z-index: 1000;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    width: 500px;
+    width: 600px;
     flex-wrap: wrap;
 }
 
@@ -56,7 +56,7 @@
     display: flex;
     align-items: center;
     width: 120px;
-    margin-right: 20px;
+    margin-right: 50px;
     flex-shrink: 0;
 }
 
@@ -84,7 +84,7 @@
 
 @media (max-width: 768px) {
     .popup-info {
-        width: 350px;
+        width: 95%;
     }
 
     .popup-title {

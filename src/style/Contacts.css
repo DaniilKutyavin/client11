@@ -136,11 +136,25 @@
     margin-top: 10px; /* Отступ сверху для текста */
 }
 
+.contactfoto{
+  display: block;
+}
+
+.contactfototwo{
+  display: none;
+}
+
   
   /* Адаптивные стили для мобильных устройств */
   @media (max-width: 768px) {
     
-
+    .contactfoto{
+      display: none;
+    }
+    
+    .contactfototwo{
+      display: block;
+    }
     .contacts-container {
       padding: 30px;
     }

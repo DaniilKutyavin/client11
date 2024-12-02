@@ -18,7 +18,7 @@
 .acid-image {
   margin-left:-5px;
   position: absolute;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -36,12 +36,12 @@
 }
 
 .acid-text h1 {
-  font-size: 48px;
+  font-size: 75px;
   margin: 0;
 }
 
 .acid-text p {
-  font-size: 24px;
+  font-size: 40px;
   font-family: 'MyriadPro-Regular', sans-serif;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .store-logo {
-  width: 180px;
+  width: 250px;
   height: auto;
 }
 
@@ -62,7 +62,7 @@
   top: 8%;
   right: 5%;
   z-index: 2;
-  width: 400px;
+  width: 500px;
   height: auto;
 }
 .ttop-right {
@@ -130,13 +130,3 @@
 }
 }
 
-@font-face {
-  font-family: 'Impact';
-  src:url('../fonts/ofont.ru_Impact.ttf') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.st2 {
-  font-family: 'Impact', sans-serif;
-}

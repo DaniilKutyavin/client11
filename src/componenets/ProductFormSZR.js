@@ -265,8 +265,28 @@ const ProductForm = () => {
   <button type="button" onClick={() => handleСultureSelect("Томаты")}>Томаты</button>
   <button type="button" onClick={() => handleСultureSelect("Огурцы")}>Огурцы</button>
   <button type="button" onClick={() => handleСultureSelect("Лук")}>Лук</button>
-  <button type="button" onClick={() => handleСultureSelect("Лук")}>Виноградники</button>
-  <button type="button" onClick={() => handleСultureSelect("Лук")}>Виноградники</button>
+  <button type="button" onClick={() => handleСultureSelect("Виноградники")}>Виноградники</button>
+  <button type="button" onClick={() => handleСultureSelect("Плодовые")}>Плодовые</button>
+  <button type="button" onClick={() => handleСultureSelect("Лен")}>Лен</button>
+  <button type="button" onClick={() => handleСultureSelect("Капуста")}>Капуста</button>
+  <button type="button" onClick={() => handleСultureSelect("Свекла столовая")}>Свекла столовая</button>
+  <button type="button" onClick={() => handleСultureSelect("Морковь")}>Морковь</button>
+  <button type="button" onClick={() => handleСultureSelect("Рис")}>Рис</button>
+  <button type="button" onClick={() => handleСultureSelect("Пары")}>Пары</button>
+  <button type="button" onClick={() => handleСultureSelect("Пастбища и кормовые травы")}>Пастбища и кормовые травы</button>
+  <button type="button" onClick={() => handleСultureSelect("Декоративные")}>Декоративные</button>
+  <button type="button" onClick={() => handleСultureSelect("Лекарственные")}>Лекарственные</button>
+  <button type="button" onClick={() => handleСultureSelect("Саранчовые")}>Саранчовые</button>
+  <button type="button" onClick={() => handleСultureSelect("Индустриальные объекты")}>Индустриальные объекты</button>
+  <button type="button" onClick={() => handleСultureSelect("Гречиха")}>Гречиха</button>
+  <button type="button" onClick={() => handleСultureSelect("Чечевица")}>Чечевица</button>
+  <button type="button" onClick={() => handleСultureSelect("Пшеница")}>Пшеница</button>
+  <button type="button" onClick={() => handleСultureSelect("Ячмень")}>Ячмень</button>
+  <button type="button" onClick={() => handleСultureSelect("Овес")}>Овес</button>
+  <button type="button" onClick={() => handleСultureSelect("Рожь")}>Рожь</button>
+  <button type="button" onClick={() => handleСultureSelect("Люпин")}>Люпин</button>
+  <button type="button" onClick={() => handleСultureSelect("Люцерна")}>Люцерна</button>
+  <button type="button" onClick={() => handleСultureSelect("Чеснок")}>Чеснок</button>
 </div>
 {formData.culture && (
   <div>

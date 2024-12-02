@@ -10,6 +10,10 @@ import {
   submitPartnershipForm,
 } from "../http/contactApi";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const Contacts = observer(() => {
   const { contact } = useContext(Context);
@@ -131,7 +135,7 @@ const Contacts = observer(() => {
           </form>
         </div>
       </div>
-      <div className="employee-cards">
+      <div className="employee-cards contactfoto">
         <div className="card-container">
           {contact.usercon.map((user) => (
             <div className="employee-card" key={user.id}>
@@ -147,6 +151,34 @@ const Contacts = observer(() => {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="employee-cards contactfototwo"> 
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={1}
+        className="card-container"
+        speed={800} // Плавный переход между слайдами
+        freeMode={true} // Режим свободного скролла
+        freeModeMomentum={true} // Инерция при остановке скролла
+      >
+          {contact.usercon.map((user, index) => (
+            <SwiperSlide key={index}>
+               <div className="employee-card" key={user.id}>
+              <img
+                src={process.env.REACT_APP_API_URL + user.img}
+                alt="Employee Name"
+                className="employee-img"
+              />
+              <div className="employee-info"> 
+                <h3>{user.name}</h3>
+                <p className="pod">{user.post}</p>
+              </div>
+            </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+       
       </div>
       <Store />
       <Shkal />
