@@ -50,6 +50,7 @@
     padding: 15px;
     border-radius: 25px; /* Закруглим края больше */
     border: 1px solid white;
+    padding-bottom: 30px;
 }
 
 .cart-item-info {
@@ -333,4 +334,7 @@
         white-space: nowrap;
     }
     
+    .cash-method {
+        font-size: 18px;
+    }
 }

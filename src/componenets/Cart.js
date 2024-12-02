@@ -21,11 +21,12 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
     city: "",
     email: "",
     promoCode: "",
-    paymentMethod: "Безналичный расчет", // Default payment method
+    paymentMethod: "Наличными курьеру", // Default payment method
   });
   const { user } = useContext(Context);
   const {gift} = useContext(Context)
   const [errorMessage, setErrorMessage] = useState("");
+  const [nonCashTotal, setNonCashTotal] = useState(0);
 
   useEffect ( ()=> {
     getGift().then(data => gift.setGift(data))
@@ -38,12 +39,13 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
       const data = await getBasket(userId);
       const products = data.basket_products || [];
       setBasketItems(products);
-      const total = products.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
-      setTotalAmount(total);
-      onUpdateTotal(total);
+
+      const cashTotal = products.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const nonCash = products.reduce((sum, item) => sum + item.price_two * item.quantity, 0);
+
+      setTotalAmount(cashTotal);
+      setNonCashTotal(nonCash);
+      onUpdateTotal(cashTotal);
     } catch (error) {
       console.error("Error fetching basket:", error);
     }
@@ -230,7 +232,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
               </div>
               <div className="sum-details non-cash">
                 <span className="non-cash-amount">
-                  {(totalAmount * 1.05).toFixed(2)} ₽&ensp;{" "}
+                  {(nonCashTotal).toFixed(2)} ₽&ensp;{" "}
                 </span>
                 <span className="non-cash-method"> Безналичный расчет</span>
               </div>
@@ -239,7 +241,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
             <>
               <div className="sum-details non-cash">
                 <span className="cash-amount">
-                  {(totalAmount * 1.05).toFixed(2)} ₽&ensp;{" "}
+                  {(nonCashTotal).toFixed(2)} ₽&ensp;{" "}
                 </span>
                 <span className="cash-method"> Безналичный расчет</span>
               </div>

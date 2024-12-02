@@ -9,6 +9,7 @@
     align-items: center; /* Вертикальное центрирование */
     justify-content: center; /* Горизонтальное центрирование */
     z-index: 9999; /* Обеспечиваем передний план */
+    overflow-y: auto;
 }
 
 .login-form {
