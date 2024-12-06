@@ -59,21 +59,30 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
     let newQuantity =
       action === "increase" ? item.quantity + 1 : item.quantity - 1;
     if (newQuantity < 1) newQuantity = 1;
-
+  
     const updatedBasketItems = basketItems.map((basketItem) =>
       basketItem.id === item.id
         ? { ...basketItem, quantity: newQuantity }
         : basketItem
     );
-
+  
     setBasketItems(updatedBasketItems);
+  
+    // Recalculate total amount for cash and non-cash
     const newTotal = updatedBasketItems.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
     setTotalAmount(newTotal);
+  
+    const newNonCashTotal = updatedBasketItems.reduce(
+      (sum, item) => sum + item.price_two * item.quantity,
+      0
+    );
+    setNonCashTotal(newNonCashTotal);
+  
     onUpdateTotal(newTotal);
-
+  
     try {
       await updateBasketItem(userId, item.product.id, {
         quantity: newQuantity,
@@ -232,7 +241,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
               </div>
               <div className="sum-details non-cash">
                 <span className="non-cash-amount">
-                  {(nonCashTotal).toFixed(2)} ₽&ensp;{" "}
+                  {(nonCashTotal)} ₽&ensp;{" "}
                 </span>
                 <span className="non-cash-method"> Безналичный расчет</span>
               </div>
@@ -241,7 +250,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
             <>
               <div className="sum-details non-cash">
                 <span className="cash-amount">
-                  {(nonCashTotal).toFixed(2)} ₽&ensp;{" "}
+                  {(nonCashTotal)} ₽&ensp;{" "}
                 </span>
                 <span className="cash-method"> Безналичный расчет</span>
               </div>

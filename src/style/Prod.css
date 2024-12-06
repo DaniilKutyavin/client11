@@ -116,7 +116,30 @@ body {
     margin-top: 10px;
     padding: 10px;
     border-radius: 4px;
+    max-height: 300px; /* Ограничиваем высоту */
+    overflow-y: auto; 
 }
+.filter-content::-webkit-scrollbar {
+    width: 6px;  /* Толщина вертикальной полосы прокрутки */
+    height: 6px; /* Толщина горизонтальной полосы прокрутки */
+  }
+  
+  /* Стилизация фона полосы прокрутки */
+  .filter-content::-webkit-scrollbar-track {
+    background: #f1f1f1;  /* Цвет фона полосы прокрутки */
+    border-radius: 10px;
+  }
+  
+  /* Стилизация самой полосы */
+  .filter-content::-webkit-scrollbar-thumb {
+    background: #888;     /* Цвет полосы прокрутки */
+    border-radius: 10px;  /* Скругление углов полосы */
+  }
+  
+  /* При наведении на полосу прокрутки */
+  .filter-content::-webkit-scrollbar-thumb:hover {
+    background: #555;     /* Цвет при наведении */
+  }
 
 .filter-content label {
     display: block;
@@ -412,10 +435,12 @@ body {
   @media (max-width: 768px) {
       
       .filter-block {
-    height: 200vh;
+        height: 100%;
 }
 
-
+.right-section {
+    margin-left: -10px;
+}
 .sort-button {
      display: inline-block ;
     background-color: #1a1a1a;
@@ -426,7 +451,12 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+  .toggle-button img {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+    
+  }
     .product-grid {
         grid-template-columns: repeat(1, 1fr);
     }

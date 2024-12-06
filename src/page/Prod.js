@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "../style/Prod.css";
 import bask from "../img/корзина белая 1.svg";
 import iconProd from "../img/Образец ХСЗР на сайт.png";
-import filter from '../img/фильтр.png';
+import filter from '../img/Фильтр иконка.svg';
 import arrowDown from "../img/стрелка вниз.svg";
 import lupa from "../img/лупа.svg";
 import krest from "../img/крестик.svg";

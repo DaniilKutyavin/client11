@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../style/Buy.css';
 import arrowDown from '../img/стрелка вниз.svg';
-import filter from '../img/фильтр.png';
+import filter from '../img/Фильтр иконка.svg';
 import exampleImage from '../img/ценник.svg';
 import Store from '../componenets/Store';
-import Shkal from '../componenets/Shkal';
+import Shkal from '../componenets/Shkal'; 
 import lupa from '../img/лупа.svg';
 import { getbuyProduct } from '../http/productApi'; // Adjust the path to your api file
 import {
