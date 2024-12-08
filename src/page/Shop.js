@@ -9,7 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 import Cart from "../componenets/Cart";
 import videoSrc from "../img/main1.gif";
 import PopupInfo from "../componenets/PopupInfo";
-import { getBasket } from "../http/productApi";
+import { getBasket,  getProductCountsByTypes} from "../http/productApi";
 import { Context } from "..";
 import baskcol from "../img/Корзина цвет.svg";
 
@@ -39,6 +39,42 @@ const Shop = observer(({ userId }) => {
       console.error("Error fetching images", error);
     }
   };
+
+  const [productCounts, setProductCounts] = useState({
+    type1: 0,
+    type2: 0,
+    type3: 0,
+    type4: 0, // Added type4
+  });
+  
+  useEffect(() => {
+    const fetchProductCounts = async () => {
+      try {
+        const data = await getProductCountsByTypes();
+        
+        const counts = {
+          type1: 0,
+          type2: 0,
+          type3: 0,
+          type4: 0, 
+        };
+  
+        data.forEach(item => {
+        
+            counts[`type${item.type}`] = item.count ?? 0;
+            counts.type4 = item.productBuyCount ?? 0; 
+
+        });
+  
+        setProductCounts(counts);
+      } catch (error) {
+        console.error("Error fetching product counts:", error);
+      }
+    };
+  
+    fetchProductCounts();
+  }, []);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -142,7 +178,7 @@ const Shop = observer(({ userId }) => {
         <div className="video-container">
           <img src={videoSrc} alt="Animated GIF" />
         </div>
-      )}
+      )} 
       {/* Слайдер */}
       <div className="shop-container">
         <Swiper
@@ -158,29 +194,29 @@ const Shop = observer(({ userId }) => {
             <SwiperSlide key={index} className="shop-slide">
               <img src={process.env.REACT_APP_API_URL + img?.img} alt={`Slide ${index}`} />
             </SwiperSlide>
-          ))}
+          ))} 
         </Swiper>
         <div className="blur-overlay-container">
           <div className="blur-overlay-top">
             <Link to="/product/type/1" className="blur-block top-left">
-              <p className="opis">163</p>
+              <p className="opis">{productCounts.type1}</p>
               <h4>ХСЗР</h4>
               <p>Обеспечте защиту ваших культур</p>
             </Link>
             <Link to="/product/type/2" className="blur-block top-right">
-              <p className="opis">24</p>
+              <p className="opis">{productCounts.type2}</p>
               <h4>Удобрения</h4>
               <p>Потдерживайте почву необходимыми элементами питания</p>
             </Link>
           </div>
           <div className="blur-overlay-bottom">
             <Link to="/product/type/3" className="blur-block long bottom-right">
-              <p className="opis">19</p>
+              <p className="opis">{productCounts.type3}</p>
               <h4>Посевной материал</h4>
               <p>Запаситесь качественными семенами заранее</p>
             </Link>
             <Link to="/buy" className="blur-block short bottom-left">
-              <p className="text-left opis">8</p>
+              <p className="text-left opis">{productCounts.type4}</p>
               <img src={kolos} alt="Block 4 Image" className="block4-image" />
             </Link>
           </div>

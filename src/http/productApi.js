@@ -39,6 +39,16 @@ export const updateProduct = async (id, product) => {
   return data;
 };
 
+export const getProductCountsByTypes = async () => {
+  try {
+    const { data } = await $host.get("api/product/tt/counts"); 
+    return data;
+  } catch (error) {
+    console.error("Error fetching product counts by types:", error);
+    throw error; 
+  }
+
+};
 export const addToBasket = async (productId, quantity) => {
   const { data } = await $authHost.post("api/basket/add", {
     productId,

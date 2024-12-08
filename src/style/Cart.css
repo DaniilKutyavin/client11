@@ -317,6 +317,9 @@
 }
 
 @media (max-width: 768px) {
+    .gift-card {
+        width: 105px;
+    }
     .cart-overlay {
         width: 120%;
         margin-right:-40px;

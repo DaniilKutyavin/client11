@@ -206,24 +206,27 @@ html, body {
 .blur-block h4 {
     font-family: 'Gilroy-ExtraBold', sans-serif;
     font-size: 80px; /* Размер заголовка */
-    margin: 0 0 10px; /* Отступ снизу */
     
 }
-
-.blur-block:hover h4 {
-    margin-left: 20px;
+.blur-block h4 {
+    margin-left: 0;
+    transform: scale(1); /* Исходное состояние */
+    transition: transform 0.3s ease, margin-left 0.3s ease; /* Плавность */
+  }
+  
+  .blur-block .block4-image {
+    transform: scale(1); /* Исходное состояние */
+    transition: transform 0.3s ease; /* Плавность */
+  }
+  
+  .blur-block:hover h4 {
+    margin-left: 10px;
     transform: scale(1.05); /* Увеличение заголовка */
   }
   
-  .blur-block:hover p {
-    margin-left: 10px;
-    transform: scale(1.05); /* Легкое увеличение текста */
-  }
-
   .blur-block:hover .block4-image {
     transform: scale(1.05); /* Легкое увеличение изображения */
   }
-
 .opis{
     font-family: 'Gilroy-ExtraBold', sans-serif;
   }

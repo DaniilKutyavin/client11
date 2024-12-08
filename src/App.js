@@ -6,6 +6,7 @@ import Footer from "./componenets/Footer";
 import { observer } from "mobx-react-lite";
 import { Context } from './index';
 import { check as checkUser } from './http/userApi';
+import CookieBanner from './componenets/CookieBanner';
 
 const App = observer(() => {
   const { user } = useContext(Context);
@@ -57,6 +58,7 @@ const AppWithFooter = () => {
       <NavBar />
       <ScrollToTop />
       <AppRouter />
+      <CookieBanner/>
       {shouldShowFooter && <Footer />}
     </>
   );
