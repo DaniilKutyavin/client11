@@ -63,7 +63,7 @@ const News = () => {
           <div className="news-circle">
             <div className="news-text">
               <span className="news-date">{formattedDate}</span>
-              <h2>{currentNews.title.length > 15 ? `${currentNews.title.slice(0, 15)}...` : currentNews.title}</h2>
+              <h2>{currentNews.title}</h2>
             </div>
             <img
               src={process.env.REACT_APP_API_URL + '/news/' + currentNews.img}
@@ -78,7 +78,7 @@ const News = () => {
                   {format(new Date(nextNews.createdAt), 'dd MMMM yyyy', { locale: ru })}
                 </span>
                 <h2 className="next-news-title">
-  {nextNews.title.length > 15 ? `${nextNews.title.slice(0, 15)}...` : nextNews.title}
+  {nextNews.title.length > 15 ? `${nextNews.title.slice(0, 25)}...` : nextNews.title}
 </h2>
               </>
             )}

@@ -14,7 +14,12 @@
   align-items: center;
   overflow: hidden;
 }
-
+@font-face {
+  font-family: 'Impact';
+  src: url('../fonts/ofont.ru_Impact.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 .acid-image {
   margin-left:-5px;
   position: absolute;
@@ -24,6 +29,7 @@
   height: 100vh;
   object-fit: cover;
   z-index: 1;
+  
 }
 
 .acid-text {
@@ -122,6 +128,7 @@
 
   .acid-slogan {
     width: 160px;
+    font-family: 'Impact', sans-serif;
   }
 
   .ttop-right {

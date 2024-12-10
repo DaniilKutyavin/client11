@@ -129,12 +129,13 @@ const Prod = observer(() => {
         weight: item.weight,
         description_low: item.description_low,
         price: item.price,
+        price_two: item.price_two,
         quantity: 1,
       });
     }
   
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${item.name} добавлен в корзину!`);
+    
   };
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);

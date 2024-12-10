@@ -318,7 +318,7 @@
 
 @media (max-width: 768px) {
     .gift-card {
-        width: 105px;
+        width: 100px;
     }
     .cart-overlay {
         width: 120%;
@@ -339,5 +339,12 @@
     
     .cash-method {
         font-size: 18px;
+    }
+
+    .close-button {
+        font-size: 30px;
+        top: 10px;
+        right: 10px;
+
     }
 }

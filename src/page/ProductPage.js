@@ -84,11 +84,11 @@ const ProductPage = () => {
     if (existingItemIndex > -1) {
       cart[existingItemIndex].quantity += 1;
     } else {
-      cart.push({ id: product.id, name: product.name, img:product.img, weight:product.weight, description_low:product.description_low, price: product.price, quantity: 1 });
+      cart.push({ id: product.id, name: product.name, img:product.img, weight:product.weight, description_low:product.description_low, price: product.price,  price_two: product.price_two, quantity: 1 });
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${product.name} добавлен в корзину!`);
+   
   };
 
   return (
