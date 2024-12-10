@@ -121,7 +121,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
   };
 
   const handleGiftSelection = (gift) => {
-    setSelectedGift(gift);
+    setSelectedGift((prevGift) => (prevGift === gift ? null : gift));
   };
 
   const handleOrder = async () => {

@@ -25,13 +25,13 @@ const CartGuest = ({ onClose }) => {
   }, [])
   const item = gift.gift[0];
 
- const handleGiftSelection = (gift) => {
-  setSelectedGift(gift);
-  setUserDetails((prevDetails) => ({
-    ...prevDetails,
-    giftId: gift,
-  }));
-};
+  const handleGiftSelection = (gift) => {
+    setSelectedGift((prevGift) => (prevGift === gift ? null : gift));
+    setUserDetails((prevDetails) => ({
+      ...prevDetails,
+      giftId: selectedGift === gift ? null : gift,
+    }));
+  };
 
 // Или через useEffect:
 useEffect(() => {
