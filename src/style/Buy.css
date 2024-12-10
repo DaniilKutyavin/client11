@@ -103,6 +103,7 @@
 
 
 .left-section {
+    border-radius: 38px 0 0 38px;
     position: fixed;
     top: 0;
     left: -100%;
