@@ -108,9 +108,8 @@
     left: -100%;
     width: 80%;
     height: 100vh; /* Полная высота экрана */
-    background-color: #1a1a1a; /* Цвет фона */
+    background-color: #303030; /* Цвет фона */
     overflow-y: auto; /* Скролл при необходимости */
-    padding: 20px;
     box-sizing: border-box; /* Учет padding */
     transition: left 0.3s ease;
     z-index: 1000;
