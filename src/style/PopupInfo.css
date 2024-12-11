@@ -84,6 +84,9 @@
 }
 
 @media (max-width: 768px) {
+    .product-info p {
+        font-size: 10px;
+    }
     .popup-info {
         width: 98%;
         margin-left: -17px;
