@@ -234,56 +234,62 @@ html, body {
     font-size: 20px; /* Размер описания */
     line-height: 1.5; /* Интерлиньяж */
 }
+
+
+.ubr2{
+    display:none;
+}
+
 /* Описание */
 @media (max-width: 768px) {
+
     
-    .blur-overlay-container {
-     margin-bottom: 5px;
-}
-   .blur-block h4 {
-        font-size: 25px; /* Размер для маленьких экранов */
+    .blur-block h4 {
+        font-family: 'Gilroy-ExtraBold', sans-serif;
+        font-size: 30px;
     }
 
-    .blur-block p {
-        font-size: 12px; /* Размер для маленьких экранов */
+    .blur-block{
+     padding: 15px;
     }
-    .blur-overlay-top,
-    .blur-overlay-bottom {
-      flex-direction: column; /* Столбец на мобильных */
-      gap: 5px; /* Увеличенный отступ между блоками */
-      width: 90%;
-     margin-left: 45px;
-    }
-  
-    .blur-block {
-      width: 100%; /* Блоки занимают полную ширину */
-      flex: none; /* Отключаем flex-grow, чтобы они не растягивались */
-      margin-bottom: 0px; /* Отступ снизу для разделения */
-      padding: 10px;
+    .blur-block.long {
+        flex: 1 1; 
     }
 
+    .ubr{
+        display: none;
+    }
     .block4-image {
-        max-width: 50px;
+        max-width: 30%;
         height: auto;
     }
 
+    .ubr2{
+        display:block;
+    }
+    .blur-overlay-bottom {
+       padding: 0px;
+    }
+
+    .blur-overlay-top {
+        padding: 0px;
+    }
     .top-left {
-        border-top-left-radius: 25px; /* Закруглённый верхний левый угол */
-        border-top-right-radius: 25px;
+        border-top-left-radius: 0px; /* Закруглённый верхний левый угол */
     }
     
     .top-right {
-        border-top-right-radius: 0px; /* Закруглённый верхний правый угол */
+        border-top-right-radius:  0px; /* Закруглённый верхний правый угол */
     }
     
     .bottom-left {
-        border-bottom-right-radius: 25px;
-        border-bottom-left-radius: 25px; /* Закруглённый нижний левый угол */
+        border-bottom-right-radius:  0px; /* Закруглённый нижний левый угол */
     }
     
     .bottom-right {
-        border-bottom-left-radius: 0px; /* Закруглённый нижний правый угол */
+        border-bottom-left-radius:  0px; /* Закруглённый нижний правый угол */
     }
+    
   }
 
 

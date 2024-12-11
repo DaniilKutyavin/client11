@@ -189,7 +189,7 @@ const Shop = observer(({ userId }) => {
           loop={true}
           pagination={{ clickable: true }}
           className="shop-slider"
-        >
+        > 
          {glavImgs.map((img, index) => (
             <SwiperSlide key={index} className="shop-slide">
               <img src={process.env.REACT_APP_API_URL + img?.img} alt={`Slide ${index}`} />
@@ -201,19 +201,20 @@ const Shop = observer(({ userId }) => {
             <Link to="/product/type/1" className="blur-block top-left">
               <p className="opis">{productCounts.type1}</p>
               <h4>ХСЗР</h4>
-              <p>Обеспечте защиту ваших культур</p>
+              <p  className="ubr">Обеспечте защиту ваших культур</p>
             </Link>
             <Link to="/product/type/2" className="blur-block top-right">
               <p className="opis">{productCounts.type2}</p>
               <h4>Удобрения</h4>
-              <p>Потдерживайте почву необходимыми элементами питания</p>
+              <p  className="ubr">Потдерживайте почву необходимыми элементами питания</p>
             </Link>
           </div>
           <div className="blur-overlay-bottom">
             <Link to="/product/type/3" className="blur-block long bottom-right">
               <p className="opis">{productCounts.type3}</p>
-              <h4>Посевной материал</h4>
-              <p>Запаситесь качественными семенами заранее</p>
+              <h4  className="ubr">Посевной материал</h4>
+              <h4  className="ubr2">Семена</h4>
+              <p  className="ubr">Запаситесь качественными семенами заранее</p>
             </Link>
             <Link to="/buy" className="blur-block short bottom-left">
               <p className="text-left opis">{productCounts.type4}</p>

@@ -103,15 +103,12 @@
 
 
 .left-section {
-    border-radius: 38px 0 0 38px;
     position: fixed;
     top: 0;
     left: -100%;
     width: 80%;
-    height: 100vh; /* Полная высота экрана */
-    background-color: #303030; /* Цвет фона */
-    overflow-y: auto; /* Скролл при необходимости */
-    box-sizing: border-box; /* Учет padding */
+    height: 100%;
+
     transition: left 0.3s ease;
     z-index: 1000;
   }
@@ -149,6 +146,7 @@
 
   @media (max-width: 768px) {
     .left-section {
-        height: auto;
+        height: 100%;
+        background-color: #303030;
       }
 }
