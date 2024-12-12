@@ -69,13 +69,13 @@ const HorizontalScrollComponent = () => {
                   <h3>{item.h3}</h3>
                   <div className="huge-gradient-text">{item.img}</div>
                   <p>{item.description}</p>
-                  <h4 onClick={() => toggleText(index)} className="toggle-header">
+                  <h4 className="toggle-header">
                     {item.h4}
                   </h4>
                   
                 </div>
               </div>
-              <p className={`toggle-text ${activeIndex === index ? "show" : ""}`}>{item.text}</p>
+              <p className={`toggle-text show`}>{item.text}</p>
             </SwiperSlide>
           ))}
         </Swiper>

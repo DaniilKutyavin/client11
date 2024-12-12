@@ -447,7 +447,6 @@ const ProductForm = () => {
             name="certificate"
             onChange={handleFileChange}
             accept=".pdf"
-            required
           />
           <p></p>
           Файл 2:
@@ -456,7 +455,6 @@ const ProductForm = () => {
             name="presentation"
             onChange={handleFileChange}
             accept=".pdf"
-            required
           />
       
 

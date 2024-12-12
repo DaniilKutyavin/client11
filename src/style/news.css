@@ -109,7 +109,7 @@
 .next-news-text {
   position: absolute; /* Чтобы расположить текст поверх текущего заголовка */
   top: 650px; /* Центрируем вертикально */
-  margin-left: 800px;
+  margin-left: 1000px;
   transform: translateX(-150%); /* Смещение вверх на половину высоты */
   opacity: 0; /* Начальная прозрачность */
   transition: opacity 0.3s ease, transform 0.3s ease; /* Анимация прозрачности и смещения */
@@ -127,9 +127,8 @@
 }
 
 .news-text {
-
+  font-size: 12px;
   padding-top: 90px;
-  padding-left: 60px;
 
 }
 

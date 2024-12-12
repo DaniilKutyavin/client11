@@ -161,11 +161,20 @@ const Prod = observer(() => {
     setIsInfoBlockVisible(false);
   };
 
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
+const handlePageChange = (page) => {
+  if (page >= 1 && page <= totalPages) {
+    setCurrentPage(page);
+    
+    // Прокрутка страницы в начало
+  }
+};
+useEffect(() => {
+  // Прокрутка страницы в верх
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}, [currentPage]);
   // Filter products based on selected filters
   const filteredProducts = product.prod.filter((item) => {
     const matchesSearchQuery = item.name
