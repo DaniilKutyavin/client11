@@ -148,7 +148,6 @@ const Prod = observer(() => {
   const [isInfoBlockVisible, setIsInfoBlockVisible] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const totalPages = Math.ceil(product.prod.length / itemsPerPage);
 
   const toggleFilter = (filter) => {
     setFiltersOpen({
@@ -239,7 +238,7 @@ useEffect(() => {
       matchesGrounds
     );
   });
-  
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   // Get products for the current page
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     return sortOrder === "asc" ? a.price - b.price : b.price - a.price;

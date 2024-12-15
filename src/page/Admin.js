@@ -20,6 +20,7 @@ import "../style/newss.css";
 import ContactInfoManager from "../componenets/FormOne";
 import ContactInfoTwo from "../componenets/FormTwo"; // Убедитесь, что путь правильный
 import { observer } from "mobx-react-lite";
+import OrderGuestTable from "../componenets/OrderGuestTable";
 
 const Admin = observer(() => {
  const [orders, setOrders] = useState([]);
@@ -235,7 +236,10 @@ const Admin = observer(() => {
 </tbody>
           </table>
         </div>
-        
+        <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
+          <h1>Заявки от незарегистрированных пользователь</h1>
+          <OrderGuestTable />
+        </div>
         <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
           <h1>Заявки на сотрудничество</h1>
           <ContactInfoManager />

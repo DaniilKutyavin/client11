@@ -120,6 +120,11 @@ export const createOredersGuest = async (order) => {
   return data;
 };
 
+export const getOredersGuest = async () => {
+  const { data } = await $host.get("api/orders/guest");
+  return data;
+};
+
 export const getOrdersByUser = async () => {
   const { data } = await $authHost.get("api/orders/orders/user");
   return data;

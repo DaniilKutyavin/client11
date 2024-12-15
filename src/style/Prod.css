@@ -213,6 +213,7 @@ body {
 }
 
 .product-card .product-volume { 
+    width: 80px;
     font-size: 28px;
     margin-bottom: 40px;
     color: white;
@@ -245,7 +246,7 @@ body {
 }
 
 .product-card:hover .product-price {
-    transform: translateX(calc(300%)); /* Move price to the right */
+    transform: translateX(calc(100% + 50px)); /* Move price to the right */
     margin-right: 0; /* Remove margin */
 }
 
