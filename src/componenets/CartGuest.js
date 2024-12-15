@@ -104,7 +104,7 @@ useEffect(() => {
     <div className="cart-overlay" onClick={onClose}>
       <div className="cart-content" onClick={(e) => e.stopPropagation()}>
         <span className="close-icon close-button" onClick={onClose}>
-          ✖
+        ×
         </span>
         <h2 className="cart-title">Заказ</h2>
 
