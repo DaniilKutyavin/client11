@@ -11,6 +11,9 @@ const ProductForm = ({ productId }) => {
     price: "",
     price_two: "",
     description: "",
+    desc_header: "",
+    description_low: "",
+    weight: "",
     status: false, // Добавлено поле для статуса
   });
 
@@ -36,6 +39,9 @@ const ProductForm = ({ productId }) => {
       price: product.price,
       price_two: product.price_two,
       description: product.description,
+      desc_header: product.desc_header,
+      description_low: product.description_low,
+      weight: product.weight,
       status: product.status, // Заполняем поле статуса
     });
   };
@@ -129,6 +135,34 @@ const ProductForm = ({ productId }) => {
             <textarea
               name="description"
               value={formData.description}
+              onChange={handleInputChange}
+              className="productBuyForm_productItem"
+            />
+          </label>
+
+          <label>
+            Вес:
+            <textarea
+              name="weight"
+              value={formData.weight}
+              onChange={handleInputChange}
+              className="productBuyForm_productItem"
+            />
+          </label>
+          <label>
+          Описание в шапке:
+            <textarea
+              name="desc_header"
+              value={formData.desc_header}
+              onChange={handleInputChange}
+              className="productBuyForm_productItem"
+            />
+          </label>
+          <label>
+          Нижнее описание:
+            <textarea
+              name="description_low"
+              value={formData.description_low}
               onChange={handleInputChange}
               className="productBuyForm_productItem"
             />

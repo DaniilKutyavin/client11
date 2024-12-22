@@ -229,21 +229,26 @@ const ProductPage = () => {
       />
     </div>
                   <div className="storage-content">
-                    <div className="storage-item">
-                      <img src={Srok} alt="Icon" className="storage-icon" />
-                      <div className="storage-text">
-                        <h3>Срок ожидания и кратность обработки</h3>
-                        <p>{product?.waiting}</p>
-                      </div>
-                    </div>
+                  {product?.waiting ? (
+      <div className="storage-item">
+        <img src={Srok} alt="Icon" className="storage-icon" />
+        <div className="storage-text">
+          <h3>Срок ожидания и кратность обработки</h3>
+          <p>{product?.waiting}</p>
+        </div>
+      </div>
+    ) : null} {/* Если пусто, не рендерим */}
 
-                    <div className="storage-item textttt">
-                      <img src={Ras} alt="Icon" className="storage-icon" />
-                      <div className="storage-text">
-                        <h3>Расход рабочей жидкости</h3>
-                        <p>{product?.expenditure}</p>
-                      </div>
-                    </div>
+    {/* Проверяем, есть ли значение для product?.expenditure */}
+    {product?.expenditure ? (
+      <div className="storage-item textttt">
+        <img src={Ras} alt="Icon" className="storage-icon" />
+        <div className="storage-text">
+          <h3>Расход рабочей жидкости</h3>
+          <p>{product?.expenditure}</p>
+        </div>
+      </div>
+    ) : null}
                   </div>
                   {/* Add content for Регламент */}
                 </details>

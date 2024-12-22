@@ -35,7 +35,7 @@ export const getProductsByType = async (typeId) => {
 };
 
 export const getProductsByTypeAdm = async (typeId) => {
-  const { data } = await $host.get(`api/product/typeadm/${typeId}`);
+  const { data } = await $authHost.get(`api/product/typeadm/${typeId}`);
   return data;
 };
 

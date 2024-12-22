@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext  } from "react";
+import { Link,Navigate} from "react-router-dom";
 import OrderDetailModal from "../componenets/Order"; // Убедитесь, что путь правильный
 import { getOrders, updateOrder } from "../http/productApi";
 import {
@@ -14,15 +14,17 @@ import {
   PRODUCTADD_ROUTER,
   IMG_ROUTER,
   CARTINFO_ROUTER,
+  SHOP_ROUTER,
 } from "../utils/consts";
 import "../style/newss.css";
-
+import { Context } from '..';
 import ContactInfoManager from "../componenets/FormOne";
 import ContactInfoTwo from "../componenets/FormTwo"; // Убедитесь, что путь правильный
 import { observer } from "mobx-react-lite";
 import OrderGuestTable from "../componenets/OrderGuestTable";
 
 const Admin = observer(() => {
+  const { user } = useContext(Context);
  const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -86,7 +88,9 @@ const Admin = observer(() => {
 
     return total.toFixed(0); // Форматируем до целого числа
   };
-
+  if (!user.isAuth || user.user.role !== 'Admin') {
+    return <Navigate to={SHOP_ROUTER} />; 
+}
   return (
     <>
     <div className="header">
