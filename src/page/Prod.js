@@ -125,7 +125,7 @@ const Prod = observer(() => {
       cart.push({
         id: item.id,
         name: item.name,
-        img: item.img,
+        img: item.img, 
         weight: item.weight,
         description_low: item.description_low,
         price: item.price,
@@ -135,7 +135,10 @@ const Prod = observer(() => {
     }
   
     localStorage.setItem("cart", JSON.stringify(cart));
-    
+  
+    // Создание кастомного события для уведомления о обновлении корзины
+    const event = new Event("cartUpdated");
+    window.dispatchEvent(event); // Триггерим событие
   };
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);

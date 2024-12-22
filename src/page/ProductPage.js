@@ -76,19 +76,34 @@ const ProductPage = () => {
   };
 
   const handleAddToCartG = () => {
-    if (!product) return;
-
+    if (!product) return; // Проверка на наличие продукта
+  
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItemIndex = cart.findIndex((item) => item.id === product.id);
-
+  
     if (existingItemIndex > -1) {
+      // Если товар уже в корзине, увеличиваем его количество
       cart[existingItemIndex].quantity += 1;
     } else {
-      cart.push({ id: product.id, name: product.name, img:product.img, weight:product.weight, description_low:product.description_low, price: product.price,  price_two: product.price_two, quantity: 1 });
+      // Если товара нет, добавляем его в корзину
+      cart.push({
+        id: product.id,
+        name: product.name,
+        img: product.img,
+        weight: product.weight,
+        description_low: product.description_low,
+        price: product.price,
+        price_two: product.price_two,
+        quantity: 1, 
+      });
     }
-
+  
+    // Сохраняем обновлённую корзину в localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-   
+  
+    // Создаём кастомное событие для уведомления других компонентов
+    const event = new Event("cartUpdated");
+    window.dispatchEvent(event); // Триггерим событие
   };
 
   return (

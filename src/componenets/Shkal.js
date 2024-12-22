@@ -25,7 +25,7 @@ const Shkal = observer(({ userId }) => {
     const maxAmount = 150000;
     let percentage;
     let s;
-  
+
     if (totalAmount >= 100000) {
       // Пропорционально заполняем между 100 000 и 150 000 (от 70% до 100%)
       percentage = 52 + ((totalAmount - 100000) / 50000) * 30;
@@ -39,12 +39,11 @@ const Shkal = observer(({ userId }) => {
       percentage = (totalAmount / 70000) * 35;
       s = percentage + 7; // Небольшой переход для плавности
     }
-  
+
     // Плавный переход от зелёного к черному без прозрачности
     return `linear-gradient(to right, #4f6423 ${percentage}%, #1A1A1A ${s}%)`;
   };
-  
-  
+
   const fetchBasket = async () => {
     try {
       if (user.isAuth) { // Проверяем авторизацию пользователя
@@ -71,11 +70,52 @@ const Shkal = observer(({ userId }) => {
 
   useEffect(() => {
     if (user.isAuth) {
-      fetchBasket(); // Initial fetch when component mounts
-      const interval = setInterval(fetchBasket, 5000); // Fetch every 5 seconds
-      return () => clearInterval(interval); // Clear interval on component unmount
+      fetchBasket(); // Загрузка корзины для авторизованного пользователя
+      const interval = setInterval(fetchBasket, 5000); // Обновление каждые 5 секунд
+      return () => clearInterval(interval); // Очистка интервала при размонтировании
+    } else {
+      // Загрузка корзины из локального хранилища
+      const localBasket = JSON.parse(localStorage.getItem("cart")) || [];
+      setItemsInBasket(localBasket);
     }
   }, [userId, user.isAuth]);
+
+  // Функция для обработки изменений в локальной корзине
+  useEffect(() => {
+    if (!user.isAuth) {
+      const handleCartUpdate = () => {
+        const localBasket = JSON.parse(localStorage.getItem("cart")) || [];
+        setItemsInBasket(localBasket);
+      };
+
+      // Подписываемся на событие обновления корзины
+      window.addEventListener("cartUpdated", handleCartUpdate);
+
+      // Также обновляем при изменении `localStorage` напрямую
+      const handleStorageChange = () => {
+        const localBasket = JSON.parse(localStorage.getItem("cart")) || [];
+        setItemsInBasket(localBasket);
+      };
+      window.addEventListener("storage", handleStorageChange);
+
+      return () => {
+        window.removeEventListener("cartUpdated", handleCartUpdate);
+        window.removeEventListener("storage", handleStorageChange);
+      };
+    }
+  }, [user.isAuth]);
+
+  // Подсчёт общей суммы для незарегистрированного пользователя
+  useEffect(() => {
+    if (!user.isAuth) {
+      const localBasket = JSON.parse(localStorage.getItem("cart")) || [];
+      const total = localBasket.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+      setTotalAmount(total);
+    }
+  }, [itemsInBasket, user.isAuth]);
 
   return (
     <>
@@ -135,14 +175,13 @@ const Shkal = observer(({ userId }) => {
         </div>
 
         <div className="cart-container">
-  <div className="cart-iconn" onClick={handleCartClick}>
-    <img src={itemsInBasket.length > 0 ? baskcol : bask} alt="Cart" />
-    {itemsInBasket.length > 0 && (
-      <div className="item-count">{itemsInBasket.length}</div>
-    )}
-  </div>
-</div>
-
+          <div className="cart-iconn" onClick={handleCartClick}>
+            <img src={itemsInBasket.length > 0 ? baskcol : bask} alt="Cart" />
+            {itemsInBasket.length > 0 && (
+              <div className="item-count">{itemsInBasket.length}</div>
+            )}
+          </div>
+        </div>
       </div>
 
       {isCartOpen && (
@@ -154,7 +193,7 @@ const Shkal = observer(({ userId }) => {
             onUpdateBasket={setItemsInBasket}
           />
         ) : (
-          <CartGuest onClose={closeCart}  />
+          <CartGuest onClose={closeCart} />
         )
       )}
       {isPopupOpen && <PopupInfo onClose={closePopup} />}

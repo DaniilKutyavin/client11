@@ -154,7 +154,7 @@ const Admin = observer(() => {
           </Link>
         </div>
         
-        <div className="orders-table-container" style={{ marginTop: "20px" }}>
+        <div className="orders-table-container" style={{ marginTop: "20px", overflowX: "auto" }}>
           <h1>Активные заказы</h1>
           {selectedOrder && (
           <OrderDetailModal
@@ -190,7 +190,7 @@ const Admin = observer(() => {
         </div>
           <table
             className="orders-table"
-            style={{ width: "100%", borderCollapse: "collapse" }}
+            style={{ width: "100%", borderCollapse: "collapse", }}
           >
             <thead>
               <tr>

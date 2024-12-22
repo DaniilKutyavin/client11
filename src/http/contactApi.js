@@ -22,7 +22,7 @@ export const submitPartnershipForm = async (formData) => {
 };
 
 export const getFormOne = async () => {
-  const response = await $host.get("api/formone/");
+  const response = await $authHost.get("api/formone/");
   return response.data;
 };
 
@@ -32,7 +32,7 @@ export const submitPartnershipFormTwo = async (formData) => {
 };
 
 export const getFormTwo = async () => {
-  const response = await $host.get("api/formtwo/");
+  const response = await $authHost.get("api/formtwo/");
   return response.data;
 };
 

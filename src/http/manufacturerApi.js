@@ -14,24 +14,24 @@ export const getManufacturersByTypeThree = async () => {
 };
 
 export const createManufacturerOne = async (manufacturerData) => {
-  const { data } = await $host.post(`api/manufacturer/one`, manufacturerData);
+  const { data } = await $authHost.post(`api/manufacturer/one`, manufacturerData);
   return data;
 };
 export const createManufacturerTwo = async (manufacturerData) => {
-  const { data } = await $host.post(`api/manufacturer/two`, manufacturerData);
+  const { data } = await $authHost.post(`api/manufacturer/two`, manufacturerData);
   return data;
 };
 export const createManufacturerThree = async (manufacturerData) => {
-  const { data } = await $host.post(`api/manufacturer/three`, manufacturerData);
+  const { data } = await $authHost.post(`api/manufacturer/three`, manufacturerData);
   return data;
 };
 
 export const deleteManufacturerOne = async (id) => {
-  await $host.delete(`api/manufacturer/one/${id}`);
+  await $authHost.delete(`api/manufacturer/one/${id}`);
 };
 export const deleteManufacturerTwo = async (id) => {
-  await $host.delete(`api/manufacturer/two/${id}`);
+  await $authHost.delete(`api/manufacturer/two/${id}`);
 };
 export const deleteManufacturerThree = async (id) => {
-  await $host.delete(`api/manufacturer/three/${id}`);
+  await $authHost.delete(`api/manufacturer/three/${id}`);
 };

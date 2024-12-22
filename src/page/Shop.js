@@ -8,6 +8,7 @@ import "../style/shop.css";
 import { Link, useLocation } from "react-router-dom";
 import Cart from "../componenets/Cart";
 import videoSrc from "../img/main1.gif";
+import videoSrc2 from "../img/Asa.mp4";
 import PopupInfo from "../componenets/PopupInfo";
 import { getBasket,  getProductCountsByTypes} from "../http/productApi";
 import { Context } from "..";
@@ -175,9 +176,17 @@ const Shop = observer(({ userId }) => {
   return (
     <>
       {isGifVisible && (
-        <div className="video-container">
+        <>
+        <div className="video-container pooo">
           <img src={videoSrc} alt="Animated GIF" />
         </div>
+        <div className="video-container oppp">
+    <video autoPlay loop muted className="video-size">
+      <source src={videoSrc2} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+        </>
       )} 
       {/* Слайдер */}
       <div className="shop-container">

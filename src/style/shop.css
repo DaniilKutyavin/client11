@@ -54,9 +54,12 @@ html, body {
   }
   
   .video-container img {
+    position: absolute;
     width: 60%; /* Default width for the image */
     height: auto; /* Maintain aspect ratio */
     object-fit: cover; /* Ensure proportions are preserved */
+    top:10%;
+    left: 20%;
   }
 .overlay-container {
     position: absolute;
@@ -403,12 +406,31 @@ html, body {
     width: 100px; /* Устанавливаем ширину для равномерного позиционирования */
     margin-bottom: -25px;
 }
+.pooo{
+    display: block;
+}
+.oppp{
+    display: none;
+}
 
 @media (max-width: 768px) {
+
+    .pooo{
+        display: none;
+    }
+    .oppp{
+        display: block;
+    }
     .gift-container img {
         width: 25px;
     }
-    
+    .video-size {
+        position: absolute;
+        width: 300px!important; /* Устанавливаем ширину */
+        height: 200px!important; /* Устанавливаем высоту */
+        top:40%;
+        left: 10%;
+      }
 
     .gift-text {
        display: none;
@@ -558,4 +580,7 @@ html, body {
     text-align: center;
   }
 
-  
+  .video-size {
+    width: 1000px; /* Устанавливаем ширину */
+    height: 900px; /* Устанавливаем высоту */
+  }

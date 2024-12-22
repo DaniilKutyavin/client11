@@ -35,7 +35,7 @@ const ContactInfoManager = () => {
   };
 
   return (
-    <div className="contact-info-manager">
+    <div className="contact-info-manager" style={{ overflowX: "auto" }}>
       {/* Блок выбора диапазона дат */}
       <div className="date-filter" style={{ marginBottom: "20px" }}>
         <label>

@@ -34,7 +34,7 @@ const OrderGuestTable = () => {
     if (error) return <p>{error}</p>;
   
     return (
-      <div className="orderGuestTableContainer">
+      <div className="orderGuestTableContainer" style={{overflowX: "auto" }}>
         <h2>Список заказов гостей</h2>
         <table className="orderGuestTable">
           <thead>

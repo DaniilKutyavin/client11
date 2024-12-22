@@ -56,18 +56,6 @@ export const authRoutes = [
     Component: Admin,
   },
   {
-    path: ORDER_ROUTER,
-    Component: OrderConfirmation,
-  },
-  {
-    path: ORDER2_ROUTER,
-    Component: OrderConfirmation,
-  },
-  {
-    path: ORDER3_ROUTER,
-    Component: OrderConfirmation,
-  },
-  {
     path: IMG_ROUTER,
     Component: GlavImgManager,
   },
@@ -169,5 +157,17 @@ export const publicRoutes = [
   {
     path: BUYFORM_ROUTER,
     Component: Buy,
+  },
+  {
+    path: ORDER_ROUTER,
+    Component: OrderConfirmation,
+  },
+  {
+    path: ORDER2_ROUTER,
+    Component: OrderConfirmation,
+  },
+  {
+    path: ORDER3_ROUTER,
+    Component: OrderConfirmation,
   },
 ];

@@ -49,9 +49,18 @@ useEffect(() => {
   }, []);
 
   const handleRemoveItem = (index) => {
+    // Создаём новую корзину, исключая удалённый элемент
     const newCart = cart.filter((_, i) => i !== index);
+  
+    // Обновляем состояние корзины
     setCart(newCart);
+  
+    // Сохраняем обновлённую корзину в localStorage
     localStorage.setItem("cart", JSON.stringify(newCart));
+  
+    // Создаём кастомное событие для уведомления других компонентов
+    const event = new Event("cartUpdated");
+    window.dispatchEvent(event); // Триггерим событие
   };
 
   const handleQuantityChange = (index, action) => {
@@ -63,6 +72,8 @@ useEffect(() => {
     }
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
+    const event = new Event("cartUpdated");
+    window.dispatchEvent(event); // Триггерим событие
   };
 
   const handleCheckout = async () => {

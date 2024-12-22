@@ -121,7 +121,7 @@ export const createOredersGuest = async (order) => {
 };
 
 export const getOredersGuest = async () => {
-  const { data } = await $host.get("api/orders/guest");
+  const { data } = await $authHost.get("api/orders/guest");
   return data;
 };
 
