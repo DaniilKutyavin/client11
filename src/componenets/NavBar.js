@@ -10,7 +10,7 @@ import {
   LOGIN_ROUTER,
   LS_ROUTER,
   PRODUCT_ROUTER,
-} from "../utils/consts";
+} from "../utils/consts"; 
 import LogoWhite from "../img/Лого белый.svg";
 import menu from "../img/меню.svg";
 import krest from "../img/крестик.svg";
