@@ -32,7 +32,6 @@ html, body {
     
       .shop-container {
         height: 460px; /* Set a fixed height for the shop container */
-        margin-top: 76px; /* Add a margin to the top */
       }
     
       .shop-slide img {
