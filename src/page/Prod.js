@@ -302,6 +302,7 @@ useEffect(() => {
       }
       return newFilters;
     });
+    setCurrentPage(1);
   };
 
   // Clear filters
@@ -316,6 +317,7 @@ useEffect(() => {
       ways: [],
       grounds: [],
     });
+    setCurrentPage(1);
   };
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
@@ -346,11 +348,11 @@ useEffect(() => {
         )}
          {isProductType2 && (
           <> <h1>Удобрения</h1>
-          <p className="pod">Доставка удобрений осуществляется от 20т</p></>
+          <p className="pod">Поддерживайте почву необходимыми элементами питания</p></>
         )}
          {isProductType3 && (
           <> <h1>Посевной материал</h1>
-          <p className="pod">Гарантия будущего урожая</p></>
+          <p className="pod">Запаситесь качественными семенами заранее.</p></>
         )}
         
         </div>

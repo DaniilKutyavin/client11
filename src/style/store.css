@@ -108,6 +108,7 @@
     left: 55%;
     transform: translateX(-50%);
     width: 100%;
+    top: 17%;
   }
 
   .acid-text h1 {
@@ -132,7 +133,7 @@
   }
 
   .ttop-right {
-    top: 25%;
+    top: 32%;
     right: 5%;
 }
 }

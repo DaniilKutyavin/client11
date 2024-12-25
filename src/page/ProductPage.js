@@ -139,7 +139,7 @@ const ProductPage = () => {
          
             <div className="opisanienaz">
           <h1>{product?.name}</h1>
-          <p>{product?.desc_header}</p>
+          <p className="pod">{product?.desc_header}</p>
         </div>
             <div className="textContent">
               <p className="description">{product?.description}</p>

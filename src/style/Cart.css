@@ -317,6 +317,15 @@
 }
 
 @media (max-width: 768px) {
+
+    .sum-section {
+        position: sticky; /* Фиксация относительно карточки */
+       top: 10px; /* Расстояние от верхнего края карточки */
+       background-color: #1A1A1A;
+       padding: 20px;
+       border-radius: 20px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     }
     .gift-card {
         width: 100px;
     }

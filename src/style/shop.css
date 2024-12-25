@@ -301,6 +301,7 @@ html, body {
         display:block;
     }
     .blur-overlay-bottom {
+        height: 100px;
        padding: 0px;
     }
 
@@ -442,6 +443,7 @@ html, body {
     }
     .scale-container {
         width: 280px;
+        margin-right: 30px;
     }
     .reward-scale {
         justify-content: flex-start;

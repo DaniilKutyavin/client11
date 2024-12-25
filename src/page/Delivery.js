@@ -81,7 +81,7 @@ const Delivery = observer( ()=> {
         <div className="block">
           <div className="con">
             <div className="left-half">
-              <div className="top-block"><h2>Как сделать заказ?</h2> <p>Выберете самы удобный способ для Вас
+              <div className="top-block"><h2>Как сделать заказ?</h2> <p>Выберете самый удобный способ для Вас
               </p></div>
               <div className="bottom-block"><img src={icon1}/></div>
             </div>
@@ -103,11 +103,11 @@ const Delivery = observer( ()=> {
         <div className="block">
           <div className="con">
             <div className="left-half">
-              <div className="top-block"><h2>Оплата</h2> <p>Убедитесь что стоимость вашего заказа состовляет не ниже 35000 рублей.</p></div>
+              <div className="top-block"><h2>Оплата</h2> <p>Убедитесь что стоимость вашего заказа составляет не ниже 35.000 рублей.</p></div>
               <div className="bottom-block"><img src={icon3}/></div>
             </div>
             <div className="right-half">
-              <div className="window-block"><img src={iconCash}/>Наличыми</div>
+              <div className="window-block"><img src={iconCash}/>Наличными</div>
               <div className="window-block"><img src={iconCard}/>Оплата картой</div>
               <div className="window-block"><img src={iconBank}/>Безналичный расчет</div>
               <div className="window-block"></div>
@@ -127,11 +127,11 @@ const Delivery = observer( ()=> {
     <p className="pod">Прямо на ваше предприятие</p>
   </div></div>
               <div className="window-block"><img src={iconPoch}/><div >
-    Доставка почта
+              Доставка почтой
     <p className="pod">Доставка по всей России</p>
   </div></div>
               <div className="window-block"><img src={iconPred}/><div >
-    Предзаказ на назначеную дату
+              Предзаказ на назначенную дату
     <p className="pod">Закажи наперед чтобы не забыть </p>
   </div></div>
               <div className="window-block"></div>

@@ -339,20 +339,20 @@ body {
     width: 30%;
     display: flex;
     align-items: center;
-    background-color: #3F0A0A; /* Красный фон блока */
+    background-color: #70621B; /* Красный фон блока */
     padding: 10px;
     border-radius: 15px;
     color: white;
     margin-right: 100px;
-    border:  solid 2px #AA0202;
+    border:  solid 2px #504215;
 }
 
 .exclamation {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #592222;
-    border:  solid 1px #AA0202;
+    background-color: #504215;
+    border:  solid 1px #2A2112;
     color: white;
     border-radius: 50%;
     width: 30px;
@@ -372,13 +372,13 @@ body {
 }
 
 .close-btn {
-    background-color: #592222;
+    background-color: #504215;
     position: absolute;
     top: 5px; /* Отступ от верхнего края */
     right: 5px; /* Отступ от правого края */
     color: white;
     font-size: 26px;
-    border:  solid 1px #AA0202;
+    border:  solid 1px #2A2112;
     border-radius: 50%;
     width: 25px;
     height: 25px;

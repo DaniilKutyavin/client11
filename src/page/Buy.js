@@ -4,7 +4,7 @@ import arrowDown from '../img/стрелка вниз.svg';
 import filter from '../img/Фильтр иконка.svg';
 import exampleImage from '../img/ценник.svg';
 import Store from '../componenets/Store';
-import Shkal from '../componenets/Shkal'; 
+import Shkal from '../componenets/Shkal';
 import lupa from '../img/лупа.svg';
 import { getbuyProduct } from '../http/productApi'; // Adjust the path to your api file
 import {
@@ -126,7 +126,7 @@ const Prod = () => {
             <div className="header">
                 <div className="title-block">
                     <h1>Закупка С/Х культур</h1>
-                    <p className="pod">Продайте по максимально выгодным ценам</p>
+                    <p className="pod">Продайте свою продукцию по максимально выгодным ценам</p>
                 </div>
             </div>
 

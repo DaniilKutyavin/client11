@@ -210,12 +210,12 @@ const Shop = observer(({ userId }) => {
             <Link to="/product/type/1" className="blur-block top-left">
               <p className="opis">{productCounts.type1}</p>
               <h4>ХСЗР</h4>
-              <p  className="ubr">Обеспечте защиту ваших культур</p>
+              <p  className="ubr">Обеспечьте защиту Ваших культур</p>
             </Link>
             <Link to="/product/type/2" className="blur-block top-right">
               <p className="opis">{productCounts.type2}</p>
               <h4>Удобрения</h4>
-              <p  className="ubr">Потдерживайте почву необходимыми элементами питания</p>
+              <p  className="ubr">Поддерживайте почву необходимыми элементами питания</p>
             </Link>
           </div>
           <div className="blur-overlay-bottom">

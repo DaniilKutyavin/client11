@@ -68,6 +68,7 @@
   max-height: 200px;
   margin: 10px;
   margin-top: -20px;
+  margin-left: 20px;
 }
 .huge-gradient-text {
   font-family: 'Gilroy-ExtraBold', sans-serif;
@@ -106,7 +107,6 @@
   .text-content {
         font-size: 10px;
         margin-right: 5px;
-        margin-top: 120px;
         
     }
 .text-content h3 { 
