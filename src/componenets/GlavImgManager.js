@@ -51,7 +51,7 @@ const GlavImgManager = () => {
       <ul>
         {glavImgs.map((img) => (
           <li key={img.id}>
-            <img src={process.env.REACT_APP_API_URL + img?.img}  alt="GlavImg" width="100" />
+            <img src={process.env.REACT_APP_API_URL_IMG + img?.img}  alt="GlavImg" width="100" />
             <button   className="productBuyForm_deleteButton" onClick={() => handleDeleteImg(img.id)}>удалить</button>
           </li>
         ))}

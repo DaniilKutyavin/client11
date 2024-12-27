@@ -31,7 +31,7 @@ const NewsArticle = () => {
       <div className="article-container">
         <h1 className="article-title pod">{currentNews.title}</h1> {/* Заголовок статьи */}
         <img
-          src={process.env.REACT_APP_API_URL + '/news/' + currentNews.img} // Изображение статьи
+          src={process.env.REACT_APP_API_URL_IMG + '/news/' + currentNews.img} // Изображение статьи
           alt={currentNews.title}
           className="article-image"
         />

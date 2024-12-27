@@ -251,7 +251,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
                 </div>
               </div>
               <img
-                src={process.env.REACT_APP_API_URL + item.product.img}
+                src={process.env.REACT_APP_API_URL_IMG + item.product.img}
                 alt="Product"
                 className="cart-item-image"
               />
@@ -300,19 +300,19 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
                 <div
                   className={`gift-card ${selectedGift === "1" ? "selected" : ""}`}
                   onClick={() => handleGiftSelection("1")}
-                ><img  src={process.env.REACT_APP_API_URL + item?.imgOne} className="product-imageee" /><p/>Получить</div>
+                ><img  src={process.env.REACT_APP_API_URL_IMG + item?.imgOne} className="product-imageee" /><p/>Получить</div>
               )}
               {totalAmount >= 100000 && (
                 <div
                   className={`gift-card ${selectedGift === "2" ? "selected" : ""}`}
                   onClick={() => handleGiftSelection("2")}
-                ><img  src={process.env.REACT_APP_API_URL + item?.imgTwo}className="product-imageee" /><p/>Получить</div>
+                ><img  src={process.env.REACT_APP_API_URL_IMG + item?.imgTwo}className="product-imageee" /><p/>Получить</div>
               )}
               {totalAmount >= 150000 && (
                 <div
                   className={`gift-card ${selectedGift === "3" ? "selected" : ""}`}
                   onClick={() => handleGiftSelection("3")}
-                ><img  src={process.env.REACT_APP_API_URL + item?.imgThree}className="product-imageee" /><p/>Получить</div>
+                ><img  src={process.env.REACT_APP_API_URL_IMG + item?.imgThree}className="product-imageee" /><p/>Получить</div>
               )}
             </div>
           </div>

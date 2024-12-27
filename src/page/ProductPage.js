@@ -122,7 +122,7 @@ const ProductPage = () => {
         <div className="productImageAndPrice nevid">
               <div className="productImage">
                 <img
-                  src={process.env.REACT_APP_API_URL + product?.img}
+                  src={process.env.REACT_APP_API_URL_IMG + product?.img}
                   alt={product?.name}
                 />
               </div>
@@ -149,7 +149,7 @@ const ProductPage = () => {
                 <p className="producer">Производитель:</p>
                 <img
                   className="manimg"
-                  src={process.env.REACT_APP_API_URL + manufacturerInfo?.logo}
+                  src={process.env.REACT_APP_API_URL_IMG + manufacturerInfo?.logo}
                   alt={product?.manufacturer}
                 />
                 <div className="sertif">
@@ -157,7 +157,7 @@ const ProductPage = () => {
                   <p className="pdfLink">
                     <a
                       className="no-style-link"
-                      href={`${process.env.REACT_APP_API_URL}${product?.presentation}`}
+                      href={`${process.env.REACT_APP_API_URL_IMG}${product?.presentation}`}
                     >
                       <spam className="dot "></spam> Презентация PDF
                     </a>
@@ -167,7 +167,7 @@ const ProductPage = () => {
                   <p className="pdfLink">
                     <a
                       className="no-style-link"
-                      href={`${process.env.REACT_APP_API_URL}${product?.certificate}`}
+                      href={`${process.env.REACT_APP_API_URL_IMG}${product?.certificate}`}
                     >
                       <spam className="dot "></spam> Свидетельство PDF
                     </a>
@@ -179,7 +179,7 @@ const ProductPage = () => {
             <div className="productImageAndPrice nonimg">
               <div className="productImage">
                 <img
-                  src={process.env.REACT_APP_API_URL + product?.img}
+                  src={process.env.REACT_APP_API_URL_IMG + product?.img}
                   alt={product?.name}
                 />
               </div>

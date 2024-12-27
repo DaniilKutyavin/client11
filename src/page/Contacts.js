@@ -140,7 +140,7 @@ const Contacts = observer(() => {
           {contact.usercon.map((user) => (
             <div className="employee-card" key={user.id}>
               <img
-                src={process.env.REACT_APP_API_URL + user.img}
+                src={process.env.REACT_APP_API_URL_IMG + user.img}
                 alt="Employee Name"
                 className="employee-img"
               />
@@ -166,7 +166,7 @@ const Contacts = observer(() => {
             <SwiperSlide key={index}>
                <div className="employee-card" key={user.id}>
               <img
-                src={process.env.REACT_APP_API_URL + user.img}
+                src={process.env.REACT_APP_API_URL_IMG + user.img}
                 alt="Employee Name"
                 className="employee-img"
               />

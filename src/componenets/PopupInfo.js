@@ -27,21 +27,21 @@ const PopupInfo = ({ onClose }) => {
       </p>
       <div className="popup-products">
           <div className="product-itemm" >
-            <img  src={process.env.REACT_APP_API_URL + item?.imgOne}className="product-imagee" />
+            <img  src={process.env.REACT_APP_API_URL_IMG + item?.imgOne}className="product-imagee" />
             <div className="product-info">
               <h5>{item?.nameOne}</h5>
               <p>{item?.priceOne}</p>
             </div>
           </div>
           <div className="product-itemm" >
-            <img  src={process.env.REACT_APP_API_URL + item?.imgTwo} className="product-imagee" />
+            <img  src={process.env.REACT_APP_API_URL_IMG + item?.imgTwo} className="product-imagee" />
             <div className="product-info">
               <h5>{item?.nameTwo}</h5>
               <p>{item?.priceTwo}</p>
             </div>
           </div>
           <div className="product-itemm" >
-            <img src={process.env.REACT_APP_API_URL + item?.imgThree} className="product-imagee" />
+            <img src={process.env.REACT_APP_API_URL_IMG + item?.imgThree} className="product-imagee" />
             <div className="product-info">
               <h5>{item?.nameThree}</h5>
               <p>{item?.priceThree}</p>

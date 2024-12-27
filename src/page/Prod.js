@@ -881,7 +881,7 @@ useEffect(() => {
                 <div className="product-card" key={index}>
                   <Link to={`/product/${item.id}`}>
                     <img
-                      src={process.env.REACT_APP_API_URL + item.img}
+                      src={process.env.REACT_APP_API_URL_IMG + item.img}
                       alt="Product"
                       className="product-image"
                     />

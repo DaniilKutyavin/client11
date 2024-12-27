@@ -174,11 +174,30 @@ const Shop = observer(({ userId }) => {
 
     fetchBasket();
   }, [userId]);
+
+  const [currentVideoSrc, setCurrentVideoSrc] = useState(videoSrc);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setCurrentVideoSrc(LogoScrolled);
+      } else {
+        setCurrentVideoSrc(videoSrc);
+      }
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize); 
+    };
+  }, []);
   return (
     <>
       {isGifVisible && (
         <div className="video-container">
-          <img src={LogoScrolled} alt="Animated GIF" />
+          <img src={currentVideoSrc} alt="Animated GIF" />
         </div>
       )} 
       {/* Слайдер */}
@@ -194,7 +213,7 @@ const Shop = observer(({ userId }) => {
         > 
          {glavImgs.map((img, index) => (
             <SwiperSlide key={index} className="shop-slide">
-              <img src={process.env.REACT_APP_API_URL + img?.img} alt={`Slide ${index}`} />
+              <img src={process.env.REACT_APP_API_URL_IMG + img?.img} alt={`Slide ${index}`} />
             </SwiperSlide>
           ))} 
         </Swiper>

@@ -66,7 +66,7 @@ const News = () => {
               <h2>{currentNews.title}</h2>
             </div>
             <img
-              src={process.env.REACT_APP_API_URL + '/news/' + currentNews.img}
+              src={process.env.REACT_APP_API_URL_IMG + '/news/' + currentNews.img}
               className="news-image"
               alt={currentNews.title}
             />
