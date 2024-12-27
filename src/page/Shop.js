@@ -22,7 +22,7 @@ import ScrollContainer from "../componenets/scroll";
 import { observer } from "mobx-react-lite";
 import HorizontalScrollComponent from "../componenets/scroll";
 import { getGlavImgs} from "../http/glawimgApi";
-import LogoScrolled from "../img/podval.gif";
+import LogoScrolled from "../img/_Asatag.gif";
 
 const Shop = observer(({ userId }) => {
   const [isSticky, setIsSticky] = useState(false);
