@@ -138,6 +138,10 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
     // Суммируем количество товаров с type: 2
     const totalItemsType2 = itemsType2.reduce((total, item) => total + item.quantity, 0);
     const totalItemsType3 = itemsType3.reduce((total, item) => total + item.quantity, 0);
+    if (totalAmount < 35000) {
+      setErrorMessage("Минимальная сумма заказа должна быть 35000 ₽.");
+      return;
+    }
   
     // Проверяем количество товаров с type: 2
     if (totalItemsType2 < 20 && totalItemsType2!=0) {
@@ -176,6 +180,32 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
         setErrorMessage("Произошла ошибка при создании заказа. Попробуйте еще раз.");
       }
     }
+  };
+
+  const handlePhoneChange = (e) => {
+    let input = e.target.value.replace(/\D/g, ''); // Remove all non-numeric characters
+  
+    // Ensure the first digit is "7"
+    if (input.length > 0 && input[0] !== '7') {
+      input = '7' + input;
+    }
+  
+    // Apply the phone number format
+    let formatted = '+7';
+    if (input.length > 1) formatted += ` (${input.substring(1, 4)}`;
+    if (input.length >= 5) formatted += `) ${input.substring(4, 7)}`;
+    if (input.length >= 8) formatted += `-${input.substring(7, 9)}`;
+    if (input.length >= 10) formatted += `-${input.substring(9, 11)}`;
+  
+    // Limit the length of the formatted string
+    if (formatted.length > 18) {
+      formatted = formatted.substring(0, 18);
+    }
+  
+    setUserDetails((prevDetails) => ({
+      ...prevDetails,
+      phone: formatted,
+    }));
   };
 
   return (
@@ -299,11 +329,13 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
 />
         <label>Телефон</label>
         <input
-          type="tel"
+          type="text"
+          id="phone"
           name="phone"
           value={userDetails.phone}
-          onChange={handleInputChange}
-          className="intext"
+          onChange={handlePhoneChange} // Attach the phone change handler
+          placeholder="+7 (___) ___-__-__"
+           className="intext"
         />
 
         <h3 className="section-title">Доставка</h3>

@@ -80,7 +80,11 @@ useEffect(() => {
     const totalPrice = cart.reduce((acc, item) => {
       return acc + (paymentMethod === "Банковский перевод" ? item.price_two : item.price) * item.quantity;
     }, 0);
-
+    
+    if (totalPrice < 35000) {
+      setErrorMessage("Минимальная сумма заказа составляет 35,000 ₽. Пожалуйста, добавьте товары на эту сумму.");
+      return; // Prevent checkout
+    }
     // Prepare the order data
     const orderData = {
       items: cart,
@@ -110,7 +114,31 @@ useEffect(() => {
   const totalAmount2 = cart.reduce((acc, item) => {
     return acc + (item.price_two * item.quantity);
   }, 0);
-
+  const handlePhoneChange = (e) => {
+    let input = e.target.value.replace(/\D/g, ''); // Удаляем всё, кроме цифр
+  
+    // Если первый символ не "7", заменяем его на "7"
+    if (input.length > 0 && input[0] !== '7') {
+      input = '7' + input;
+    }
+  
+    // Формируем маску
+    let formatted = '+7';
+    if (input.length > 1) formatted += ` (${input.substring(1, 4)}`;
+    if (input.length >= 5) formatted += `) ${input.substring(4, 7)}`;
+    if (input.length >= 8) formatted += `-${input.substring(7, 9)}`;
+    if (input.length >= 10) formatted += `-${input.substring(9, 11)}`;
+  
+    // Ограничиваем длину
+    if (formatted.length > 18) {
+      formatted = formatted.substring(0, 18);
+    }
+  
+    setUserDetails((prevDetails) => ({
+      ...prevDetails,
+      phone: formatted,
+    }));
+  };
   return (
     <div className="cart-overlay" onClick={onClose}>
       <div className="cart-content" onClick={(e) => e.stopPropagation()}>
@@ -217,13 +245,16 @@ useEffect(() => {
         />
         <label>Телефон</label>
         <input
-          type="tel"
-          name="phone"
-          className="intext"
-          value={userDetails.phone}
-          onChange={(e) => setUserDetails({ ...userDetails, phone: e.target.value })}
-        />
-
+  type="tel"
+  id="phone"
+  name="phone"
+  className="intext"
+  placeholder="+7 (___) ___-__-__"
+  value={userDetails.phone}
+  onChange={handlePhoneChange}
+  maxLength={18} // Ограничиваем ввод длиной маски
+/>
+        
         <h3 className="section-title">Доставка</h3>
         <label>Город</label>
         <input

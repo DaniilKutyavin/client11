@@ -16,6 +16,7 @@ import {
   CARTINFO_ROUTER,
   SHOP_ROUTER,
 } from "../utils/consts";
+import arrowDown from "../img/стрелка вниз.svg";
 import "../style/newss.css";
 import { Context } from '..';
 import ContactInfoManager from "../componenets/FormOne";
@@ -32,12 +33,12 @@ const Admin = observer(() => {
   // Состояния для диапазона дат
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 10; // Количество заказов на странице
 
   useEffect(() => {
     fetchOrders(); // Изначально загружаем заказы
-    const intervalId = setInterval(fetchOrders, 15000); // Обновление каждые 15 секунд
-
-    return () => clearInterval(intervalId); // Очистка интервала при размонтировании компонента
+    
   }, []);
 
   const fetchOrders = async () => {
@@ -62,6 +63,8 @@ const Admin = observer(() => {
     } else {
       setFilteredOrders(orders); // Если даты не выбраны, показываем все заказы
     }
+
+    setCurrentPage(1);
   };
 
   const handleOrderClick = (order) => {
@@ -87,6 +90,36 @@ const Admin = observer(() => {
     }
 
     return total.toFixed(0); // Форматируем до целого числа
+  };
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+  };
+
+  const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
+
+  const currentOrders = filteredOrders.slice(
+    (currentPage - 1) * ordersPerPage,
+    currentPage * ordersPerPage
+  );
+
+  const filterByToday = () => {
+    const today = new Date().toISOString().split("T")[0];
+    setStartDate(today);
+    setEndDate(today);
+    filterByDate(); // Применить фильтрацию
+  };
+
+  const filterByYesterday = () => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayDate = yesterday.toISOString().split("T")[0];
+    setStartDate(yesterdayDate);
+    setEndDate(yesterdayDate);
+    filterByDate(); // Применить фильтрацию
   };
   if (!user.isAuth || user.user.role !== 'Admin') {
     return <Navigate to={SHOP_ROUTER} />; 
@@ -161,44 +194,33 @@ const Admin = observer(() => {
         <div className="orders-table-container" style={{ marginTop: "20px", overflowX: "auto" }}>
           <h1>Активные заказы</h1>
           {selectedOrder && (
-          <OrderDetailModal
-            order={selectedOrder}
-            onClose={handleCloseModal}
-            onUpdate={handleOrderUpdate}
-          />
-        )}
-        <div className="date-filter" style={{ marginBottom: "20px" }}>
-          <label>
-            От:
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </label>
-          <label style={{ marginLeft: "10px" }}>
-            До:
-            <input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </label>
-          <button
-            onClick={filterByDate}
-            style={{ marginLeft: "10px", padding: "5px 10px", cursor: "pointer" }}
-            className="productBuyForm_submitButton"
-          >
-            Применить
-          </button>
-        </div>
-          <table
-            className="orders-table"
-            style={{ width: "100%", borderCollapse: "collapse", }}
-          >
+            <OrderDetailModal order={selectedOrder} onClose={handleCloseModal} onUpdate={handleOrderUpdate} />
+          )}
+
+          <div className="date-filter" style={{ marginBottom: "20px" }}>
+            <label>
+              От:
+              <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            </label>
+            <label style={{ marginLeft: "10px" }}>
+              До:
+              <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            </label>
+            <button
+              onClick={filterByDate}
+              style={{ marginLeft: "10px" }}
+              className="productBuyForm_submitButton"
+            >
+              Применить
+            </button>
+            <button onClick={filterByToday}   className="productBuyForm_submitButton"  style={{margin: '10px' }}>Сегодня</button>
+            <button onClick={filterByYesterday}   className="productBuyForm_submitButton">Вчера</button>
+          </div>
+
+          <table className="orders-table" style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-              <th>Дата</th>
+                <th>Дата</th>
                 <th>ID Заказа</th>
                 <th>Имя пользователя</th>
                 <th>Email пользователя</th>
@@ -213,32 +235,60 @@ const Admin = observer(() => {
               </tr>
             </thead>
             <tbody>
-  {filteredOrders.map((order) => (
-    <tr key={order.id} onClick={() => handleOrderClick(order)} style={{ cursor: "pointer" }}>
-      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-      <td>{order.id}</td>
-      <td>{order.user?.name}</td>
-      <td>{order.user?.email}</td>
-      <td>{order.phone}</td>
-      <td>{order.paymentMethod}</td>
-      <td>
-        <ul>
-          {order.order_products.map((product) => (
-            <li key={product.productId}>
-              {product.product?.name || "Product not found"} - {product.quantity} шт. по {product.price}₽
-            </li>
-          ))}
-        </ul>
-      </td>
-      <td>{order.status}</td>
-      <td>{order.giftId}</td>
-      <td>{order.comment}</td>
-      <td>{order.city}</td>
-      <td>{calculateTotal(order)}₽</td>
-    </tr>
-  ))}
-</tbody>
+              {currentOrders.map((order) => (
+                <tr key={order.id} onClick={() => handleOrderClick(order)} style={{ cursor: "pointer" }}>
+                  <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                  <td>{order.id}</td>
+                  <td>{order.user?.name}</td>
+                  <td>{order.user?.email}</td>
+                  <td>{order.phone}</td>
+                  <td>{order.paymentMethod}</td>
+                  <td>
+                    <ul>
+                      {order.order_products.map((product) => (
+                        <li key={product.productId}>
+                          {product.product?.name || "Product not found"} - {product.quantity} шт. по {product.price}₽
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>{order.status}</td>
+                  <td>{order.giftId}</td>
+                  <td>{order.comment}</td>
+                  <td>{order.city}</td>
+                  <td>{calculateTotal(order)}₽</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
+
+          {/* Пагинация */}
+          <div className="pagination" style={{ marginTop: "20px" }}>
+              <button
+                            className="pagination-arrow"
+                            onClick={handlePreviousPage} disabled={currentPage === 1}
+                            
+                          >
+                            <img
+                              src={arrowDown}
+                              alt="Next"
+                              style={{ transform: "rotate(90deg)" }}
+                            />
+                          </button>
+            <span>Страница {currentPage} из {totalPages}</span>
+           
+            <button
+                            className="pagination-arrow"
+                            onClick={handleNextPage} disabled={currentPage === totalPages}
+                            
+                          >
+                            <img
+                              src={arrowDown}
+                              alt="Next"
+                              style={{ transform: "rotate(-90deg)" }}
+                            />
+                          </button>
+          </div>
         </div>
         <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
           <h1>Заявки от незарегистрированных пользователь</h1>
