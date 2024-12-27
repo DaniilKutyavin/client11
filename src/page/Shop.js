@@ -22,6 +22,7 @@ import ScrollContainer from "../componenets/scroll";
 import { observer } from "mobx-react-lite";
 import HorizontalScrollComponent from "../componenets/scroll";
 import { getGlavImgs} from "../http/glawimgApi";
+import LogoScrolled from "../img/podval.gif";
 
 const Shop = observer(({ userId }) => {
   const [isSticky, setIsSticky] = useState(false);
@@ -176,17 +177,9 @@ const Shop = observer(({ userId }) => {
   return (
     <>
       {isGifVisible && (
-        <>
-        <div className="video-container pooo">
-          <img src={videoSrc} alt="Animated GIF" />
+        <div className="video-container">
+          <img src={LogoScrolled} alt="Animated GIF" />
         </div>
-        <div className="video-container oppp">
-    <video autoPlay loop muted className="video-size">
-      <source src={videoSrc2} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  </div>
-        </>
       )} 
       {/* Слайдер */}
       <div className="shop-container">

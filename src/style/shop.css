@@ -53,12 +53,9 @@ html, body {
   }
   
   .video-container img {
-    position: absolute;
     width: 60%; /* Default width for the image */
     height: auto; /* Maintain aspect ratio */
     object-fit: cover; /* Ensure proportions are preserved */
-    top:10%;
-    left: 20%;
   }
 .overlay-container {
     position: absolute;

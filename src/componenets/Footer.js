@@ -11,7 +11,6 @@ import { Context } from "..";
 import { getAll } from "../http/footerApi";
 import { observer } from "mobx-react-lite";
 import { LS_ROUTER } from "../utils/consts";
-import videoSrc from "../img/main1.gif";
 
 const Footer = observer(() => {
   const { footer, user } = useContext(Context); // добавьте user в контекст
@@ -41,7 +40,7 @@ const Footer = observer(() => {
     <>
       <footer className="footer">
         <div className="left">
-          <img src={videoSrc} alt="Logo" className="logo" />
+          <img src={LogoScrolled} alt="Logo" className="logo" />
           <div className="contact-info">
             <div>
   <p className="timemob">{item?.time}</p>
