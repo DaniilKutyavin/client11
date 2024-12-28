@@ -29,7 +29,7 @@ const OrderConfirmation = () => {
       <div className="order-confirmation-container">
         {isOrderConfirmation && (
           <>
-            <h1 className="order-confirmation-title">Ваша заказ принят</h1>
+            <h1 className="order-confirmation-title">Ваш заказ принят</h1>
             <h2 className="order-confirmation-subtitle">Спасибо, что выбираете нас!</h2>
             <p className="order-confirmation-description">Наш менеджер свяжется с Вами в ближайшее время.</p>
           </>

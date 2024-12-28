@@ -80,11 +80,42 @@ useEffect(() => {
     const totalPrice = cart.reduce((acc, item) => {
       return acc + (paymentMethod === "Банковский перевод" ? item.price_two : item.price) * item.quantity;
     }, 0);
-    
+
+  let type2Count = 0;
+  let type3Count = 0;
+
+  cart.forEach(item => {
+    if (item.type === 2) {
+      type2Count += item.quantity;
+    }
+    if (item.type === 3) {
+      type3Count += item.quantity;
+    }
+  });
+
+  if (cart.length === 0) {
+    setErrorMessage("Корзина пуста. Пожалуйста, добавьте товары в корзину перед оформлением заказа.");
+    return; 
+  }
+
+  if (type2Count < 20 && type2Count !=0 ) {
+    setErrorMessage("Удобрений должно быть не менее 20т.");
+    return; 
+  }
+  if (type3Count < 10 && type3Count !=0 ) {
+    setErrorMessage("Посевного материала должно быть не менее 10.");
+    return; 
+  }
     if (totalPrice < 35000) {
       setErrorMessage("Минимальная сумма заказа составляет 35,000 ₽. Пожалуйста, добавьте товары на эту сумму.");
       return; // Prevent checkout
     }
+
+   const { name, phone, city, email } = userDetails;
+  if (!name || !phone || !city || !email) {
+    setErrorMessage("Пожалуйста, заполните все обязательные поля.");
+    return; // Прерываем оформление заказа, если не все обязательные поля заполнены
+  }
     // Prepare the order data
     const orderData = {
       items: cart,
@@ -314,7 +345,7 @@ useEffect(() => {
           value={userDetails.comment}
           onChange={(e) => setUserDetails({ ...userDetails, comment: e.target.value })}
         />
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {errorMessage && <p className="error-messagee">{errorMessage}</p>}
 
         <button className="order-button" onClick={handleCheckout}>
           Оформить

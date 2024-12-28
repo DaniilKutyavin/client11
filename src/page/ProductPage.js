@@ -89,6 +89,7 @@ const ProductPage = () => {
       cart.push({
         id: product.id,
         name: product.name,
+        type:product.type,
         img: product.img,
         weight: product.weight,
         description_low: product.description_low,

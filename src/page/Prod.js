@@ -104,6 +104,7 @@ const Prod = observer(() => {
       grounds: [],
     });
     setSearchQuery("");
+    setCurrentPage(1);
   }, [id, location.pathname, product]); // Watch for location.pathname to reset filters
 
   const handleAddToCart = async (productId) => {
@@ -127,6 +128,7 @@ const Prod = observer(() => {
         name: item.name,
         img: item.img, 
         weight: item.weight,
+        type:item.type,
         description_low: item.description_low,
         price: item.price,
         price_two: item.price_two,
