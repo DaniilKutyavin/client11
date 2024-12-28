@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from 'react';
-import '../style/newss.css';
-import Store from '../componenets/Store';
-import Shkal from '../componenets/Shkal';
-import { getNewsOne } from '../http/newsApi';
-import { Context } from '..';
-import { useParams } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
+import React, { useEffect, useContext } from "react";
+import "../style/newss.css";
+import Store from "../componenets/Store";
+import Shkal from "../componenets/Shkal";
+import { getNewsOne } from "../http/newsApi";
+import { Context } from "..";
+import { useParams } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
 const NewsArticle = () => {
   const { news } = useContext(Context);
@@ -14,10 +14,10 @@ const NewsArticle = () => {
   useEffect(() => {
     // Загружаем данные о новости при загрузке компонента
     getNewsOne(id)
-      .then(data => {
+      .then((data) => {
         news.setNews(data); // Сохраняем новость в контексте
       })
-      .catch(err => console.error("Ошибка при загрузке новости:", err));
+      .catch((err) => console.error("Ошибка при загрузке новости:", err));
   }, [id, news]);
 
   const currentNews = news.news; // Поиск текущей новости по id
@@ -29,9 +29,10 @@ const NewsArticle = () => {
   return (
     <>
       <div className="article-container">
-        <h1 className="article-title pod">{currentNews.title}</h1> {/* Заголовок статьи */}
+        <h1 className="article-title pod">{currentNews.title}</h1>{" "}
+        {/* Заголовок статьи */}
         <img
-          src={process.env.REACT_APP_API_URL_IMG + '/news/' + currentNews.img} // Изображение статьи
+          src={process.env.REACT_APP_API_URL_IMG + "/news/" + currentNews.img} // Изображение статьи
           alt={currentNews.title}
           className="article-image"
         />

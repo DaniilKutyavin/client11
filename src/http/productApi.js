@@ -39,7 +39,6 @@ export const getProductsByTypeAdm = async (typeId) => {
   return data;
 };
 
-
 export const updateProduct = async (id, product) => {
   const { data } = await $authHost.put(`api/product/${id}`, product);
   return data;
@@ -47,13 +46,12 @@ export const updateProduct = async (id, product) => {
 
 export const getProductCountsByTypes = async () => {
   try {
-    const { data } = await $host.get("api/product/tt/counts"); 
+    const { data } = await $host.get("api/product/tt/counts");
     return data;
   } catch (error) {
     console.error("Error fetching product counts by types:", error);
-    throw error; 
+    throw error;
   }
-
 };
 export const addToBasket = async (productId, quantity) => {
   const { data } = await $authHost.post("api/basket/add", {
@@ -137,10 +135,12 @@ export const getOrders = async () => {
 
 export const updateOrder = async (id, orderData) => {
   const { data } = await $authHost.put(`api/orders/${id}`, orderData);
-  return data; 
+  return data;
 };
 
 export const checkGiftAvailability = async (giftIds) => {
-  const { data } = await $authHost.post("api/orders/check-gift-availability", { giftIds });
+  const { data } = await $authHost.post("api/orders/check-gift-availability", {
+    giftIds,
+  });
   return data;
 };

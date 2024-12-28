@@ -1,17 +1,16 @@
-import {makeAutoObservable} from "mobx"
+import { makeAutoObservable } from "mobx";
 
 export default class DeliveryStore {
-    constructor () {
-        this._info = []
-        makeAutoObservable(this)
-    }
+  constructor() {
+    this._info = [];
+    makeAutoObservable(this);
+  }
 
-    setInfo(info) {
-        this._info = info
-    }
+  setInfo(info) {
+    this._info = info;
+  }
 
-    get info() {
-        return this._info
-    }
-
+  get info() {
+    return this._info;
+  }
 }

@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import AppRouter from "./componenets/AppRouter";
 import NavBar from "./componenets/NavBar";
 import Footer from "./componenets/Footer";
 import { observer } from "mobx-react-lite";
-import { Context } from './index';
-import { check as checkUser } from './http/userApi';
-import CookieBanner from './componenets/CookieBanner';
+import { Context } from "./index";
+import { check as checkUser } from "./http/userApi";
+import CookieBanner from "./componenets/CookieBanner";
 
 const App = observer(() => {
   const { user } = useContext(Context);
@@ -14,8 +14,8 @@ const App = observer(() => {
 
   useEffect(() => {
     const verifyAuthentication = async () => {
-      const accessToken = localStorage.getItem('accessToken');
-      const isUserAuth = JSON.parse(localStorage.getItem('userIsAuth'));
+      const accessToken = localStorage.getItem("accessToken");
+      const isUserAuth = JSON.parse(localStorage.getItem("userIsAuth"));
 
       if (isUserAuth && accessToken) {
         try {
@@ -25,8 +25,8 @@ const App = observer(() => {
         } catch (userError) {
           console.error("Failed to refresh user token", userError);
           user.clearUser();
-          localStorage.removeItem('userIsAuth');
-          localStorage.removeItem('accessToken');
+          localStorage.removeItem("userIsAuth");
+          localStorage.removeItem("accessToken");
         }
       } else {
         user.clearUser();
@@ -50,7 +50,11 @@ const App = observer(() => {
 
 const AppWithFooter = () => {
   const location = useLocation();
-  const excludeFooterPages = ['/order-confirmation', '/confirmation2', '/confirmation3'];  // Здесь указывайте страницы, на которых footer не должен отображаться
+  const excludeFooterPages = [
+    "/order-confirmation",
+    "/confirmation2",
+    "/confirmation3",
+  ]; // Здесь указывайте страницы, на которых footer не должен отображаться
   const shouldShowFooter = !excludeFooterPages.includes(location.pathname);
 
   return (
@@ -58,11 +62,11 @@ const AppWithFooter = () => {
       <NavBar />
       <ScrollToTop />
       <AppRouter />
-      <CookieBanner/>
+      <CookieBanner />
       {shouldShowFooter && <Footer />}
     </>
   );
-}
+};
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();

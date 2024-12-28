@@ -14,15 +14,24 @@ export const getManufacturersByTypeThree = async () => {
 };
 
 export const createManufacturerOne = async (manufacturerData) => {
-  const { data } = await $authHost.post(`api/manufacturer/one`, manufacturerData);
+  const { data } = await $authHost.post(
+    `api/manufacturer/one`,
+    manufacturerData
+  );
   return data;
 };
 export const createManufacturerTwo = async (manufacturerData) => {
-  const { data } = await $authHost.post(`api/manufacturer/two`, manufacturerData);
+  const { data } = await $authHost.post(
+    `api/manufacturer/two`,
+    manufacturerData
+  );
   return data;
 };
 export const createManufacturerThree = async (manufacturerData) => {
-  const { data } = await $authHost.post(`api/manufacturer/three`, manufacturerData);
+  const { data } = await $authHost.post(
+    `api/manufacturer/three`,
+    manufacturerData
+  );
   return data;
 };
 

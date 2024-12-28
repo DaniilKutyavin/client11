@@ -106,12 +106,7 @@ const ManufacturerForm = () => {
           />
 
           <label htmlFor="logo">Логотип:</label>
-          <input
-            type="file"
-            id="logo"
-            onChange={handleLogoChange}
-            required
-          />
+          <input type="file" id="logo" onChange={handleLogoChange} required />
 
           <label htmlFor="type">Категория:</label>
           <select
@@ -148,10 +143,15 @@ const ManufacturerForm = () => {
           <ul className="productBuyForm_productList">
             {manufacturers[id] &&
               manufacturers[id].map((manufacturer) => (
-                <li key={manufacturer.id} className="productBuyForm_productItem">
+                <li
+                  key={manufacturer.id}
+                  className="productBuyForm_productItem"
+                >
                   {manufacturer.name}
                   <button
-                    onClick={() => handleDeleteManufacturer(id, manufacturer.id)}
+                    onClick={() =>
+                      handleDeleteManufacturer(id, manufacturer.id)
+                    }
                     className="productBuyForm_deleteButton"
                   >
                     Удалить

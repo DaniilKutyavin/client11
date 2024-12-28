@@ -44,11 +44,15 @@ const EditCartInfo = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div  className="delivery-page" style={{ marginTop: "300px" }}>
+    <div className="delivery-page" style={{ marginTop: "300px" }}>
       <h2>Редактирование памятки.</h2>
       {cartItems.map((item) => (
-        <div key={item.id} style={{ marginBottom: "15px" }} className="delivery-form" >
-           <textarea
+        <div
+          key={item.id}
+          style={{ marginBottom: "15px" }}
+          className="delivery-form"
+        >
+          <textarea
             value={item.desc}
             onChange={(e) => handleChange(item.id, e.target.value)}
             rows="5"
@@ -58,10 +62,13 @@ const EditCartInfo = () => {
               marginBottom: "10px",
               border: "1px solid #ccc",
               borderRadius: "4px",
-              resize: "vertical"
+              resize: "vertical",
             }}
           />
-          <button  className="productBuyForm_submitButton" onClick={() => handleUpdate(item.id, item.desc)}>
+          <button
+            className="productBuyForm_submitButton"
+            onClick={() => handleUpdate(item.id, item.desc)}
+          >
             Сохранить
           </button>
         </div>

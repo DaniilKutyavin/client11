@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getOredersGuest } from '../http/productApi'; // Импорт функции API
+import React, { useEffect, useState } from "react";
+import { getOredersGuest } from "../http/productApi"; // Импорт функции API
 import arrowDown from "../img/стрелка вниз.svg";
 
 const OrderGuestTable = () => {
@@ -9,8 +9,8 @@ const OrderGuestTable = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 10; // Количество заказов на странице
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -19,7 +19,7 @@ const OrderGuestTable = () => {
         setOrders(data);
         setFilteredOrders(data); // Изначально показываем все заказы
       } catch (err) {
-        setError('Не удалось загрузить заказы.');
+        setError("Не удалось загрузить заказы.");
       } finally {
         setLoading(false);
       }
@@ -32,7 +32,7 @@ const OrderGuestTable = () => {
   const filterByDate = () => {
     if (startDate && endDate) {
       const filtered = orders.filter((order) => {
-        const orderDate = new Date(order.createdAt).toISOString().split('T')[0];
+        const orderDate = new Date(order.createdAt).toISOString().split("T")[0];
         return orderDate >= startDate && orderDate <= endDate;
       });
       setFilteredOrders(filtered);
@@ -45,9 +45,10 @@ const OrderGuestTable = () => {
 
   // Функция для расчета итоговой цены
   const calculateTotalPrice = (items, paymentMethod) => {
-    if (!items || items.length === 0) return '0.00';
+    if (!items || items.length === 0) return "0.00";
     return items.reduce((total, item) => {
-      const price = paymentMethod === 'Банковский перевод' ? item.price_two : item.price;
+      const price =
+        paymentMethod === "Банковский перевод" ? item.price_two : item.price;
       return total + (price || 0) * (item.quantity || 1);
     }, 0);
   };
@@ -87,7 +88,7 @@ const OrderGuestTable = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="orderGuestTableContainer" style={{ overflowX: 'auto' }}>
+    <div className="orderGuestTableContainer" style={{ overflowX: "auto" }}>
       <h2>Список заказов гостей</h2>
 
       {/* Фильтрация по датам */}
@@ -108,9 +109,26 @@ const OrderGuestTable = () => {
             onChange={(e) => setEndDate(e.target.value)}
           />
         </label>
-        <button onClick={filterByDate}   className="productBuyForm_submitButton"style={{marginLeft: '10px' }} >Применить</button>
-        <button onClick={filterByToday}   className="productBuyForm_submitButton"  style={{margin: '10px' }}>Сегодня</button>
-        <button onClick={filterByYesterday}   className="productBuyForm_submitButton">Вчера</button>
+        <button
+          onClick={filterByDate}
+          className="productBuyForm_submitButton"
+          style={{ marginLeft: "10px" }}
+        >
+          Применить
+        </button>
+        <button
+          onClick={filterByToday}
+          className="productBuyForm_submitButton"
+          style={{ margin: "10px" }}
+        >
+          Сегодня
+        </button>
+        <button
+          onClick={filterByYesterday}
+          className="productBuyForm_submitButton"
+        >
+          Вчера
+        </button>
       </div>
 
       <table className="orderGuestTable">
@@ -145,7 +163,7 @@ const OrderGuestTable = () => {
                     ))}
                   </ul>
                 ) : (
-                  'Нет товаров'
+                  "Нет товаров"
                 )}
               </td>
               <td>{calculateTotalPrice(order.items, order.paymentMethod)} ₽</td>
@@ -154,42 +172,42 @@ const OrderGuestTable = () => {
               <td>{order.city}</td>
               <td>{order.email}</td>
               <td>{order.paymentMethod}</td>
-              <td>{order.promoCode || 'Нет'}</td>
-              <td>{order.comment || 'Нет'}</td>
-              <td>{order.giftId || 'Нет'}</td>
+              <td>{order.promoCode || "Нет"}</td>
+              <td>{order.comment || "Нет"}</td>
+              <td>{order.giftId || "Нет"}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
       {/* Пагинация */}
-      <div className="pagination" style={{ marginTop: '20px' }}>
-         <button
-                                    className="pagination-arrow"
-                                    onClick={handlePreviousPage} disabled={currentPage === 1}
-                                    
-                                  >
-                                    <img
-                                      src={arrowDown}
-                                      alt="Next"
-                                      style={{ transform: "rotate(90deg)" }}
-                                    />
-                                  </button>
-        
+      <div className="pagination" style={{ marginTop: "20px" }}>
+        <button
+          className="pagination-arrow"
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+        >
+          <img
+            src={arrowDown}
+            alt="Next"
+            style={{ transform: "rotate(90deg)" }}
+          />
+        </button>
+
         <span>
           Страница {currentPage} из {totalPages}
         </span>
-         <button
-                                   className="pagination-arrow"
-                                   onClick={handleNextPage} disabled={currentPage === totalPages}
-                                   
-                                 >
-                                   <img
-                                     src={arrowDown}
-                                     alt="Next"
-                                     style={{ transform: "rotate(-90deg)" }}
-                                   />
-                                 </button>
+        <button
+          className="pagination-arrow"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
+          <img
+            src={arrowDown}
+            alt="Next"
+            style={{ transform: "rotate(-90deg)" }}
+          />
+        </button>
       </div>
     </div>
   );

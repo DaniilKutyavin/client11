@@ -86,7 +86,8 @@ const ProductForm = ({ productId }) => {
       <ul className="productBuyForm_productList">
         {products.map((product) => (
           <li key={product.id} className="productBuyForm_productItem">
-            {product.name} - {product.price} ₽ - Статус: {product.status ? "Активен" : "Неактивен"}
+            {product.name} - {product.price} ₽ - Статус:{" "}
+            {product.status ? "Активен" : "Неактивен"}
             <button
               onClick={() => handleEditClick(product)}
               className="productBuyForm_submitButton"
@@ -150,7 +151,7 @@ const ProductForm = ({ productId }) => {
             />
           </label>
           <label>
-          Описание в шапке:
+            Описание в шапке:
             <textarea
               name="desc_header"
               value={formData.desc_header}
@@ -159,7 +160,7 @@ const ProductForm = ({ productId }) => {
             />
           </label>
           <label>
-          Нижнее описание:
+            Нижнее описание:
             <textarea
               name="description_low"
               value={formData.description_low}
@@ -177,10 +178,16 @@ const ProductForm = ({ productId }) => {
             />
             {formData.status ? "Активен" : "Неактивен"}
           </label>
-          <p/>
-          <button type="submit"  className="productBuyForm_submitButton" >Сохранить</button>
-          <p/>
-          <button type="button" className="productBuyForm_submitButton" onClick={() => setEditingProduct(null)}>
+          <p />
+          <button type="submit" className="productBuyForm_submitButton">
+            Сохранить
+          </button>
+          <p />
+          <button
+            type="button"
+            className="productBuyForm_submitButton"
+            onClick={() => setEditingProduct(null)}
+          >
             Отмена
           </button>
         </form>

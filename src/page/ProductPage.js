@@ -22,9 +22,9 @@ import { Context } from "..";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null); 
+  const [product, setProduct] = useState(null);
   const [fontSize, setFontSize] = useState("5vw");
-  const [marginTop, setMarginTop] = useState("0");  // Изначальный размер шрифта
+  const [marginTop, setMarginTop] = useState("0"); // Изначальный размер шрифта
   const [manufacturerInfo, setManufacturerInfo] = useState(null);
   const { user } = useContext(Context);
   useEffect(() => {
@@ -55,12 +55,10 @@ const ProductPage = () => {
       } else if (textLength > 0 && textLength < 7) {
         setFontSize("20vw");
         setMarginTop("80px");
-      } 
-      else if (textLength > 8 && textLength < 10) {
+      } else if (textLength > 8 && textLength < 10) {
         setFontSize("15vw");
         setMarginTop("80px");
-      }
-      else {
+      } else {
         setFontSize("15vw");
         setMarginTop("80px"); // Восстановите оригинальный размер шрифта
       }
@@ -77,10 +75,10 @@ const ProductPage = () => {
 
   const handleAddToCartG = () => {
     if (!product) return; // Проверка на наличие продукта
-  
+
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItemIndex = cart.findIndex((item) => item.id === product.id);
-  
+
     if (existingItemIndex > -1) {
       // Если товар уже в корзине, увеличиваем его количество
       cart[existingItemIndex].quantity += 1;
@@ -89,19 +87,19 @@ const ProductPage = () => {
       cart.push({
         id: product.id,
         name: product.name,
-        type:product.type,
+        type: product.type,
         img: product.img,
         weight: product.weight,
         description_low: product.description_low,
         price: product.price,
         price_two: product.price_two,
-        quantity: 1, 
+        quantity: 1,
       });
     }
-  
+
     // Сохраняем обновлённую корзину в localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-  
+
     // Создаём кастомное событие для уведомления других компонентов
     const event = new Event("cartUpdated");
     window.dispatchEvent(event); // Триггерим событие
@@ -121,27 +119,29 @@ const ProductPage = () => {
           {product?.name}
         </div>
         <div className="productImageAndPrice nevid">
-              <div className="productImage">
-                <img
-                  src={process.env.REACT_APP_API_URL_IMG + product?.img}
-                  alt={product?.name}
-                />
-              </div>
-            </div>
-        <div className="priceSection nevid">
-            <span className="price">{product?.price} ₽</span>
-            <div className="separator" />
-            <button className="addToCartButton" onClick={user.isAuth ? handleAddToCart : handleAddToCartG}>
-              <img src={bask} alt="Корзина" />
-            </button>
+          <div className="productImage">
+            <img
+              src={process.env.REACT_APP_API_URL_IMG + product?.img}
+              alt={product?.name}
+            />
           </div>
+        </div>
+        <div className="priceSection nevid">
+          <span className="price">{product?.price} ₽</span>
+          <div className="separator" />
+          <button
+            className="addToCartButton"
+            onClick={user.isAuth ? handleAddToCart : handleAddToCartG}
+          >
+            <img src={bask} alt="Корзина" />
+          </button>
+        </div>
         <div className="productCard">
           <div className="productInfo">
-         
             <div className="opisanienaz">
-          <h1>{product?.name}</h1>
-          <p className="pod">{product?.desc_header}</p>
-        </div>
+              <h1>{product?.name}</h1>
+              <p className="pod">{product?.desc_header}</p>
+            </div>
             <div className="textContent">
               <p className="description">{product?.description}</p>
               <p className="highlightedInfo">{product?.description_low}</p>
@@ -150,30 +150,32 @@ const ProductPage = () => {
                 <p className="producer">Производитель:</p>
                 <img
                   className="manimg"
-                  src={process.env.REACT_APP_API_URL_IMG + manufacturerInfo?.logo}
+                  src={
+                    process.env.REACT_APP_API_URL_IMG + manufacturerInfo?.logo
+                  }
                   alt={product?.manufacturer}
                 />
                 <div className="sertif">
-                {product?.presentation && (
-                  <p className="pdfLink">
-                    <a
-                      className="no-style-link"
-                      href={`${process.env.REACT_APP_API_URL_IMG}${product?.presentation}`}
-                    >
-                      <spam className="dot "></spam> Презентация PDF
-                    </a>
-                  </p>
-                    )}
-                    {product?.certificate && (
-                  <p className="pdfLink">
-                    <a
-                      className="no-style-link"
-                      href={`${process.env.REACT_APP_API_URL_IMG}${product?.certificate}`}
-                    >
-                      <spam className="dot "></spam> Свидетельство PDF
-                    </a>
-                  </p>
-                   )}
+                  {product?.presentation && (
+                    <p className="pdfLink">
+                      <a
+                        className="no-style-link"
+                        href={`${process.env.REACT_APP_API_URL_IMG}${product?.presentation}`}
+                      >
+                        <spam className="dot "></spam> Презентация PDF
+                      </a>
+                    </p>
+                  )}
+                  {product?.certificate && (
+                    <p className="pdfLink">
+                      <a
+                        className="no-style-link"
+                        href={`${process.env.REACT_APP_API_URL_IMG}${product?.certificate}`}
+                      >
+                        <spam className="dot "></spam> Свидетельство PDF
+                      </a>
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -189,7 +191,10 @@ const ProductPage = () => {
           <div className="priceSection nonimg">
             <span className="price">{product?.price} ₽</span>
             <div className="separator" />
-            <button className="addToCartButton"  onClick={user.isAuth ? handleAddToCart : handleAddToCartG}>
+            <button
+              className="addToCartButton"
+              onClick={user.isAuth ? handleAddToCart : handleAddToCartG}
+            >
               <img src={bask} alt="Корзина" />
             </button>
           </div>
@@ -224,32 +229,32 @@ const ProductPage = () => {
                       className="accordion-arrow"
                     />
                   </summary>
-                 <div className="table-container">
-      <div
-        dangerouslySetInnerHTML={{ __html: product?.htmlTable }}
-      />
-    </div>
+                  <div className="table-container">
+                    <div
+                      dangerouslySetInnerHTML={{ __html: product?.htmlTable }}
+                    />
+                  </div>
                   <div className="storage-content">
-                  {product?.waiting ? (
-      <div className="storage-item">
-        <img src={Srok} alt="Icon" className="storage-icon" />
-        <div className="storage-text">
-          <h3>Срок ожидания и кратность обработки</h3>
-          <p>{product?.waiting}</p>
-        </div>
-      </div>
-    ) : null} {/* Если пусто, не рендерим */}
-
-    {/* Проверяем, есть ли значение для product?.expenditure */}
-    {product?.expenditure ? (
-      <div className="storage-item textttt">
-        <img src={Ras} alt="Icon" className="storage-icon" />
-        <div className="storage-text">
-          <h3>Расход рабочей жидкости</h3>
-          <p>{product?.expenditure}</p>
-        </div>
-      </div>
-    ) : null}
+                    {product?.waiting ? (
+                      <div className="storage-item">
+                        <img src={Srok} alt="Icon" className="storage-icon" />
+                        <div className="storage-text">
+                          <h3>Срок ожидания и кратность обработки</h3>
+                          <p>{product?.waiting}</p>
+                        </div>
+                      </div>
+                    ) : null}{" "}
+                    {/* Если пусто, не рендерим */}
+                    {/* Проверяем, есть ли значение для product?.expenditure */}
+                    {product?.expenditure ? (
+                      <div className="storage-item textttt">
+                        <img src={Ras} alt="Icon" className="storage-icon" />
+                        <div className="storage-text">
+                          <h3>Расход рабочей жидкости</h3>
+                          <p>{product?.expenditure}</p>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                   {/* Add content for Регламент */}
                 </details>
@@ -377,8 +382,7 @@ const ProductPage = () => {
                       className="accordion-arrow"
                     />
                   </summary>
-                  {product?.descThree
-                  }
+                  {product?.descThree}
                 </details>
                 <details className="accordion">
                   <summary>
@@ -428,7 +432,7 @@ const ProductPage = () => {
               </>
             )}
           </div>
-        </div> 
+        </div>
       </div>
       <Store />
       <Shkal />

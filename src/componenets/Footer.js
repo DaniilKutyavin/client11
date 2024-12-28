@@ -43,54 +43,53 @@ const Footer = observer(() => {
           <img src={LogoScrolled} alt="Logo" className="logo" />
           <div className="contact-info">
             <div>
-  <p className="timemob">{item?.time}</p>
-  <p>{item?.telephoneOne}</p>
-  <p>{item?.telephoneTwo}</p>
-  <p>{item?.Email}</p>
-  </div>
-  {/* Блок с ссылками справа */}
-  <div className="footer-links">
-    <Link to="/delivery">Доставка</Link>
-    <Link to="/news">Новости</Link>
-    <Link to="/contacts">Контакты</Link>
-  </div>
-</div>
-          <div className="opop">
-          <p className="copyright">
-            <span>© 2024 ASATAG. Все права защищены.</span>{" "}
-            &emsp;&emsp;&emsp;&emsp;
-            <p className="net"></p>
-            <a href={privacyPolicy} download>
-              Политика обработки персональных данных
-            </a>
-          </p>
-          <div className="social-media net">
-            <span className="timefoot">{item?.time}</span>{" "}
-            &emsp;&emsp;&emsp;&emsp;
-            <img
-              src={Ls}
-              alt="Social"
-              className="social-icon"
-              onClick={handleLoginClick}
-            />
-            <a
-              href="https://t.me/+RmKsDFeoLSk3NjU6"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={tg} alt="Telegram" className="social-icon" />
-            </a> 
-            <a
-              href="https://vk.com/asatag"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={vk} alt="VK" className="social-icon" />
-            </a>
+              <p className="timemob">{item?.time}</p>
+              <p>{item?.telephoneOne}</p>
+              <p>{item?.telephoneTwo}</p>
+              <p>{item?.Email}</p>
+            </div>
+            {/* Блок с ссылками справа */}
+            <div className="footer-links">
+              <Link to="/delivery">Доставка</Link>
+              <Link to="/news">Новости</Link>
+              <Link to="/contacts">Контакты</Link>
+            </div>
           </div>
+          <div className="opop">
+            <p className="copyright">
+              <span>© 2024 ASATAG. Все права защищены.</span>{" "}
+              &emsp;&emsp;&emsp;&emsp;
+              <p className="net"></p>
+              <a href={privacyPolicy} download>
+                Политика обработки персональных данных
+              </a>
+            </p>
+            <div className="social-media net">
+              <span className="timefoot">{item?.time}</span>{" "}
+              &emsp;&emsp;&emsp;&emsp;
+              <img
+                src={Ls}
+                alt="Social"
+                className="social-icon"
+                onClick={handleLoginClick}
+              />
+              <a
+                href="https://t.me/+RmKsDFeoLSk3NjU6"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={tg} alt="Telegram" className="social-icon" />
+              </a>
+              <a
+                href="https://vk.com/asatag"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={vk} alt="VK" className="social-icon" />
+              </a>
+            </div>
           </div>
         </div>
-
 
         <div className="right">
           <ul className="links">
@@ -117,7 +116,7 @@ const Footer = observer(() => {
               rel="noopener noreferrer"
             >
               <img src={tg} alt="Telegram" className="social-icon" />
-            </a> 
+            </a>
             <a
               href="https://vk.com/asatag"
               target="_blank"

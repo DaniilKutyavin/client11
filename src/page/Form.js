@@ -154,7 +154,6 @@ const LoginForm = ({ onClose }) => {
                       {errors.email}
                     </div>
                   )}
-                 
                 </div>
               </div>
               <h1>Информация для авторизации</h1>
@@ -240,11 +239,11 @@ const LoginForm = ({ onClose }) => {
                     {errors.email}
                   </div>
                 )}
-                 {errors.general && (
-                    <div className="error-message" style={{ color: "red" }}>
-                      {errors.general}
-                    </div>
-                  )}
+                {errors.general && (
+                  <div className="error-message" style={{ color: "red" }}>
+                    {errors.general}
+                  </div>
+                )}
               </div>
               <div className="form-field">
                 <label htmlFor="password">Пароль:</label>

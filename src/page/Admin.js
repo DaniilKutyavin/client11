@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext  } from "react";
-import { Link,Navigate} from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 import OrderDetailModal from "../componenets/Order"; // Убедитесь, что путь правильный
 import { getOrders, updateOrder } from "../http/productApi";
 import {
@@ -18,7 +18,7 @@ import {
 } from "../utils/consts";
 import arrowDown from "../img/стрелка вниз.svg";
 import "../style/newss.css";
-import { Context } from '..';
+import { Context } from "..";
 import ContactInfoManager from "../componenets/FormOne";
 import ContactInfoTwo from "../componenets/FormTwo"; // Убедитесь, что путь правильный
 import { observer } from "mobx-react-lite";
@@ -26,7 +26,7 @@ import OrderGuestTable from "../componenets/OrderGuestTable";
 
 const Admin = observer(() => {
   const { user } = useContext(Context);
- const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -38,7 +38,6 @@ const Admin = observer(() => {
 
   useEffect(() => {
     fetchOrders(); // Изначально загружаем заказы
-    
   }, []);
 
   const fetchOrders = async () => {
@@ -92,11 +91,11 @@ const Admin = observer(() => {
     return total.toFixed(0); // Форматируем до целого числа
   };
   const handleNextPage = () => {
-    setCurrentPage(prevPage => Math.min(prevPage + 1, totalPages));
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
 
   const handlePreviousPage = () => {
-    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
   const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
@@ -121,18 +120,17 @@ const Admin = observer(() => {
     setEndDate(yesterdayDate);
     filterByDate(); // Применить фильтрацию
   };
-  if (!user.isAuth || user.user.role !== 'Admin') {
-    return <Navigate to={SHOP_ROUTER} />; 
-}
+  if (!user.isAuth || user.user.role !== "Admin") {
+    return <Navigate to={SHOP_ROUTER} />;
+  }
   return (
     <>
-    <div className="header">
+      <div className="header">
         <div className="title-block">
-          <h1>Админ панель</h1>         
+          <h1>Админ панель</h1>
         </div>
       </div>
       <div className="admin-container">
-       
         <div className="admin-buttons">
           <Link to={CREATE_ROUTER}>
             <button className="productBuyForm_addInfoButton">
@@ -190,21 +188,36 @@ const Admin = observer(() => {
             </button>
           </Link>
         </div>
-        
-        <div className="orders-table-container" style={{ marginTop: "20px", overflowX: "auto" }}>
+
+        <div
+          className="orders-table-container"
+          style={{ marginTop: "20px", overflowX: "auto" }}
+        >
           <h1>Активные заказы</h1>
           {selectedOrder && (
-            <OrderDetailModal order={selectedOrder} onClose={handleCloseModal} onUpdate={handleOrderUpdate} />
+            <OrderDetailModal
+              order={selectedOrder}
+              onClose={handleCloseModal}
+              onUpdate={handleOrderUpdate}
+            />
           )}
 
           <div className="date-filter" style={{ marginBottom: "20px" }}>
             <label>
               От:
-              <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
             </label>
             <label style={{ marginLeft: "10px" }}>
               До:
-              <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
             </label>
             <button
               onClick={filterByDate}
@@ -213,11 +226,25 @@ const Admin = observer(() => {
             >
               Применить
             </button>
-            <button onClick={filterByToday}   className="productBuyForm_submitButton"  style={{margin: '10px' }}>Сегодня</button>
-            <button onClick={filterByYesterday}   className="productBuyForm_submitButton">Вчера</button>
+            <button
+              onClick={filterByToday}
+              className="productBuyForm_submitButton"
+              style={{ margin: "10px" }}
+            >
+              Сегодня
+            </button>
+            <button
+              onClick={filterByYesterday}
+              className="productBuyForm_submitButton"
+            >
+              Вчера
+            </button>
           </div>
 
-          <table className="orders-table" style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table
+            className="orders-table"
+            style={{ width: "100%", borderCollapse: "collapse" }}
+          >
             <thead>
               <tr>
                 <th>Дата</th>
@@ -236,7 +263,11 @@ const Admin = observer(() => {
             </thead>
             <tbody>
               {currentOrders.map((order) => (
-                <tr key={order.id} onClick={() => handleOrderClick(order)} style={{ cursor: "pointer" }}>
+                <tr
+                  key={order.id}
+                  onClick={() => handleOrderClick(order)}
+                  style={{ cursor: "pointer" }}
+                >
                   <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                   <td>{order.id}</td>
                   <td>{order.user?.name}</td>
@@ -247,7 +278,8 @@ const Admin = observer(() => {
                     <ul>
                       {order.order_products.map((product) => (
                         <li key={product.productId}>
-                          {product.product?.name || "Product not found"} - {product.quantity} шт. по {product.price}₽
+                          {product.product?.name || "Product not found"} -{" "}
+                          {product.quantity} шт. по {product.price}₽
                         </li>
                       ))}
                     </ul>
@@ -264,41 +296,52 @@ const Admin = observer(() => {
 
           {/* Пагинация */}
           <div className="pagination" style={{ marginTop: "20px" }}>
-              <button
-                            className="pagination-arrow"
-                            onClick={handlePreviousPage} disabled={currentPage === 1}
-                            
-                          >
-                            <img
-                              src={arrowDown}
-                              alt="Next"
-                              style={{ transform: "rotate(90deg)" }}
-                            />
-                          </button>
-            <span>Страница {currentPage} из {totalPages}</span>
-           
             <button
-                            className="pagination-arrow"
-                            onClick={handleNextPage} disabled={currentPage === totalPages}
-                            
-                          >
-                            <img
-                              src={arrowDown}
-                              alt="Next"
-                              style={{ transform: "rotate(-90deg)" }}
-                            />
-                          </button>
+              className="pagination-arrow"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+            >
+              <img
+                src={arrowDown}
+                alt="Next"
+                style={{ transform: "rotate(90deg)" }}
+              />
+            </button>
+            <span>
+              Страница {currentPage} из {totalPages}
+            </span>
+
+            <button
+              className="pagination-arrow"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              <img
+                src={arrowDown}
+                alt="Next"
+                style={{ transform: "rotate(-90deg)" }}
+              />
+            </button>
           </div>
         </div>
-        <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
+        <div
+          className="orders-table-container"
+          style={{ marginTop: "40px", marginBottom: "80px" }}
+        >
           <h1>Заявки от незарегистрированных пользователь</h1>
           <OrderGuestTable />
         </div>
-        <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
+        <div
+          className="orders-table-container"
+          style={{ marginTop: "40px", marginBottom: "80px" }}
+        >
           <h1>Заявки на сотрудничество</h1>
           <ContactInfoManager />
         </div>
-        <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
+        <div
+          className="orders-table-container"
+          style={{ marginTop: "40px", marginBottom: "80px" }}
+        >
           <h1>Заявки на продажу</h1>
           <ContactInfoTwo />
         </div>

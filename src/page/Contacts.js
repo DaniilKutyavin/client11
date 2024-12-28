@@ -25,7 +25,7 @@ const Contacts = observer(() => {
     email: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
- 
+
   useEffect(() => {
     getAllinfo().then((data) => contact.setInfocon(data));
     getAlluser().then((data) => contact.setUsercon(data));
@@ -41,7 +41,7 @@ const Contacts = observer(() => {
     try {
       await submitPartnershipForm(formData);
       setFormData({ fio: "", telephone: "", email: "" }); // Clear form
-      navigate('/confirmation2');
+      navigate("/confirmation2");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -153,32 +153,30 @@ const Contacts = observer(() => {
         </div>
       </div>
 
-      <div className="employee-cards contactfototwo"> 
-      <Swiper
-        spaceBetween={10}
-        slidesPerView={1}
-        className="card-container"
-        speed={800} // Плавный переход между слайдами
-        freeMode={true} // Режим свободного скролла
-        freeModeMomentum={true} // Инерция при остановке скролла
-      >
+      <div className="employee-cards contactfototwo">
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={1}
+          className="card-container"
+          speed={800} // Плавный переход между слайдами
+          freeMode={true} // Режим свободного скролла
+        >
           {contact.usercon.map((user, index) => (
             <SwiperSlide key={index}>
-               <div className="employee-card" key={user.id}>
-              <img
-                src={process.env.REACT_APP_API_URL_IMG + user.img}
-                alt="Employee Name"
-                className="employee-img"
-              />
-              <div className="employee-info"> 
-                <h3>{user.name}</h3>
-                <p className="pod">{user.post}</p>
+              <div className="employee-card" key={user.id}>
+                <img
+                  src={process.env.REACT_APP_API_URL_IMG + user.img}
+                  alt="Employee Name"
+                  className="employee-img"
+                />
+                <div className="employee-info">
+                  <h3>{user.name}</h3>
+                  <p className="pod">{user.post}</p>
+                </div>
               </div>
-            </div>
             </SwiperSlide>
           ))}
         </Swiper>
-       
       </div>
       <Store />
       <Shkal />

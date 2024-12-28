@@ -10,7 +10,7 @@ import Cart from "../componenets/Cart";
 import videoSrc from "../img/main1.gif";
 import videoSrc2 from "../img/Asa.mp4";
 import PopupInfo from "../componenets/PopupInfo";
-import { getBasket,  getProductCountsByTypes} from "../http/productApi";
+import { getBasket, getProductCountsByTypes } from "../http/productApi";
 import { Context } from "..";
 import baskcol from "../img/Корзина цвет.svg";
 
@@ -21,7 +21,7 @@ import pod from "../img/подарок.svg";
 import ScrollContainer from "../componenets/scroll";
 import { observer } from "mobx-react-lite";
 import HorizontalScrollComponent from "../componenets/scroll";
-import { getGlavImgs} from "../http/glawimgApi";
+import { getGlavImgs } from "../http/glawimgApi";
 import LogoScrolled from "../img/_Asatag.gif";
 
 const Shop = observer(({ userId }) => {
@@ -48,35 +48,32 @@ const Shop = observer(({ userId }) => {
     type3: 0,
     type4: 0, // Added type4
   });
-  
+
   useEffect(() => {
     const fetchProductCounts = async () => {
       try {
         const data = await getProductCountsByTypes();
-        
+
         const counts = {
           type1: 0,
           type2: 0,
           type3: 0,
-          type4: 0, 
+          type4: 0,
         };
-  
-        data.forEach(item => {
-        
-            counts[`type${item.type}`] = item.count ?? 0;
-            counts.type4 = item.productBuyCount ?? 0; 
 
+        data.forEach((item) => {
+          counts[`type${item.type}`] = item.count ?? 0;
+          counts.type4 = item.productBuyCount ?? 0;
         });
-  
+
         setProductCounts(counts);
       } catch (error) {
         console.error("Error fetching product counts:", error);
       }
     };
-  
+
     fetchProductCounts();
   }, []);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,7 +127,7 @@ const Shop = observer(({ userId }) => {
     const maxAmount = 150000;
     let percentage;
     let s;
-  
+
     if (totalAmount >= 100000) {
       // Пропорционально заполняем между 100 000 и 150 000 (от 70% до 100%)
       percentage = 52 + ((totalAmount - 100000) / 50000) * 30;
@@ -144,7 +141,7 @@ const Shop = observer(({ userId }) => {
       percentage = (totalAmount / 70000) * 35;
       s = percentage + 7; // Небольшой переход для плавности
     }
-  
+
     // Плавный переход от зелёного к черному без прозрачности
     return `linear-gradient(to right, #4f6423 ${percentage}%, #1A1A1A ${s}%)`;
   };
@@ -186,11 +183,11 @@ const Shop = observer(({ userId }) => {
       }
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize); 
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   return (
@@ -199,43 +196,48 @@ const Shop = observer(({ userId }) => {
         <div className="video-container">
           <img src={currentVideoSrc} alt="Animated GIF" />
         </div>
-      )} 
+      )}
       {/* Слайдер */}
       <div className="shop-container">
         <Swiper
           modules={[Autoplay]}
-          spaceBetween={0} 
+          spaceBetween={0}
           slidesPerView={1}
           autoplay={{ delay: 6000, disableOnInteraction: false }}
           loop={true}
           pagination={{ clickable: true }}
           className="shop-slider"
-        > 
-         {glavImgs.map((img, index) => (
+        >
+          {glavImgs.map((img, index) => (
             <SwiperSlide key={index} className="shop-slide">
-              <img src={process.env.REACT_APP_API_URL_IMG + img?.img} alt={`Slide ${index}`} />
+              <img
+                src={process.env.REACT_APP_API_URL_IMG + img?.img}
+                alt={`Slide ${index}`}
+              />
             </SwiperSlide>
-          ))} 
+          ))}
         </Swiper>
         <div className="blur-overlay-container">
           <div className="blur-overlay-top">
             <Link to="/product/type/1" className="blur-block top-left">
               <p className="opis">{productCounts.type1}</p>
               <h4>ХСЗР</h4>
-              <p  className="ubr">Обеспечьте защиту Ваших культур</p>
+              <p className="ubr">Обеспечьте защиту Ваших культур</p>
             </Link>
             <Link to="/product/type/2" className="blur-block top-right">
               <p className="opis">{productCounts.type2}</p>
               <h4>Удобрения</h4>
-              <p  className="ubr">Поддерживайте почву необходимыми элементами питания</p>
+              <p className="ubr">
+                Поддерживайте почву необходимыми элементами питания
+              </p>
             </Link>
           </div>
           <div className="blur-overlay-bottom">
             <Link to="/product/type/3" className="blur-block long bottom-right">
               <p className="opis">{productCounts.type3}</p>
-              <h4  className="ubr">Посевной материал</h4>
-              <h4  className="ubr2">Семена</h4>
-              <p  className="ubr">Запаситесь качественными семенами заранее</p>
+              <h4 className="ubr">Посевной материал</h4>
+              <h4 className="ubr2">Семена</h4>
+              <p className="ubr">Запаситесь качественными семенами заранее</p>
             </Link>
             <Link to="/buy" className="blur-block short bottom-left">
               <p className="text-left opis">{productCounts.type4}</p>
@@ -301,12 +303,12 @@ const Shop = observer(({ userId }) => {
         </div>
 
         <div className="cart-container">
-        <div className="cart-iconn" onClick={handleCartClick}>
-    <img src={itemsInBasket.length > 0 ? baskcol : bask} alt="Cart" />
-    {itemsInBasket.length > 0 && (
-      <div className="item-count">{itemsInBasket.length}</div>
-    )}
-  </div>
+          <div className="cart-iconn" onClick={handleCartClick}>
+            <img src={itemsInBasket.length > 0 ? baskcol : bask} alt="Cart" />
+            {itemsInBasket.length > 0 && (
+              <div className="item-count">{itemsInBasket.length}</div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -320,7 +322,7 @@ const Shop = observer(({ userId }) => {
       {isPopupOpen && <PopupInfo onClose={closePopup} />}
 
       <HorizontalScrollComponent />
-      <Store/>
+      <Store />
     </>
   );
 });

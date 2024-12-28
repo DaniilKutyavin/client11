@@ -4,7 +4,7 @@ import { getFormOne } from "../http/contactApi";
 const ContactInfoManager = () => {
   const [contactInfo, setContactInfo] = useState([]);
   const [filteredInfo, setFilteredInfo] = useState([]);
-  
+
   // Состояния для диапазона дат
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -71,7 +71,9 @@ const ContactInfoManager = () => {
           <tr>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Дата</th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>ФИО</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Телефон</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+              Телефон
+            </th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Почта</th>
           </tr>
         </thead>

@@ -46,7 +46,8 @@ const Shkal = observer(({ userId }) => {
 
   const fetchBasket = async () => {
     try {
-      if (user.isAuth) { // Проверяем авторизацию пользователя
+      if (user.isAuth) {
+        // Проверяем авторизацию пользователя
         const data = await getBasket(userId);
         const products = data.basket_products || [];
         const total = products.reduce(
@@ -184,8 +185,8 @@ const Shkal = observer(({ userId }) => {
         </div>
       </div>
 
-      {isCartOpen && (
-        user.isAuth ? (
+      {isCartOpen &&
+        (user.isAuth ? (
           <Cart
             userId={userId}
             onClose={closeCart}
@@ -194,8 +195,7 @@ const Shkal = observer(({ userId }) => {
           />
         ) : (
           <CartGuest onClose={closeCart} />
-        )
-      )}
+        ))}
       {isPopupOpen && <PopupInfo onClose={closePopup} />}
     </>
   );

@@ -47,7 +47,7 @@ import FooterForm from "./componenets/FooterForm";
 import ManufacturerForm from "./componenets/ManufacturerForm";
 import ProductForm from "./componenets/ProductForm";
 import GlavImgManager from "./componenets/GlavImgManager";
-import OrderConfirmation from "./page/OrderConfirmation"
+import OrderConfirmation from "./page/OrderConfirmation";
 import EditCartInfo from "./componenets/CartInfo";
 
 export const authRoutes = [
@@ -71,7 +71,6 @@ export const authRoutes = [
     path: CARTINFO_ROUTER,
     Component: EditCartInfo,
   },
-
 
   {
     path: FOOTER_ROUTER,

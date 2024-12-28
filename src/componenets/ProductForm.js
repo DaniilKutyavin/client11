@@ -27,15 +27,24 @@ const ProductForm = () => {
     <div style={{ marginTop: 200 }}>
       <h1>Выберите форму для отображения</h1>
       <div>
-        <button className="productBuyForm_addInfoButton" onClick={() => toggleComponent("componentA")}>
+        <button
+          className="productBuyForm_addInfoButton"
+          onClick={() => toggleComponent("componentA")}
+        >
           {activeComponent === "componentA" ? "Скрыть форму" : "Добавить ХСЗР"}
         </button>
-        <button className="productBuyForm_addInfoButton" onClick={() => toggleComponent("componentB")}>
+        <button
+          className="productBuyForm_addInfoButton"
+          onClick={() => toggleComponent("componentB")}
+        >
           {activeComponent === "componentB"
             ? "Скрыть форму"
             : "Добавить удобрения"}
         </button>
-        <button  className="productBuyForm_addInfoButton"onClick={() => toggleComponent("componentC")}>
+        <button
+          className="productBuyForm_addInfoButton"
+          onClick={() => toggleComponent("componentC")}
+        >
           {activeComponent === "componentC"
             ? "Скрыть форму"
             : "Добавить посевной материал"}

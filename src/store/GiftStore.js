@@ -1,17 +1,16 @@
-import {makeAutoObservable} from "mobx"
+import { makeAutoObservable } from "mobx";
 
 export default class GiftStore {
-    constructor () {
-        this._gift = []
-        makeAutoObservable(this)
-    }
+  constructor() {
+    this._gift = [];
+    makeAutoObservable(this);
+  }
 
-    setGift(gift) {
-        this._gift = gift
-    }
+  setGift(gift) {
+    this._gift = gift;
+  }
 
-    get gift() {
-        return this._gift
-    }
-
+  get gift() {
+    return this._gift;
+  }
 }

@@ -38,7 +38,7 @@ const ContactInfoTwo = () => {
   };
 
   return (
-    <div className="contact-info-manager" style={{overflowX: "auto" }}>
+    <div className="contact-info-manager" style={{ overflowX: "auto" }}>
       {/* Блок фильтрации по дате */}
       <div className="date-filter" style={{ marginBottom: "20px" }}>
         <label>
@@ -79,7 +79,9 @@ const ContactInfoTwo = () => {
           <tr>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Дата</th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>ФИО</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Телефон</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+              Телефон
+            </th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Почта</th>
           </tr>
         </thead>

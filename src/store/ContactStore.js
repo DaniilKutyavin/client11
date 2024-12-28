@@ -1,26 +1,25 @@
-import {makeAutoObservable} from "mobx"
+import { makeAutoObservable } from "mobx";
 
 export default class ContactStore {
-    constructor () {
-        this._infocon = []
-        this._usercon = []
-        makeAutoObservable(this)
-    }
+  constructor() {
+    this._infocon = [];
+    this._usercon = [];
+    makeAutoObservable(this);
+  }
 
-    setInfocon(infocon) {
-        this._infocon = infocon
-    }
+  setInfocon(infocon) {
+    this._infocon = infocon;
+  }
 
-    setUsercon(usercon) {
-        this._usercon = usercon
-    }
+  setUsercon(usercon) {
+    this._usercon = usercon;
+  }
 
-    get infocon() {
-        return this._infocon
-    }
+  get infocon() {
+    return this._infocon;
+  }
 
-    get usercon() {
-        return this._usercon
-    }
-
+  get usercon() {
+    return this._usercon;
+  }
 }

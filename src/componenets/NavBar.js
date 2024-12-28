@@ -10,7 +10,7 @@ import {
   LOGIN_ROUTER,
   LS_ROUTER,
   PRODUCT_ROUTER,
-} from "../utils/consts"; 
+} from "../utils/consts";
 import LogoWhite from "../img/Лого белый.svg";
 import menu from "../img/меню.svg";
 import krest from "../img/крестик.svg";
@@ -46,6 +46,10 @@ const NavBar = () => {
     }
   }, [location.pathname, user.isAuth]);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false); // Закрываем меню, когда изменяется маршрут
+  }, [location]);
+
   const handleUserIconClick = () => {
     if (user.isAuth) {
       navigate(LS_ROUTER);
@@ -54,6 +58,19 @@ const NavBar = () => {
     }
   };
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Отключаем прокрутку на странице, устанавливаем overflow на hidden для html и body
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden"; // Дополнительно для html
+      document.documentElement.style.height = "100%"; // Убедимся, что высота html на 100%
+    } else {
+      // Восстанавливаем прокрутку
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+      document.documentElement.style.height = "auto"; // Восстанавливаем высоту
+    }
+  }, [isMobileMenuOpen]);
   const closeLoginForm = () => {
     setIsLoginFormOpen(false);
   };

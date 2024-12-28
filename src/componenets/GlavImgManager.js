@@ -1,6 +1,6 @@
 // src/components/GlavImgManager.jsx
 import React, { useState, useEffect } from "react";
-import { getGlavImgs, addGlavImg, deleteGlavImg } from "../http/glawimgApi"; // Import API functions 
+import { getGlavImgs, addGlavImg, deleteGlavImg } from "../http/glawimgApi"; // Import API functions
 
 const GlavImgManager = () => {
   const [glavImgs, setGlavImgs] = useState([]);
@@ -42,20 +42,31 @@ const GlavImgManager = () => {
   };
 
   return (
-    <div className="delivery-page" >
-      <div  className="delivery-form" >
-      <h2>Изображения на главной страницце</h2>
-      <input type="file" onChange={(e) => setImgFile(e.target.files[0])} />
-      <button   className="productBuyForm_submitButton" onClick={handleAddImg}>Добавить изображение</button>
+    <div className="delivery-page">
+      <div className="delivery-form">
+        <h2>Изображения на главной страницце</h2>
+        <input type="file" onChange={(e) => setImgFile(e.target.files[0])} />
+        <button className="productBuyForm_submitButton" onClick={handleAddImg}>
+          Добавить изображение
+        </button>
 
-      <ul>
-        {glavImgs.map((img) => (
-          <li key={img.id}>
-            <img src={process.env.REACT_APP_API_URL_IMG + img?.img}  alt="GlavImg" width="100" />
-            <button   className="productBuyForm_deleteButton" onClick={() => handleDeleteImg(img.id)}>удалить</button>
-          </li>
-        ))}
-      </ul>
+        <ul>
+          {glavImgs.map((img) => (
+            <li key={img.id}>
+              <img
+                src={process.env.REACT_APP_API_URL_IMG + img?.img}
+                alt="GlavImg"
+                width="100"
+              />
+              <button
+                className="productBuyForm_deleteButton"
+                onClick={() => handleDeleteImg(img.id)}
+              >
+                удалить
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

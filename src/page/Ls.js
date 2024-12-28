@@ -155,7 +155,7 @@ const Ls = () => {
                 </table>
 
                 {/* Pagination Controls */}
-                <div className="pagination" style={{ marginTop: '20px' }}>
+                <div className="pagination" style={{ marginTop: "20px" }}>
                   <button
                     className="pagination-arrow"
                     onClick={handlePreviousPage}
