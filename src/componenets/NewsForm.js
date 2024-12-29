@@ -97,15 +97,16 @@ const NewsPage = () => {
           required
         />
 
-        <label htmlFor="description">Описание:</label>
+<label htmlFor="description">Описание:</label>
         <textarea
           id="description"
           name="description"
           value={formData.description}
           onChange={handleChange}
           placeholder="Введите описание новости"
+          rows="5"
           required
-        />
+        ></textarea>
 
         <label htmlFor="img">Изображение:</label>
         <input type="file" id="img" name="img" accept="image/*" onChange={handleChange} />
