@@ -52,6 +52,9 @@ const LoginForm = ({ onClose }) => {
       if (captcha !== generatedCaptcha) {
         newErrors.captcha = "Неверный код с картинки";
       }
+      if (password.length < 8 || password.length > 20) {
+        newErrors.password = "Пароль должен быть от 8 до 20 символов";
+      }
       if (password !== confirmPassword) {
         newErrors.confirmPassword = "Пароли не совпадают";
       }
@@ -154,6 +157,7 @@ const LoginForm = ({ onClose }) => {
                       {errors.email}
                     </div>
                   )}
+                 
                 </div>
               </div>
               <h1>Информация для авторизации</h1>
@@ -239,11 +243,11 @@ const LoginForm = ({ onClose }) => {
                     {errors.email}
                   </div>
                 )}
-                {errors.general && (
-                  <div className="error-message" style={{ color: "red" }}>
-                    {errors.general}
-                  </div>
-                )}
+                 {errors.general && (
+                    <div className="error-message" style={{ color: "red" }}>
+                      {errors.general}
+                    </div>
+                  )}
               </div>
               <div className="form-field">
                 <label htmlFor="password">Пароль:</label>
