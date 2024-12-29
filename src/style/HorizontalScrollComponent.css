@@ -12,6 +12,10 @@
   transition: transform 0.2s ease; /* Плавный переход для эффекта */
 }
 
+.podsize{
+  font-size: 20px!important;
+}
+
 .item {
   margin-top: 50px;
   width: 60%; /* Минимальная ширина для каждого элемента */
@@ -24,7 +28,7 @@
   padding: 20px; /* Внутренний отступ */
 }
 .zag{
-  font-size: 30px;
+  font-size: 45px;
 }
 /* Стили для изображений */
 .item img {
@@ -39,7 +43,7 @@
 
 .text-content h3 {
   margin: 0;
-  font-size: 1.5rem; /* Размер заголовка */
+  font-size: 40px; /* Размер заголовка */
 }
 
 .text-content h4 {
@@ -48,7 +52,7 @@
 }
 
 .text-content p {
-  margin: 5px 0; /* Отступ между абзацами */
+  margin: 10px 0; /* Отступ между абзацами */
 }
 .toggle-header {
   cursor: pointer;
@@ -63,9 +67,26 @@
   font-size: 0.9rem;
   line-height: 1.4;
 }
+.toggle-text ul {
+  padding-left: 20px; /* Добавить отступ для списка */
+}
 
+.toggle-text li {
+  line-height: 1.4;
+}
+
+.text-content ul {
+  padding-left: 20px; /* Добавить отступ для списка */
+}
+
+.text-content li {
+  line-height: 1.4;
+}
+.toggle-text p{
+  margin: 10px 0;
+}
 .toggle-text.show {
-  max-height: 200px;
+  max-height: 390px;
   margin: 10px;
   margin-top: -20px;
   margin-left: 20px;
@@ -84,6 +105,9 @@
   .huge-gradient-text{
     width: 100%;
     font-size: 120px;
+  }
+  .podsize{
+    font-size: 15px!important;
   }
   
   .item {
