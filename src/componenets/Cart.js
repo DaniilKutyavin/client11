@@ -20,6 +20,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
     phone: "",
     city: "",
     email: "",
+    comment: "",
     promoCode: "",
     paymentMethod: "Наличными курьеру", // Default payment method
   });
@@ -359,7 +360,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
                     Получить
                   </div>
                 )}
-              </div>
+              </div> 
             </div>
           )}
           <h3 className="section-title">Данные</h3>
