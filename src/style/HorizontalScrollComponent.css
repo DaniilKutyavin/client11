@@ -106,9 +106,9 @@
   background-color: white; /* Ваш желаемый цвет */
 }
 @media (max-width: 768px) {
-  .swiper-slide {
-    height: 510px; /* Задайте нужную ширину */
-  }
+  .toggle-text.show {
+    margin-bottom: 30px;
+}
   .huge-gradient-text{
     width: 100%;
     font-size: 120px;
