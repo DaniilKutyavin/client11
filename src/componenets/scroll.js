@@ -3,11 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import 'swiper/swiper-bundle.css';
 import "../style/HorizontalScrollComponent.css";
-import circle1 from "../img/кольцо1.svg";
-import circle2 from "../img/кольцо2.svg";
-import circle3 from "../img/кольцо3.svg";
-import circle4 from "../img/Кольцо4.svg";
 
 const HorizontalScrollComponent = () => {
   const scrollRef = useRef(null);
@@ -22,6 +19,8 @@ const HorizontalScrollComponent = () => {
           className="swiper-container"
           speed={800} // Плавный переход между слайдами
           freeMode={true} // Режим свободного скролла
+          modules={[Pagination]}
+          pagination={{ clickable: true }} 
         >
           <SwiperSlide>
             <div className="item">
@@ -63,7 +62,7 @@ const HorizontalScrollComponent = () => {
           <SwiperSlide>
             <div className="item">
               <div className="text-content">
-                <h3>95% Повторных покупок</h3>
+                <h3>Повторных покупок</h3>
                 <div className="huge-gradient-text">95%</div>
                 <p className="podsize">Клиент ценит скорость, комфорт и отсутствие стресса, которые мы ему предоставляем!</p>
                 <h4 className="toggle-header">Почему выбирают нас:</h4>
@@ -154,7 +153,7 @@ const HorizontalScrollComponent = () => {
           <SwiperSlide>
             <div className="item">
               <div className="text-content">
-                <h2 className="zag">95% Повторных покупок</h2>
+                <h2 className="zag">Повторных покупок</h2>
                 <div className="huge-gradient-text">95%</div>
                 <p className="podsize">Клиент ценит скорость, комфорт и отсутствие стресса, которые мы ему предоставляем!</p>
                 <h3 className="zag">Почему выбирают нас:</h3>

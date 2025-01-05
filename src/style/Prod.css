@@ -438,6 +438,10 @@ body {
         height: 160vh;
 }
 
+.catalog-containerr {
+    padding: 0px;
+}
+
 .right-section {
     margin-left: -10px;
 }

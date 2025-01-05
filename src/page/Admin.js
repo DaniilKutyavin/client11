@@ -37,8 +37,12 @@ const Admin = observer(() => {
   const ordersPerPage = 10; // Количество заказов на странице
 
   useEffect(() => {
-    fetchOrders(); // Изначально загружаем заказы
-    
+    fetchOrders(); 
+    const intervalId = setInterval(() => {
+      fetchOrders();
+    }, 10 * 60 * 1000); 
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const fetchOrders = async () => {

@@ -363,6 +363,9 @@ table td, table th {
 .opisanienaz{
     display:none;
 }
+.backButtonContainer {
+  display: none;
+}
 
 @media (max-width: 768px) {
     
@@ -413,5 +416,37 @@ details > summary::-webkit-details-marker {
 
 .productImageAndPrice {
   width: 100%;
+}
+.backButtonContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  left: 10px; /* Adjust this value to position it */
+  top: 90px; /* Adjust this value to position it */
+  z-index: 10;
+  user-select: none;
+  /* For enabling dragging */
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  user-drag: none;
+}
+
+/* Rotating the arrow */
+.backArrow {
+  transform: rotate(90deg);
+  margin-right: 8px;
+}
+
+/* Text style for "Назад" */
+.backText {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Optional: Draggable behavior (only if you need to allow dragging using mouse) */
+.backButtonContainer:active {
+  cursor: move;
 }
 }

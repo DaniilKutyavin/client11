@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "../style/Prod.css";
 import bask from "../img/корзина белая 1.svg";
 import iconProd from "../img/Образец ХСЗР на сайт.png";
-import filter from "../img/Фильтр иконка.svg";
+import filter from '../img/Фильтр иконка.svg';
 import arrowDown from "../img/стрелка вниз.svg";
 import lupa from "../img/лупа.svg";
 import krest from "../img/крестик.svg";
@@ -16,7 +16,7 @@ import {
   getManufacturersByTypeTwo,
   getManufacturersByTypeThree,
 } from "../http/manufacturerApi";
-import { getAll } from "../http/infocartApi";
+import { getAll} from "../http/infocartApi";
 import { useParams, useLocation, Link } from "react-router-dom";
 
 const Prod = observer(() => {
@@ -27,11 +27,12 @@ const Prod = observer(() => {
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProduct] = useState(null);
   const [isLeftSectionOpen, setIsLeftSectionOpen] = useState(false);
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState(null);
   const toggleLeftSection = () => {
     setIsLeftSectionOpen((prev) => !prev);
   };
 
+  
   const [filtersOpen, setFiltersOpen] = useState({
     category: true,
     categoryTwo: true,
@@ -64,6 +65,7 @@ const Prod = observer(() => {
       }));
       product.setProd(productsWithCategory);
     });
+
 
     // Fetch manufacturers based on product type
     const fetchManufacturers = async () => {
@@ -114,30 +116,28 @@ const Prod = observer(() => {
   };
   const handleAddToCartG = (item) => {
     if (!item) return; // Ensure item is available
-
+  
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingItemIndex = cart.findIndex(
-      (cartItem) => cartItem.id === item.id
-    );
-
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+  
     if (existingItemIndex > -1) {
       cart[existingItemIndex].quantity += 1;
     } else {
       cart.push({
         id: item.id,
         name: item.name,
-        img: item.img,
+        img: item.img, 
         weight: item.weight,
-        type: item.type,
+        type:item.type,
         description_low: item.description_low,
         price: item.price,
         price_two: item.price_two,
         quantity: 1,
       });
     }
-
+  
     localStorage.setItem("cart", JSON.stringify(cart));
-
+  
     // Создание кастомного события для уведомления о обновлении корзины
     const event = new Event("cartUpdated");
     window.dispatchEvent(event); // Триггерим событие
@@ -165,92 +165,72 @@ const Prod = observer(() => {
     setIsInfoBlockVisible(false);
   };
 
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-
-      // Прокрутка страницы в начало
-    }
-  };
-  useEffect(() => {
-    // Прокрутка страницы в верх
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [currentPage]);
+const handlePageChange = (page) => {
+  if (page >= 1 && page <= totalPages) {
+    setCurrentPage(page);
+    
+    // Прокрутка страницы в начало
+  }
+};
+useEffect(() => {
+  // Прокрутка страницы в верх
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}, [currentPage]);
   // Filter products based on selected filters
   const filteredProducts = product.prod.filter((item) => {
     const matchesSearchQuery = item.name
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
-
+  
     const matchesCategory =
       selectedFilters.categories.length === 0 ||
       selectedFilters.categories.some((filterValue) =>
-        (item.category
-          ? item.category.split(";").map((val) => val.trim())
-          : []
-        ).includes(filterValue)
+        (item.category ? item.category.split(";").map((val) => val.trim()) : []).includes(filterValue)
       );
-
+  
     const matchesCategoryTwo =
       selectedFilters.categoryTwos.length === 0 ||
       selectedFilters.categoryTwos.some((filterValue) =>
-        (item.category
-          ? item.category.split(";").map((val) => val.trim())
-          : []
-        ).includes(filterValue)
+        (item.category ? item.category.split(";").map((val) => val.trim()) : []).includes(filterValue)
       );
-
+  
     const matchesCulture =
       selectedFilters.cultures.length === 0 ||
       selectedFilters.cultures.some((filterValue) =>
-        (item.culture
-          ? item.culture.split(";").map((val) => val.trim())
-          : []
-        ).includes(filterValue)
+        (item.culture ? item.culture.split(";").map((val) => val.trim()) : []).includes(filterValue)
       );
-
+  
     const matchesCultureTwo =
       selectedFilters.cultureTwos.length === 0 ||
       selectedFilters.cultureTwos.some((filterValue) =>
-        (item.culture
-          ? item.culture.split(";").map((val) => val.trim())
-          : []
-        ).includes(filterValue)
+        (item.culture ? item.culture.split(";").map((val) => val.trim()) : []).includes(filterValue)
       );
-
+  
     const matchesManufacturer =
       selectedFilters.manufacturers.length === 0 ||
       selectedFilters.manufacturers.includes(item.manufacturer);
-
+  
     const matchesFertilizers =
       selectedFilters.fertilizerss.length === 0 ||
       selectedFilters.fertilizerss.some((filterValue) =>
-        (item.fertilizers
-          ? item.fertilizers.split(";").map((val) => val.trim())
-          : []
-        ).includes(filterValue)
+        (item.fertilizers ? item.fertilizers.split(";").map((val) => val.trim()) : []).includes(filterValue)
       );
-
+  
     const matchesWays =
       selectedFilters.ways.length === 0 ||
       selectedFilters.ways.some((filterValue) =>
-        (item.way ? item.way.split(";").map((val) => val.trim()) : []).includes(
-          filterValue
-        )
+        (item.way ? item.way.split(";").map((val) => val.trim()) : []).includes(filterValue)
       );
-
+  
     const matchesGrounds =
       selectedFilters.grounds.length === 0 ||
       selectedFilters.grounds.some((filterValue) =>
-        (item.ground
-          ? item.ground.split(";").map((val) => val.trim())
-          : []
-        ).includes(filterValue)
+        (item.ground ? item.ground.split(";").map((val) => val.trim()) : []).includes(filterValue)
       );
-
+  
     return (
       matchesSearchQuery &&
       matchesCategory &&
@@ -265,10 +245,12 @@ const Prod = observer(() => {
   });
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   // Get products for the current page
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
-  });
-
+  const sortedProducts = sortOrder
+  ? [...filteredProducts].sort((a, b) => {
+      return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
+    })
+  : filteredProducts;
+  
   // Use `sortedProducts` instead of `filteredProducts` for pagination
   const currentProducts = sortedProducts.slice(
     (currentPage - 1) * itemsPerPage,
@@ -328,6 +310,26 @@ const Prod = observer(() => {
   };
 
   // Clear filters
+  useEffect(() => {
+    // Восстановление фильтров и текущей страницы из localStorage
+    const savedFilters = JSON.parse(localStorage.getItem("selectedFilters"));
+    const savedPage = JSON.parse(localStorage.getItem("currentPage"));
+  
+    if (savedFilters) {
+      setSelectedFilters(savedFilters);
+    }
+    if (savedPage) {
+      setCurrentPage(savedPage);
+    }
+  }, []);
+  
+  useEffect(() => {
+    // Сохранение фильтров и текущей страницы в localStorage при изменении
+    localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
+    localStorage.setItem("currentPage", JSON.stringify(currentPage));
+  }, [selectedFilters, currentPage]);
+  
+  // Обновляем функцию очистки фильтров
   const clearFilters = () => {
     setSelectedFilters({
       categories: [],
@@ -340,7 +342,12 @@ const Prod = observer(() => {
       grounds: [],
     });
     setCurrentPage(1);
+  
+    // Очищаем данные в localStorage
+    localStorage.removeItem("selectedFilters");
+    localStorage.removeItem("currentPage");
   };
+  
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -364,78 +371,59 @@ const Prod = observer(() => {
     <>
       <div className="header">
         <div className="title-block">
-          {isProductType1 && (
-            <>
-              {" "}
-              <h1>ХСЗР</h1>
-              <p className="pod">Обеспечьте защиту Ваших культур</p>
-            </>
-          )}
-          {isProductType2 && (
-            <>
-              {" "}
-              <h1>Удобрения</h1>
-              <p className="pod">
-                Поддерживайте почву необходимыми элементами питания
-              </p>
-            </>
-          )}
-          {isProductType3 && (
-            <>
-              {" "}
-              <h1>Посевной материал</h1>
-              <p className="pod">Запаситесь качественными семенами заранее.</p>
-            </>
-          )}
+        {isProductType1 && (
+          <> <h1>ХСЗР</h1>
+          <p className="pod">Обеспечьте защиту Ваших культур</p></>
+        )}
+         {isProductType2 && (
+          <> <h1>Удобрения</h1>
+          <p className="pod">Поддерживайте почву необходимыми элементами питания</p></>
+        )}
+         {isProductType3 && (
+          <> <h1>Посевной материал</h1>
+          <p className="pod">Запаситесь качественными семенами заранее.</p></>
+        )}
+        
         </div>
 
         {isInfoBlockVisible && (
-          <div className="info-block">
-            <span className="exclamation">!</span>
-            <div className="info-text">
-              {isProductType1 && textItem1?.desc ? (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: textItem1.desc.replace(/\n/g, "<br />"),
-                  }}
-                />
-              ) : isProductType2 && textItem2?.desc ? (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: textItem2.desc.replace(/\n/g, "<br />"),
-                  }}
-                />
-              ) : isProductType3 && textItem3?.desc ? (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: textItem3.desc.replace(/\n/g, "<br />"),
-                  }}
-                />
-              ) : (
-                <p>Информация недоступна</p>
-              )}
-            </div>
-            <button className="close-btn" onClick={closeInfoBlock}>
-              <img src={krest} alt="Закрыть" />
-            </button>
-          </div>
-        )}
+  <div className="info-block">
+    <span className="exclamation">!</span>
+    <div className="info-text">
+      {isProductType1 && textItem1?.desc ? (
+         <div dangerouslySetInnerHTML={{ __html: textItem1.desc.replace(/\n/g, "<br />") }} />
+      ) : isProductType2 && textItem2?.desc ? (
+        <div dangerouslySetInnerHTML={{ __html: textItem2.desc.replace(/\n/g, "<br />") }} />
+      ) : isProductType3 && textItem3?.desc ? (
+        <div dangerouslySetInnerHTML={{ __html: textItem3.desc.replace(/\n/g, "<br />") }} />
+      ) : (
+        <p>Информация недоступна</p> 
+      )}
+    </div>
+    <button className="close-btn" onClick={closeInfoBlock}>
+      <img src={krest} alt="Закрыть" />
+    </button>
+  </div>
+)}
       </div>
 
       <div className="wrapperr">
-        <button
-          className="sort-button"
-          onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-        >
-          Сортировать по цене: {sortOrder === "asc" ? "↑" : "↓"}
-        </button>
-        <span className="toggle-button" onClick={toggleLeftSection}>
-          <img src={filter} alt="фильтр" />
-        </span>
-
+      <button
+      className="sort-button"
+      onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+    >
+      Сортировать по цене: {sortOrder === "asc" ? "↑" : "↓"}
+    </button>
+      <span 
+            className="toggle-button" 
+            onClick={toggleLeftSection}
+          >
+           <img src={filter} alt="фильтр" />
+          </span>
+          
         <div className="catalog-containerr full-width">
           {/* Левая секция с поиском и фильтрами */}
-          <div className={`left-section ${isLeftSectionOpen ? "open" : ""}`}>
+          <div className={`left-section ${isLeftSectionOpen ? 'open' : ''}`}>
             {isProductType1 && (
               <div className="filter-block">
                 <div className="search-bar">
@@ -449,12 +437,7 @@ const Prod = observer(() => {
                   <span className="search-icon">
                     <img src={lupa} alt="Search" />
                   </span>
-                  <button
-                    className="close-button rom"
-                    onClick={toggleLeftSection}
-                  >
-                    ×
-                  </button>
+                  <button className="close-button rom" onClick={toggleLeftSection}>×</button>
                 </div>
                 <div className="filter-section">
                   <h2 onClick={() => toggleFilter("category")}>
@@ -622,12 +605,7 @@ const Prod = observer(() => {
                   <span className="search-icon">
                     <img src={lupa} alt="Search" />
                   </span>
-                  <button
-                    className="close-button rom"
-                    onClick={toggleLeftSection}
-                  >
-                    ×
-                  </button>
+                  <button className="close-button rom" onClick={toggleLeftSection}>×</button>
                 </div>
                 <div className="filter-section">
                   <h2 onClick={() => toggleFilter("fertilizers")}>
@@ -684,35 +662,27 @@ const Prod = observer(() => {
                   </h2>
                   {filtersOpen.cultureTwo && (
                     <div className="filter-content">
-                      {[
-                        "Зерновые",
-                        "Масличные",
-                        "Зернобобовые",
-                        "Овощные",
-                        "Плодовые",
-                        "Корнеплоды/клубнеплоды",
-                        "Ягодные",
-                        "Зеленные",
-                        "Прядильные",
-                      ].map((cultureTwo, index) => (
-                        <div key={index}>
-                          <input
-                            type="checkbox"
-                            className="custom-checkbox"
-                            id={`cultureTwo-${index}`}
-                            value={cultureTwo}
-                            checked={selectedFilters.cultureTwos.includes(
-                              cultureTwo
-                            )}
-                            onChange={() =>
-                              handleFilterChange("cultureTwos", cultureTwo)
-                            }
-                          />
-                          <label htmlFor={`cultureTwo-${index}`}>
-                            {cultureTwo}
-                          </label>
-                        </div>
-                      ))}
+                      {["Зерновые", "Масличные", "Зернобобовые", "Овощные", "Плодовые", "Корнеплоды/клубнеплоды", "Ягодные", "Зеленные", "Прядильные"].map(
+                        (cultureTwo, index) => (
+                          <div key={index}>
+                            <input
+                              type="checkbox"
+                              className="custom-checkbox"
+                              id={`cultureTwo-${index}`}
+                              value={cultureTwo}
+                              checked={selectedFilters.cultureTwos.includes(
+                                cultureTwo
+                              )}
+                              onChange={() =>
+                                handleFilterChange("cultureTwos", cultureTwo)
+                              }
+                            />
+                            <label htmlFor={`cultureTwo-${index}`}>
+                              {cultureTwo}
+                            </label>
+                          </div>
+                        )
+                      )}
                     </div>
                   )}
                 </div>
@@ -840,12 +810,7 @@ const Prod = observer(() => {
                   <span className="search-icon">
                     <img src={lupa} alt="Search" />
                   </span>
-                  <button
-                    className="close-button rom"
-                    onClick={toggleLeftSection}
-                  >
-                    ×
-                  </button>
+                  <button className="close-button rom" onClick={toggleLeftSection}>×</button>
                 </div>
                 <div className="filter-section">
                   <h2 onClick={() => toggleFilter("categoryTwo")}>
@@ -939,6 +904,7 @@ const Prod = observer(() => {
           </div>
           {/* Правая секция с карточками продуктов */}
           <div className="right-section">
+            
             <div className="product-grid">
               {currentProducts.map((item, index) => (
                 <div className="product-card" key={index}>
@@ -958,22 +924,22 @@ const Prod = observer(() => {
                     <span className="product-price">{item.price}₽</span>
 
                     {user.isAuth ? (
-                      // If user is authenticated, use the first cart icon with `handleAddToCart`
-                      <img
-                        className="cart-icon"
-                        src={bask}
-                        alt="Add to Cart"
-                        onClick={() => handleAddToCart(item.id)}
-                      />
-                    ) : (
-                      // If user is not authenticated, use the second cart icon with `handleAddToCartG`
-                      <img
-                        className="cart-icon"
-                        src={bask}
-                        alt="Add to Cart"
-                        onClick={() => handleAddToCartG(item)}
-                      />
-                    )}
+        // If user is authenticated, use the first cart icon with `handleAddToCart`
+        <img
+          className="cart-icon"
+          src={bask}
+          alt="Add to Cart"
+          onClick={() => handleAddToCart(item.id)}
+        />
+      ) : (
+        // If user is not authenticated, use the second cart icon with `handleAddToCartG`
+        <img
+          className="cart-icon"
+          src={bask}
+          alt="Add to Cart"
+          onClick={() => handleAddToCartG(item)}
+        />
+      )}
                   </div>
                 </div>
               ))}

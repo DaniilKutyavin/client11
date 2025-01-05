@@ -86,7 +86,7 @@
   margin: 10px 0;
 }
 .toggle-text.show {
-  max-height: 490px;
+  max-height: 390px;
   margin: 10px;
   margin-top: -20px;
   margin-left: 20px;
@@ -100,6 +100,10 @@
   -webkit-background-clip: text; /* Используем градиент для текста */
   -webkit-text-fill-color: transparent; /* Прозрачный цвет текста */
   text-transform: uppercase; /* Текст заглавными буквами */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white; /* Ваш желаемый цвет */
 }
 @media (max-width: 768px) {
   .huge-gradient-text{
@@ -147,3 +151,4 @@
 
   
 }
+
