@@ -91,7 +91,7 @@ const Delivery = observer(() => {
             <div className="left-half">
               <div className="top-block">
                 <h2>Как сделать заказ?</h2>{" "}
-                <p>Выберете самый удобный способ для Вас</p>
+                <p>Выберите самый удобный способ для Вас</p>
               </div>
               <div className="bottom-block">
                 <img src={icon1} />
