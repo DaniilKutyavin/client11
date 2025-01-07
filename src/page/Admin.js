@@ -23,6 +23,7 @@ import ContactInfoManager from "../componenets/FormOne";
 import ContactInfoTwo from "../componenets/FormTwo"; // Убедитесь, что путь правильный
 import { observer } from "mobx-react-lite";
 import OrderGuestTable from "../componenets/OrderGuestTable";
+import { exportUsersToCSV } from "../http/userApi";
 
 const Admin = observer(() => {
   const { user } = useContext(Context);
@@ -55,7 +56,13 @@ const Admin = observer(() => {
       console.error("Ошибка при получении заказов", error);
     }
   };
-
+  const handleExportCSV = async () => {
+    try {
+      await exportUsersToCSV(); // Вызываем функцию для скачивания CSV
+    } catch (error) {
+      console.error("Ошибка при экспорте пользователей в CSV", error);
+    }
+  };
   // Функция для фильтрации по дате
   const filterByDate = () => {
     if (startDate && endDate) {
@@ -193,6 +200,9 @@ const Admin = observer(() => {
               Обновить памятку
             </button>
           </Link>
+          <button onClick={handleExportCSV} className="productBuyForm_addInfoButton">
+            Экспортировать пользователей в CSV
+          </button>
         </div>
         )}
         <div className="orders-table-container" style={{ marginTop: "20px", overflowX: "auto" }}>

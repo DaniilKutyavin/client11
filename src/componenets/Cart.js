@@ -21,7 +21,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
     city: "",
     email: "",
     comment: "",
-    promoCode: "",
+    promokod: "",
     paymentMethod: "Наличными курьеру", // Default payment method
   });
   const { user } = useContext(Context);
@@ -165,6 +165,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
       email: userDetails.email,
       comment: userDetails.comment,
       paymentMethod: userDetails.paymentMethod,
+      promokod:userDetails.promokod,
       giftId: selectedGift,
     };
   
@@ -334,7 +335,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
           id="phone"
           name="phone"
           value={userDetails.phone}
-          onChange={handlePhoneChange} // Attach the pho ne change handler
+          onChange={handlePhoneChange} // Attach the phone change handler
           placeholder="+7 (___) ___-__-__"
            className="intext"
         />
@@ -385,14 +386,14 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
         <label>Промокод</label>
         <input
           type="text"
-          name="promoCode"
-          value={userDetails.promoCode}
+          name="promokod"
+          value={userDetails.promokod}
           onChange={handleInputChange}
           className="intext"
         />
         <label>Комментарий к заказу</label>
         <input
-          type= "text"
+          type="text"
           name="comment"
           value={userDetails.comment}
           onChange={handleInputChange}

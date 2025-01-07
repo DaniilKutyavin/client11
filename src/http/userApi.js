@@ -64,3 +64,19 @@ export const updateUser = async (email, password, confirmPassword) => {
     throw error;
   }
 };
+
+export const exportUsersToCSV = async () => {
+  try {
+    const { data } = await $authHost.get("api/user/export", { responseType: "blob" });
+
+    // Создаём ссылку для скачивания
+    const blob = new Blob([data], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "users.csv"; // Название файла для скачивания
+    link.click(); // Имитируем клик по ссылке для начала скачивания
+  } catch (error) {
+    console.error("Export error:", error);
+    throw error;
+  }
+};

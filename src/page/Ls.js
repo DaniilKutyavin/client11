@@ -112,6 +112,7 @@ const Ls = () => {
                     <tr className="order-table-header">
                       <th>Дата</th>
                       <th>Товары</th>
+                      <th>Скидка</th>
                       <th>Сумма</th>
                       <th>Адрес</th>
                       <th>Способ оплаты</th>
@@ -121,15 +122,11 @@ const Ls = () => {
                   <tbody>
                     {displayedOrders.map((order) => {
                       // Вычисляем сумму заказа и применяем наценку, если метод оплаты — "bank"
-                      let totalPrice = order.order_products.reduce(
-                        (total, product) =>
-                          total + product.price * product.quantity,
-                        0
-                      );
-
-                      if (order.paymentMethod === "Банковский перевод") {
-                        totalPrice *= 1.05; // Умножаем на 5%
-                      }
+                      let totalPrice = order.order_products.reduce((total, product) => {
+                        // Если метод оплаты — "Банковский перевод", используем price_two
+                        const price = order.paymentMethod === "Банковский перевод" ? product.product.price_two : product.price;
+                        return total + (price * product.quantity)- order.discount;
+                      }, 0);
 
                       return (
                         <tr key={order.id}>
@@ -144,6 +141,7 @@ const Ls = () => {
                               </div>
                             ))}
                           </td>
+                          <td>{order.discount}</td>
                           <td>{totalPrice.toFixed(0)} ₽</td>
                           <td>{order.city || "Адрес не указан"}</td>
                           <td>{order.paymentMethod}</td>
@@ -155,7 +153,7 @@ const Ls = () => {
                 </table>
 
                 {/* Pagination Controls */}
-                <div className="pagination" style={{ marginTop: "20px" }}>
+                <div className="pagination" style={{ marginTop: '20px' }}>
                   <button
                     className="pagination-arrow"
                     onClick={handlePreviousPage}
