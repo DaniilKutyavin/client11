@@ -233,7 +233,7 @@ const Admin = observer(() => {
 
           <table className="orders-table" style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
-              <tr>
+            <tr>
                 <th>Дата</th>
                 <th>ID Заказа</th>
                 <th>Имя пользователя</th>
@@ -245,6 +245,7 @@ const Admin = observer(() => {
                 <th>Подарок</th>
                 <th>Комментарий</th>
                 <th>Город</th>
+                <th>Скидка</th>
                 <th>Итоговая сумма</th>
               </tr>
             </thead>
@@ -270,12 +271,12 @@ const Admin = observer(() => {
                   <td>{order.giftId}</td>
                   <td>{order.comment}</td>
                   <td>{order.city}</td>
+                  <td>{order.discount}</td>
                   <td>{calculateTotal(order)}₽</td>
                 </tr>
               ))}
             </tbody>
           </table>
-
           {/* Пагинация */}
           <div className="pagination" style={{ marginTop: "20px" }}>
               <button
