@@ -256,6 +256,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
                 src={process.env.REACT_APP_API_URL_IMG + item.product.img}
                 alt="Product"
                 className="cart-item-image"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </div>
           ))

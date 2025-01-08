@@ -94,6 +94,7 @@ const ProductPage = () => {
         type:product.type,
         img: product.img,
         weight: product.weight,
+        manufacturer:product.manufacturer,
         description_low: product.description_low,
         price: product.price,
         price_two: product.price_two,
@@ -193,6 +194,7 @@ const ProductPage = () => {
                 <img
                   src={process.env.REACT_APP_API_URL_IMG + product?.img}
                   alt={product?.name}
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
             </div>

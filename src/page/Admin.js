@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext  } from "react";
 import { Link,Navigate} from "react-router-dom";
 import OrderDetailModal from "../componenets/Order"; // Убедитесь, что путь правильный
 import { getOrders, updateOrder } from "../http/productApi";
+import { exportUsersToCSV } from "../http/userApi";
 import {
   CREATE_ROUTER,
   USER_ROUTER,
@@ -23,7 +24,6 @@ import ContactInfoManager from "../componenets/FormOne";
 import ContactInfoTwo from "../componenets/FormTwo"; // Убедитесь, что путь правильный
 import { observer } from "mobx-react-lite";
 import OrderGuestTable from "../componenets/OrderGuestTable";
-import { exportUsersToCSV } from "../http/userApi";
 
 const Admin = observer(() => {
   const { user } = useContext(Context);
@@ -92,14 +92,11 @@ const Admin = observer(() => {
 
   const calculateTotal = (order) => {
     let total = order.order_products.reduce((sum, product) => {
-      return sum + product.price * product.quantity;
+      // Если метод оплаты — "Банковский перевод", используем price_two
+      const price = order.paymentMethod === "Банковский перевод" ? product.product.price_two : product.price;
+      return sum + (price * product.quantity)-order.discount;
     }, 0);
-
-    // Проверка метода оплаты и корректировка суммы
-    if (order.paymentMethod === "Банковский перевод") {
-      total *= 1.05; // Умножаем на 5%
-    }
-
+  
     return total.toFixed(0); // Форматируем до целого числа
   };
   const handleNextPage = () => {
@@ -233,7 +230,7 @@ const Admin = observer(() => {
 
           <table className="orders-table" style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
-            <tr>
+              <tr>
                 <th>Дата</th>
                 <th>ID Заказа</th>
                 <th>Имя пользователя</th>
@@ -259,13 +256,16 @@ const Admin = observer(() => {
                   <td>{order.phone}</td>
                   <td>{order.paymentMethod}</td>
                   <td>
-                    <ul>
-                      {order.order_products.map((product) => (
-                        <li key={product.productId}>
-                          {product.product?.name || "Product not found"} - {product.quantity} шт. по {product.price}₽
-                        </li>
-                      ))}
-                    </ul>
+                  <ul>
+    {order.order_products.map((product) => (
+      <li key={product.productId}>
+        {product.product?.name || "Product not found"} 
+        {product.product?.manufacturer && ` (Произ-тель: ${product.product.manufacturer})`} 
+        - {product.quantity} шт. по &nbsp;  
+        {order.paymentMethod === "Банковский перевод" ? product.product.price_two : product.price}₽
+      </li>
+    ))}
+  </ul>
                   </td>
                   <td>{order.status}</td>
                   <td>{order.giftId}</td>
@@ -277,6 +277,7 @@ const Admin = observer(() => {
               ))}
             </tbody>
           </table>
+
           {/* Пагинация */}
           <div className="pagination" style={{ marginTop: "20px" }}>
               <button

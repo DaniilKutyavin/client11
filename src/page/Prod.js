@@ -129,6 +129,7 @@ const Prod = observer(() => {
         img: item.img, 
         weight: item.weight,
         type:item.type,
+        manufacturer:item.manufacturer,
         description_low: item.description_low,
         price: item.price,
         price_two: item.price_two,
@@ -913,6 +914,7 @@ useEffect(() => {
                       src={process.env.REACT_APP_API_URL_IMG + item.img}
                       alt="Product"
                       className="product-image"
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <h4 className="product-title">{item.name}</h4>
                     <p className="product-description">

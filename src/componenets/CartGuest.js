@@ -198,7 +198,7 @@ useEffect(() => {
                   <span className="price-cart">{item.price} ₽</span>
                 </div>
               </div>
-              <img src={process.env.REACT_APP_API_URL_IMG + item.img} alt="Product" className="cart-item-image" />
+              <img src={process.env.REACT_APP_API_URL_IMG + item.img} alt="Product" className="cart-item-image"  onContextMenu={(e) => e.preventDefault()}/>
             </div>
           ))
         ) : (

@@ -138,6 +138,8 @@ const Ls = () => {
                               <div key={product.id}>
                                 {product.product.name} (Количество:{" "}
                                 {product.quantity})
+
+                                Производитель: {product.product.manufacturer || 'Не указан'}
                               </div>
                             ))}
                           </td>
