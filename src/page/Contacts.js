@@ -25,7 +25,7 @@ const Contacts = observer(() => {
     email: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
-
+ 
   useEffect(() => {
     getAllinfo().then((data) => contact.setInfocon(data));
     getAlluser().then((data) => contact.setUsercon(data));
@@ -33,15 +33,40 @@ const Contacts = observer(() => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+  
+    if (id === "telephone") {
+      // Apply the phone formatting logic
+      let input = value.replace(/\D/g, ""); // Remove all non-numeric characters
+  
+      // Ensure the first digit is "7"
+      if (input.length > 0 && input[0] !== "7") {
+        input = "7" + input;
+      }
+  
+      // Apply the phone number format
+      let formatted = "+7";
+      if (input.length > 1) formatted += ` (${input.substring(1, 4)}`;
+      if (input.length >= 5) formatted += `) ${input.substring(4, 7)}`;
+      if (input.length >= 8) formatted += `-${input.substring(7, 9)}`;
+      if (input.length >= 10) formatted += `-${input.substring(9, 11)}`;
+  
+      // Limit the length of the formatted string
+      if (formatted.length > 18) {
+        formatted = formatted.substring(0, 18);
+      }
+  
+      setFormData({ ...formData, [id]: formatted });
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await submitPartnershipForm(formData);
       setFormData({ fio: "", telephone: "", email: "" }); // Clear form
-      navigate("/confirmation2");
+      navigate('/confirmation2');
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -110,6 +135,7 @@ const Contacts = observer(() => {
                     id="telephone"
                     value={formData.telephone}
                     onChange={handleChange}
+                      placeholder="+7 (___) ___-__-__"
                     required
                   />
                 </div>
@@ -153,30 +179,31 @@ const Contacts = observer(() => {
         </div>
       </div>
 
-      <div className="employee-cards contactfototwo">
-        <Swiper
-          spaceBetween={10}
-          slidesPerView={1}
-          className="card-container"
-          speed={800} // Плавный переход между слайдами
-          freeMode={true} // Режим свободного скролла
-        >
+      <div className="employee-cards contactfototwo"> 
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={1}
+        className="card-container"
+        speed={800} // Плавный переход между слайдами
+        freeMode={true} // Режим свободного скролла
+      >
           {contact.usercon.map((user, index) => (
             <SwiperSlide key={index}>
-              <div className="employee-card" key={user.id}>
-                <img
-                  src={process.env.REACT_APP_API_URL_IMG + user.img}
-                  alt="Employee Name"
-                  className="employee-img"
-                />
-                <div className="employee-info">
-                  <h3>{user.name}</h3>
-                  <p className="pod">{user.post}</p>
-                </div>
+               <div className="employee-card" key={user.id}>
+              <img
+                src={process.env.REACT_APP_API_URL_IMG + user.img}
+                alt="Employee Name"
+                className="employee-img"
+              />
+              <div className="employee-info"> 
+                <h3>{user.name}</h3>
+                <p className="pod">{user.post}</p>
               </div>
+            </div>
             </SwiperSlide>
           ))}
         </Swiper>
+       
       </div>
       <Store />
       <Shkal />
