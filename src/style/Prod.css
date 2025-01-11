@@ -403,6 +403,10 @@ body {
     align-items: center;
     user-select: none;
   }
+  .cart-icon:hover {
+    content: url('../img/корзина\ градиент.svg'); /* Замените на путь к картинке при наведении */
+    transform: scale(1.2); /* Увеличение при наведении (опционально) */
+  }
   .custom-checkbox+label::before {
     content: '';
     display: inline-block;

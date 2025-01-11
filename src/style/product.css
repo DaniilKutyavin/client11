@@ -432,7 +432,10 @@ details > summary::-webkit-details-marker {
   -ms-user-drag: none;
   user-drag: none;
 }
-
+.addToCartButton:hover img{
+  content: url('../img/корзина\ градиент.svg'); /* Замените на путь к картинке при наведении */
+  transform: scale(1.2); /* Увеличение при наведении (опционально) */
+}
 /* Rotating the arrow */
 .backArrow {
   transform: rotate(90deg);
