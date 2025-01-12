@@ -57,7 +57,7 @@ const Footer = observer(() => {
           </div>
           <div className="opop">
             <p className="copyright">
-              <span>© 2024 ASATAG. Все права защищены.</span>{" "}
+              <span>© 2024-2025 ASATAG. Все права защищены.</span>{" "}
               &emsp;&emsp;&emsp;&emsp;
               <p className="net"></p>
               <a href={privacyPolicy} download>

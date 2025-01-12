@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "../style/delivery.css";
 import Store from "../componenets/Store";
-import mapImage from "../img/карта.svg";
+import mapImage from '../img/карта новая.svg';
 import iconSite from "../img/компьютер.svg";
 import iconTelegram from "../img/чат.svg";
 import iconPhone from "../img/по телефону.svg";
