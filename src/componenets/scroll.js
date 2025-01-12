@@ -85,7 +85,7 @@ const HorizontalScrollComponent = () => {
           <SwiperSlide>
             <div className="item">
               <div className="text-content">
-                <h3>10000 выполненных заказов</h3>
+                <h3>Выполненных заказов</h3>
                 <div className="huge-gradient-text">10000</div>
                 <p className="podsize">Более 10000 заказов доставлено к нашим клиентам.</p>
                 <h4 className="toggle-header">Что мы предлагаем:</h4>
@@ -171,7 +171,7 @@ const HorizontalScrollComponent = () => {
           <SwiperSlide>
             <div className="item">
               <div className="text-content">
-                <h2 className="zag">10000 выполненных заказов</h2>
+                <h2 className="zag">Выполненных заказов</h2>
                 <div className="huge-gradient-text">10000</div>
                 <p className="podsize">Более 10000 заказов доставлено к нашим клиентам.</p>
                 <h3 className="zag">Что мы предлагаем:</h3>
