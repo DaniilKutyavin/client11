@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext  } from "react";
 import { Link,Navigate} from "react-router-dom";
 import OrderDetailModal from "../componenets/Order"; // Убедитесь, что путь правильный
-import { getOrders, updateOrder } from "../http/productApi";
+import { getOrders, updateOrder,generateYmlFeed } from "../http/productApi";
 import { exportUsersToCSV } from "../http/userApi";
 import {
   CREATE_ROUTER,
@@ -132,6 +132,14 @@ const Admin = observer(() => {
   if (!user.isAuth || (user.user.role !== 'Admin' && user.user.role !== 'Employee')) {
     return <Navigate to={SHOP_ROUTER} />;
 }
+const handleGenerateYmlFeed = async () => {
+  try {
+    const data = await generateYmlFeed(); // Make sure the API call resolves with the correct data
+    console.log("YML feed generated successfully:", data);
+  } catch (error) {
+    console.error("Error generating YML feed:", error);
+  }
+};
   return (
     <>
     <div className="header">
@@ -200,8 +208,16 @@ const Admin = observer(() => {
           <button onClick={handleExportCSV} className="productBuyForm_addInfoButton">
             Экспортировать пользователей в CSV
           </button>
+          <button onClick={handleGenerateYmlFeed} className="productBuyForm_addInfoButton">
+            Генерация YML фида
+          </button>
         </div>
         )}
+        {user.user.role === "Employee" && ( 
+         <button onClick={handleGenerateYmlFeed} className="productBuyForm_addInfoButton">
+            Генерация YML фида
+          </button>
+           )}
         <div className="orders-table-container" style={{ marginTop: "20px", overflowX: "auto" }}>
           <h1>Активные заказы</h1>
           {selectedOrder && (

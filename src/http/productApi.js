@@ -144,3 +144,18 @@ export const checkGiftAvailability = async (giftIds) => {
   });
   return data;
 };
+
+export const generateYmlFeed = async () => {
+  try {
+    const { data } = await $authHost.get("/api/product/feed", { responseType: "blob" });
+
+    const blob = new Blob([data], { type: "text/yml" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "feed.yml";
+    link.click(); 
+  } catch (error) {
+    console.error("Export error:", error);
+    throw error;
+  }
+};
