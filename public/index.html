@@ -54,7 +54,9 @@ html, body {
        clickmap:true,
        trackLinks:true,
        accurateTrackBounce:true,
-       webvisor:true
+       webvisor:true,
+      triggerEvent:true,
+      ecommerce:"dataLayer"
   });
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/99339023" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
@@ -74,6 +76,15 @@ html, body {
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script>
+      var _mtm = window._mtm = window._mtm || [];
+      _mtm.push({ 'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start' });
+      (function () {
+          var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+          g.src = 'https://stat1.clickfraud.ru/js/container_oDbPjjfm.js'; s.parentNode.insertBefore(g, s);
+      })();
+   </script>
+   
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
