@@ -149,10 +149,10 @@ export const generateYmlFeed = async () => {
   try {
     const { data } = await $authHost.get("/api/product/feed", { responseType: "blob" });
 
-    const blob = new Blob([data], { type: "text/xml" });
+    const blob = new Blob([data], { type: "application/xml" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "feed.yml";
+    link.download = "feed.xml";
     link.click(); 
   } catch (error) {
     console.error("Export error:", error);
