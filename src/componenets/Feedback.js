@@ -58,7 +58,7 @@ const Feedback = () => {
       setIsSubmitted(true); 
 
       setTimeout(() => {
-        setIsSubmitted(false);е
+        setIsSubmitted(false);
         setIsFormVisible(false); 
       }, 3000);
     } catch (error) {
