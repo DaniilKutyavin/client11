@@ -61,3 +61,18 @@ export const deleteuser = async (id) => {
   const { data } = await $authHost.delete(`api/contact/user/${id}`);
   return data;
 };
+
+export const createfeedback = async (info) => {
+  const { data } = await $host.post("api/feedback/", info);
+  return data;
+};
+
+export const getAllfeedback = async () => {
+  const { data } = await $authHost.get(`api/feedback/`);
+  return data;
+};
+
+export const deletefeedback= async (id) => {
+  const { data } = await $authHost.delete(`api/feedback/${id}`);
+  return data;
+};

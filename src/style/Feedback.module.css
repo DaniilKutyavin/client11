@@ -1,0 +1,194 @@
+/* Основной блок */
+.feedback {
+    position: fixed;
+    bottom: 150px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  /* Кнопка с эффектом переливания */
+  .phoneButton {
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .phoneButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Анимация переливания */
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 10px #abf538, 0 0 20px #fed919;
+    }
+    50% {
+      box-shadow: 0 0 20px #fed919, 0 0 30px #abf538;
+    }
+  }
+  
+  /* Модальное окно */
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    text-align: center;
+  }
+  
+  .feedbackForm {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    max-width: 90%;
+    position: relative;
+  }
+  
+  /* Заголовок */
+  .title {
+    font-family: "Gilroy-ExtraBold", sans-serif;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  /* Инпуты и текстовое поле */
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #262626;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+  }
+  
+  .textarea {
+    height: 80px;
+    resize: none;
+  }
+  
+  /* Кнопка отправки */
+  .submitButton {
+    margin-top: 10px;
+    background: transparent;
+    color: white;
+    border: none; /* Убираем стандартную границу */
+    border-radius: 8px; /* Закругленные углы */
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; /* Для псевдоэлемента */
+    z-index: 1; /* Чтобы текст был выше */
+    box-shadow: inset 0 0 0 2px rgba(171, 245, 56, 0.4), inset 0 0 0 2px rgba(253, 217, 25, 0.4); /* Градиентная граница */
+    width: 100%;
+  }
+  
+  
+  .submitButton:hover {
+    box-shadow: none;
+    background: linear-gradient(90deg, rgba(171, 245, 56,  0.4), rgba(253, 217, 25,  0.4)); /* Полный градиент на фоне */
+    border-radius: 8px; /* Убедиться, что закругление сохраняется */
+    border-image: none; /* Убрать градиент обводки */
+  }
+  /* Кнопка закрытия */
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .closeButton:hover {
+    color: #abf538;
+  }
+  
+  /* Стили для ссылок */
+  .contacts a {
+    display: block;
+    margin-bottom: 10px;
+    color: #abf538;
+    text-decoration: none;
+    font-family: "Gilroy-ExtraBold", sans-serif;
+  }
+  
+  
+  .policyLink {
+    display: inline-block; /* Для применения padding и обводки */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-size: 16px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    border-radius: 8px; /* Закругленные углы */
+    color: white; /* Базовый цвет текста */
+    background: linear-gradient(90deg, rgba(171, 245, 56, 1), rgba(253, 217, 25, 1)); /* Градиент фона */
+    background-clip: text; /* Применяем градиент к тексту */
+    -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
+    -webkit-text-fill-color: transparent; /* Прозрачный текст для отображения градиента */
+    transition: all 0.3s ease; /* Плавные переходы */
+  }
+  
+  .policyLink:hover {
+    text-decoration: underline;
+  }
+  
+  .phone {
+    background: linear-gradient(90deg, rgba(171, 245, 56, 1), rgba(253, 217, 25, 1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 16px; /* Adjust as needed */
+    font-weight: bold; /* Optional */
+  }
+  .separator {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #444;
+  }
+  .contacts {
+    display: flex;
+    gap: 15px; /* Отступы между ссылками */
+    align-items: center; /* Вертикальное выравнивание по центру */
+    justify-content: center; /* Центрирование элементов по горизонтали */
+  }
+  
+  .or {
+    font-family: "Gilroy-ExtraBold", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .subtitle {
+    font-family: "MyriadPro-Regular", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin: 10px;
+  }
+  

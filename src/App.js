@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from "./index";
 import { check as checkUser } from "./http/userApi";
 import CookieBanner from "./componenets/CookieBanner";
+import Feedback from './componenets/Feedback';
 
 const App = observer(() => {
   const { user } = useContext(Context);
@@ -60,6 +61,7 @@ const AppWithFooter = () => {
   return (
     <>
       <NavBar />
+      <Feedback/>
       <ScrollToTop />
       <AppRouter />
       <CookieBanner />

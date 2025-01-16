@@ -24,6 +24,7 @@ import ContactInfoManager from "../componenets/FormOne";
 import ContactInfoTwo from "../componenets/FormTwo"; // Убедитесь, что путь правильный
 import { observer } from "mobx-react-lite";
 import OrderGuestTable from "../componenets/OrderGuestTable";
+import FeedbackAdmin from "../componenets/FeedbackAdmin";
 
 const Admin = observer(() => {
   const { user } = useContext(Context);
@@ -333,6 +334,11 @@ const handleGenerateYmlFeed = async () => {
         <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
           <h1>Заявки на продажу</h1>
           <ContactInfoTwo />
+        </div>
+
+        <div className="orders-table-container" style={{ marginTop: "40px", marginBottom:'80px'}}>
+          <h1>Заявки на консультацию</h1>
+          <FeedbackAdmin/>
         </div>
       </div>
     </>
