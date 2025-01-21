@@ -588,6 +588,9 @@ useEffect(() => {
                     </div>
                   )}
                 </div>
+                <button className="filter-cancel-button"  onClick={toggleLeftSection}>
+                  Применить
+                </button>
                 <button className="filter-cancel-button" onClick={clearFilters}>
                   Очистить
                 </button>
@@ -793,6 +796,9 @@ useEffect(() => {
                     </div>
                   )}
                 </div>
+                <button className="filter-cancel-button"  onClick={toggleLeftSection}>
+                  Применить
+                </button>
                 <button className="filter-cancel-button" onClick={clearFilters}>
                   Очистить
                 </button>
@@ -897,6 +903,9 @@ useEffect(() => {
                     </div>
                   )}
                 </div>
+                <button className="filter-cancel-button"  onClick={toggleLeftSection}>
+                  Применить
+                </button>
                 <button className="filter-cancel-button" onClick={clearFilters}>
                   Очистить
                 </button>

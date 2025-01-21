@@ -80,3 +80,22 @@ export const exportUsersToCSV = async () => {
     throw error;
   }
 };
+
+export const resetPassword = async (email) => {
+  try {
+    const { data } = await $host.post("api/user/reset-password", { email });
+    return data;
+  } catch (error) {
+    throw error.response?.data?.message || error.message;
+  }
+};
+
+export const changePassword = async (resetToken, newPassword) => {
+  try {
+    const { data } = await $host.post("api/user/change-password", { resetToken, newPassword });
+    return data;
+  } catch (error) {
+    throw error.response?.data?.message || error.message;
+  }
+};
+

@@ -25,6 +25,7 @@ import {
   ORDER3_ROUTER,
   BUYFORM_ROUTER,
   CARTINFO_ROUTER,
+  RESETPASSWORD
 } from "./utils/consts";
 import Admin from "./page/Admin";
 import LS from "./page/Ls";
@@ -49,6 +50,7 @@ import ProductForm from "./componenets/ProductForm";
 import GlavImgManager from "./componenets/GlavImgManager";
 import OrderConfirmation from "./page/OrderConfirmation";
 import EditCartInfo from "./componenets/CartInfo";
+import ResetPassword from "./componenets/ResetPassword";
 
 export const authRoutes = [
   {
@@ -112,6 +114,10 @@ export const authRoutes = [
 ];
 
 export const publicRoutes = [
+  {
+    path: RESETPASSWORD + "/:token",
+    Component: ResetPassword,
+  },
   {
     path: SHOP_ROUTER,
     Component: Shop,

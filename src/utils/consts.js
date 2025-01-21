@@ -23,3 +23,4 @@ export const ORDER2_ROUTER = "/confirmation2";
 export const ORDER3_ROUTER = "/confirmation3";
 export const IMG_ROUTER = "/admin/img";
 export const CARTINFO_ROUTER = "/cartinfo";
+export const RESETPASSWORD = "/reset-password";

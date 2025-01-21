@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import "../style/auth.css";
-import { login, registration } from "../http/userApi";
+import { login, registration, resetPassword } from "../http/userApi";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
 import {
@@ -25,23 +25,40 @@ const LoginForm = ({ onClose }) => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isResettingPassword, setIsResettingPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [captcha, setCaptcha] = useState("");
   const [generatedCaptcha, setGeneratedCaptcha] = useState(generateCaptcha());
   const [errors, setErrors] = useState({}); // Store validation errors
+  const [resetEmailSent, setResetEmailSent] = useState(false);
 
   const { user } = useContext(Context);
   const location = useLocation();
-  const navigate = useNavigate();
-  const isLogin = location.pathname === LOGIN_ROUTER;
-  const isReg = location.pathname === REGISTRATION_ROUTER;
-
   const handleRegisterClick = () => {
     setIsRegistering(true);
     setGeneratedCaptcha(generateCaptcha()); // Regenerate CAPTCHA on register
   };
+  const handleResetPasswordClick = () => {
+    setIsResettingPassword(true);
+    setErrors({});
+  };
+  const handlePasswordResetSubmit = async (event) => {
+    event.preventDefault();
+    setErrors({});
 
+    if (!email) {
+      setErrors({ email: "Введите ваш email" });
+      return;
+    }
+
+    try {
+      await resetPassword(email); // API вызов для сброса пароля
+      setResetEmailSent(true); // Успешный сброс
+    } catch (e) {
+      setErrors({ general: e.response?.data?.message || "Ошибка при сбросе пароля" });
+    }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors({}); // Reset errors on new submit
@@ -102,7 +119,46 @@ const LoginForm = ({ onClose }) => {
       setGeneratedCaptcha(generateCaptcha()); // Regenerate CAPTCHA on form load if registering
     }
   }, [isRegistering]);
-
+  if (isResettingPassword) {
+    return (
+      <div className="login-form-overlay">
+        <div className="login-form">
+          <div className="close-btnn" onClick={onClose}>✖</div>
+          <h1 className="loginotst">Сброс пароля</h1>
+          {resetEmailSent ? (
+            <p className="instruction-text">
+              Инструкции по сбросу пароля отправлены на указанный email.
+            </p>
+          ) : (
+            <form onSubmit={handlePasswordResetSubmit}>
+              <div className="form-field">
+                <label htmlFor="email">Введите ваш email:</label>
+                <input
+                  className="log"
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                {errors.email && (
+                  <div className="error-message" style={{ color: "red" }}>
+                    {errors.email}
+                  </div>
+                )}
+              </div>
+              {errors.general && (
+                <div className="error-message" style={{ color: "red" }}>
+                  {errors.general}
+                </div>
+              )}
+              <button type="submit" className="submit-buttonn">Отправить</button>
+            </form>
+          )}
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="login-form-overlay">
       <div className="login-form">
@@ -271,6 +327,15 @@ const LoginForm = ({ onClose }) => {
           <button type="submit" className="submit-buttonn">
             {isRegistering ? "Создать" : "Войти"}
           </button>
+          {!isRegistering && (
+         <a 
+         href="#" 
+         className="no-style-link" 
+         onClick={handleResetPasswordClick}
+       >
+         Забыли пароль?
+       </a>
+        )}
         </form>
 
         {!isRegistering && (
