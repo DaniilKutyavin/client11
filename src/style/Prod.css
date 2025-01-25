@@ -435,9 +435,13 @@ body {
     .sort-button{
     display: none;
   }
-
+  .buttonss{
+    display: none;
+}
   @media (max-width: 768px) {
-      
+    .buttonss{
+        display: block;
+    }
       .filter-block {
         height: 160vh;
 }
