@@ -113,7 +113,7 @@ const Ls = () => {
                       <th>Дата</th>
                       <th>Товары</th>
                       <th>Скидка</th>
-                      <th>Сумма</th>
+                      {/*<th>Сумма</th>*/}
                       <th>Адрес</th>
                       <th>Способ оплаты</th>
                       <th>Статус</th>
@@ -144,7 +144,7 @@ const Ls = () => {
                             ))}
                           </td>
                           <td>{order.discount}</td>
-                          <td>{totalPrice.toFixed(0)} ₽</td>
+                           {/*<td>{totalPrice.toFixed(0)} ₽</td>*/}
                           <td>{order.city || "Адрес не указан"}</td>
                           <td>{order.paymentMethod}</td>
                           <td>{order.status}</td>

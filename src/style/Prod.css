@@ -236,13 +236,22 @@ body {
    
 }
 
-.cart-icon {
+/*.cart-icon {
     display: none;
     position: absolute;
     left: 20px;
     width: 30px;
     transition: opacity 0.3s ease;
     padding-top: 5px;
+}
+*/
+.cart-icon {
+    display: block;
+    opacity: 1;
+    position: static;
+    margin-left: 10px;
+    left: 20px;
+    width: 30px;
 }
 
 .product-card:hover .product-price {

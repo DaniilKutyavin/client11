@@ -129,8 +129,8 @@ const Prod = observer(() => {
         img: item.img, 
         weight: item.weight,
         type:item.type,
-        manufacturer:item.manufacturer,
         description_low: item.description_low,
+        manufacturer:item.manufacturer,
         price: item.price,
         price_two: item.price_two,
         quantity: 1,
@@ -182,9 +182,10 @@ useEffect(() => {
 }, [currentPage]);
   // Filter products based on selected filters
   const filteredProducts = product.prod.filter((item) => {
-    const matchesSearchQuery = item.name
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const matchesSearchQuery =
+  item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  (item.description_low &&
+    item.description_low.toLowerCase().includes(searchQuery.toLowerCase()));
   
     const matchesCategory =
       selectedFilters.categories.length === 0 ||
@@ -932,7 +933,7 @@ useEffect(() => {
                     <p className="pod product-volume">{item.weight}</p>
                   </Link>
                   <div className="price-container">
-                    <span className="product-price">{item.price}₽</span>
+                   {/* <span className="product-price">{item.price}₽</span> */}
 
                     {user.isAuth ? (
         // If user is authenticated, use the first cart icon with `handleAddToCart`

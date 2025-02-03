@@ -139,10 +139,11 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
     // Суммируем количество товаров с type: 2
     const totalItemsType2 = itemsType2.reduce((total, item) => total + item.quantity, 0);
     const totalItemsType3 = itemsType3.reduce((total, item) => total + item.quantity, 0);
-    if (totalAmount < 35000) {
-      setErrorMessage("Минимальная сумма заказа должна быть 35000 ₽.");
-      return;
-    }
+    
+    //if (totalAmount < 35000) {
+     // setErrorMessage("Минимальная сумма заказа должна быть 35000 ₽.");
+     // return;
+    //}
   
     // Проверяем количество товаров с type: 2
     if (totalItemsType2 < 20 && totalItemsType2!=0) {
@@ -249,7 +250,7 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
                   >
                     +
                   </button>
-                  <span className="price-cart">{item.price} ₽</span>
+                  <span className="price-cart">{/*{item.price} ₽*/}</span>
                 </div>
               </div>
               <img
@@ -263,9 +264,11 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
         ) : (
           <p>Корзина пуста</p>
         )}
+          {/*
         <div className="sum-section">
           <p className="sum-label">Сумма:</p>
           <div className="mobilka">
+          
           {userDetails.paymentMethod === "Наличными курьеру" ? (
             <>
               <div className="sum-details non-cash">
@@ -293,8 +296,10 @@ const Cart = ({ userId, onClose, onUpdateTotal }) => {
               </div>
             </>
           )}
+           
           </div>
         </div>
+         */}
         {totalAmount >= 50000 && (
           <div className="gift-section">
             <h3 className="section-title">Выберите подарок:</h3>

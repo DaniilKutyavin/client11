@@ -141,7 +141,7 @@ const ProductPage = () => {
               </div>
             </div>
         <div className="priceSection nevid">
-            <span className="price">{product?.price} ₽</span>
+             {/*<span className="price">{product?.price} ₽</span> */} 
             <div className="separator" />
             <button className="addToCartButton" onClick={user.isAuth ? handleAddToCart : handleAddToCartG}>
               <img src={bask} alt="Корзина" />
@@ -200,7 +200,7 @@ const ProductPage = () => {
             </div>
           </div>
           <div className="priceSection nonimg">
-            <span className="price">{product?.price} ₽</span>
+            <span className="price"> {/*{product?.price} ₽*/} </span>
             <div className="separator" />
             <button className="addToCartButton"  onClick={user.isAuth ? handleAddToCart : handleAddToCartG}>
               <img src={bask} alt="Корзина" />

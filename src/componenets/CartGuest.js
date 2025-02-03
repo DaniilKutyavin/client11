@@ -106,10 +106,10 @@ useEffect(() => {
     setErrorMessage("Посевного материала должно быть не менее 10.");
     return; 
   }
-    if (totalPrice < 35000) {
-      setErrorMessage("Минимальная сумма заказа составляет 35,000 ₽. Пожалуйста, добавьте товары на эту сумму.");
-      return; // Prevent checkout
-    }
+   // if (totalPrice < 35000) {
+     // setErrorMessage("Минимальная сумма заказа составляет 35,000 ₽. Пожалуйста, добавьте товары на эту сумму.");
+//return; // Prevent checkout
+   // }
 
    const { name, phone, city, email } = userDetails;
   if (!name || !phone || !city || !email) {
@@ -195,16 +195,16 @@ useEffect(() => {
                   <button className="quantity-button" onClick={() => handleQuantityChange(index, "increment")}>
                     +
                   </button>
-                  <span className="price-cart">{item.price} ₽</span>
+                  <span className="price-cart">{/*{item.price} ₽*/}</span>
                 </div>
               </div>
-              <img src={process.env.REACT_APP_API_URL_IMG + item.img} alt="Product" className="cart-item-image"  onContextMenu={(e) => e.preventDefault()}/>
+              <img src={process.env.REACT_APP_API_URL_IMG + item.img} alt="Product" className="cart-item-image"  onContextMenu={(e) => e.preventDefault()} />
             </div>
           ))
         ) : (
           <p>Корзина пуста</p>
         )}
-
+        {/*
         <div className="sum-section">
         <p className="sum-label">Сумма:</p>
           <div className="mobilka">
@@ -237,6 +237,7 @@ useEffect(() => {
             )}
           </div>
         </div>
+        */}
         {totalAmount >= 50000 && (
           <div className="gift-section">
             <h3 className="section-title">Выберите подарок:</h3>
