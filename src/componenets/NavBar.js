@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect,useRef } from "react";
 import { Context } from "..";
 import "../style/navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -30,6 +30,28 @@ const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const prevPathnameRef = useRef(null); 
+    const isInitialRender = useRef(true); 
+  
+
+    const pathsToClearFilters = [
+      "/product/type/1",
+      "/product/type/2",
+      "/product/type/3",
+      "/buy",
+    ];
+  
+
+    useEffect(() => {
+      if (pathsToClearFilters.includes(location.pathname)) {
+        if (!isInitialRender.current && prevPathnameRef.current !== location.pathname) {
+          localStorage.removeItem("selectedFilters");
+        }
+        prevPathnameRef.current = location.pathname; 
+      }
+      isInitialRender.current = false;
+    }, [location.pathname]);
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);

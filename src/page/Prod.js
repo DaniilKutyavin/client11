@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect} from "react";
 import "../style/Prod.css";
 import bask from "../img/корзина белая 1.svg";
 import iconProd from "../img/Образец ХСЗР на сайт.png";
@@ -28,28 +28,6 @@ const Prod = observer(() => {
   const [products, setProduct] = useState(null);
   const [isLeftSectionOpen, setIsLeftSectionOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState(null);
-
-  const prevPathnameRef = useRef(null); // Изначально null
-  const isInitialRender = useRef(true); // Флаг для отслеживания первого рендера
-
-  // Пути, при переходе на которые нужно очищать selectedFilters
-  const pathsToClearFilters = [
-    "/product/type/1",
-    "/product/type/2",
-    "/product/type/3",
-    "/buy",
-  ];
-
-  // Удаляем selectedFilters только при переходе на определённые пути
-  useEffect(() => {
-    if (pathsToClearFilters.includes(location.pathname)) {
-      if (!isInitialRender.current && prevPathnameRef.current !== location.pathname) {
-        localStorage.removeItem("selectedFilters");
-      }
-      prevPathnameRef.current = location.pathname; // Обновляем только для указанных путей
-    }
-    isInitialRender.current = false; // После первого рендера сбрасываем флаг
-  }, [location.pathname]);
 
   const toggleLeftSection = () => {
     setIsLeftSectionOpen((prev) => !prev);
